@@ -1,0 +1,16 @@
+site_name: SLACKMAN.CN
+site_url: https://slackman.cn
+repo_url: https://github.com/slackman-cn/site.git
+plugins: []
+theme:
+  name: null
+  custom_dir: 'mkdocs/'
+  
+  static_templates:
+    - 404.html
+
+  navigation_depth: 2
+  nav_style: success
+  color_mode: light
+  user_color_mode_toggle: false
+

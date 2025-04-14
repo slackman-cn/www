@@ -1,0 +1,86 @@
+[*] https://tool.frogg.fr/Tutorial_Syslinux
+https://unix.stackexchange.com/questions/285193/what-is-the-proper-way-to-use-isolinux-with-uefi
+https://serverfault.com/questions/517908/how-to-create-a-custom-iso-image-in-centos
+
+download  
+[1]https://www.kernel.org/pub/linux/utils/boot/syslinux/
+[2]apt-get install syslinux isolinux genisoimage -y
+
+mkdir -p /var/tmp/Workspace/ISO/isolinux
+#Copying require files
+cp /usr/lib/ISOLINUX/isolinux.bin /var/tmp/Workspace/ISO/isolinux/
+cp /usr/lib/syslinux/modules/bios/menu.c32 /var/tmp/Workspace/ISO/isolinux/
+cp /usr/lib/syslinux/modules/bios/libutil.c32 /var/tmp/Workspace/ISO/isolinux/
+cp /usr/lib/syslinux/modules/bios/ldlinux.c32 /var/tmp/Workspace/ISO/isolinux/
+
+#Create empty configuration file
+touch /var/tmp/Workspace/ISO/isolinux/isolinux.cfg
+```
+UI menu.c32
+
+MENU TITLE "THIS IS A TEST"
+
+LABEL TEST
+	MENU LABEL Back to boot proccess
+	MENU DEFAULT
+	LOCALBOOT 0
+	TEXT HELP
+		Exit and continue normal boot
+	ENDTEXT
+```
+
+
+genisoimage -rational-rock -volid "Testing ISO" -cache-inodes \
+-joliet -full-iso9660-filenames -input-charset UTF8 \
+-b isolinux/isolinux.bin \
+-c isolinux/boot.cat \
+-no-emul-boot -boot-load-size 4 -boot-info-table \
+-output /var/tmp/Workspace/bootable.iso /var/tmp/Workspace/ISO/
+
+测试
+qemu-system-x86_64 -cdrom ./bootable.iso
+$ file bootable.iso 
+bootable.iso: ISO 9660 CD-ROM filesystem data 'Testing ISO' (bootable)
+
+
+------------------- rufus
+制作 Ubuntu 启动盘  (rufus, ether, linux app)
+"以ISO镜像模式写入 vs 以DD镜像模式写入"
+以ISO镜像模式写入会将镜像提取到FAT32格式的USB设备中。所有文件和文件夹都可以从Windows或Linux访问
+
+以DD镜像模式写入会创建一个类似于使用Etcher创建的Live USB设备的ISO9660克隆操作系统。该分区是只读的，无法通过Windows访问或查看其内容。可以使用Linux查看内容，但无法修改。
+https://www.sysgeek.cn/make-ubuntu-usb-flash-drive/
+https://dev59.com/askubuntu/UkTGoIgBc1ULPQZFmcF1
+
+
+---------------- 混合引导
+https://geek-docs.com/shell/shell-examples/the-shell-generates-iso-and-hybrid-iso-files.html
+mkisofs -V "Label" -o image.iso source_dir/
+ isohybrid image.iso
+ dd if=image.iso of=/dev/sdb1
+
+
+https://forum.ubuntu.com.cn/viewtopic.php?t=486832
+ 近几年各大发行的 Linux 有个很贴心功能，就是制作U盘启动盘的时候可以直接将下载的 Linux ISO 文件当作磁盘RAW镜像直接写入U盘
+并且还同时支持 BIOS 和 UEFI 引导。稍有常识的人知道，磁盘是存在分区表架构的，
+BIOS引导要涉及MBR引导代码，UEFI引导要涉及一个ESP分区（也可以是MBR FAT兼容分区）和efi引导文件。
+
+正常标准的ISO文件是没有这些东西的。例如早期 Linux 安装盘 ISO 镜像，即使你用 dd 写入 U 盘上也无法引导。
+而现代的 Linux ISO 镜像大多采用一种叫 Hybrid/ISO 镜像格式，顾名思义就是混合 ISO 。
+
+
+需要安装两个软件包 ：apt install isolinux xorriso
+这样制作出来的 ISO ，在刻录光盘后可以同时支持 BIOS和UEFI 引导，用 dd 写入U盘后，仍然同时支持 BIOS和UEFI引导
+xorriso -as mkisofs \
+-o ../ubuntu-18.04-desktop-amd64-custom-`date +%Y%m%d_%H%M%S`.iso \
+-isohybrid-mbr /usr/lib/ISOLINUX/isohdpfx.bin \
+-c isolinux/boot.cat \
+-b isolinux/isolinux.bin \
+-no-emul-boot -boot-load-size 4 -boot-info-table \
+-eltorito-alt-boot \
+-e boot/grub/efi.img \
+-no-emul-boot \
+-isohybrid-gpt-basdat \
+-input-charset utf-8 -joliet -joliet-long -l -L -r \
+-V "Ubuntu 18.04 AMD64 `date +%Y%m%d`" \
+dvddir

@@ -1,0 +1,70 @@
+文件系统
+* 文本 (txt, md, rst, cpp, java, xml)
+* 二进制 (bin, png, iso, exe)
+* 混合mix (doc, 在线editor)
+* 结构化  (mysql, postgresql)
+
+
+文件服务器
+* Git (https://forgejo.org)
+* Zfile (https://docs.zfile.vip/)
+* yuque, onlyoffice
+* mysql-server
+
+======================= SETUP ZFile:8080
+https://docs.zfile.vip/install/os-linux
+mkdir -p /data/pub    # 本地存储
+
+mkdir -p /root/zfile   # 声明安装到的路径
+wget --no-check-certificate https://c.jun6.net/ZFILE/zfile-release.war  # 下载 zfile 最新版
+unzip zfile-release.war && rm -rf zfile-release.war      # 解压并删除压缩包
+chmod +x bin/*.sh                    
+./bin/start.sh
+http://192.168.122.209:8080
+
+先不用onlyoffice, 好像只能用这个版本
+https://docker.aityp.com/image/docker.io/onlyoffice/documentserver:7.1.1
+podman run --restart=always --name onlyoffice \
+    -p 8081:80 \
+    -e JWT_ENABLED=false \
+    -d onlyoffice
+
+======================= SETUP Git:3000
+https://forgejo.org/docs/latest/admin/installation-binary/
+
+wget https://codeberg.org/forgejo/forgejo/releases/download/v9.0.3/forgejo-9.0.3-linux-amd64
+sudo chmod 755 /usr/local/bin/forgejo
+
+sudo yum install git git-lfs
+sudo groupadd --system git
+sudo useradd --system --shell /bin/bash --comment 'Git Version Control' \
+   --gid git --home-dir /home/git --create-home git
+
+sudo mkdir /var/lib/forgejo
+sudo chown git:git /var/lib/forgejo && sudo chmod 750 /var/lib/forgejo
+sudo mkdir /etc/forgejo
+sudo chown root:git /etc/forgejo && sudo chmod 770 /etc/forgejo
+
+sudo wget -O /etc/systemd/system/forgejo.service https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service
+sudo systemctl enable forgejo.service
+sudo systemctl start forgejo.service
+
+======================= SETUP Redis, mysql{XAMPP} 尽量127.0.0.1不开放端口
+sudo yum install -y redis
+sudo systemctl status redis
+/usr/bin/redis-cli
+
+https://www.apachefriends.org/zh_cn/download.html
+XAMPP will be installed to /opt/lampp
+桌面 sudo /opt/lampp/manager-linux-x64.run
+命令 sudo /opt/lampp/xampp status
+配置文件 properties.ini
+
+启动 apache 报错, 缺少依赖 yum install libnsl
+/opt/lampp/var/mysql
+
+http://localhost  网页登陆phpmyadmin 
+MariaDB默认没有密码
+命令 /opt/lampp/bin/mysql -uroot -p
+
+ProFtpd 好像只能本地, 没什么用

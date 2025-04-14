@@ -1,0 +1,37 @@
+sudo xorriso -as mkisofs \
+                --modification-date=2024122615551800\
+                --protective-msdos-label \
+                -volid "ALPINE_TEAISO" \
+                -appid "Alpine Linux Live/Rescue Media" \
+                -publisher "Alpine Linux <https://alpinelinux.org>" \
+                -preparer "Prepared by TeaISO v2" \
+                -r -graft-points -no-pad \
+                --sort-weight 0 / \
+                --sort-weight 1 /boot \
+                --grub2-mbr /data/isowork/boot/grub/i386-pc/boot_hybrid.img \
+                -iso_mbr_part_type 0x83 \
+                -isohybrid-gpt-basdat \
+                -partition_offset 16 \
+                -b boot/grub/i386-pc/eltorito.img \
+                -c boot.catalog \
+                -no-emul-boot -boot-load-size 4 -boot-info-table --grub2-boot-info \
+                -eltorito-alt-boot \
+                -append_partition 2 0xef /data/isowork/efi.img \
+                -append_partition 3 0x83 /data/writable.img \
+                -e --interval:appended_partition_2:all:: \
+                -no-emul-boot \
+                --mbr-force-bootable \
+                -apm-block-size 512 \
+                -partition_cyl_align off \
+                -full-iso9660-filenames \
+                -iso-level 3 -rock -joliet \
+                -o example.iso \
+                /data/isowork/
+                
+
+
+date +%F%T
+2024122615551800
+
+sudo mksquashfs /data/lfs filesystem.squashfs
+ sudo mv filesystem.squashfs isowork/live/

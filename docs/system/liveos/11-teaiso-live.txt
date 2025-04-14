@@ -1,0 +1,83 @@
+https://gitlab.com/tearch-linux/applications-and-tools/teaiso
+
+git clone http://10.31.78.30/cgit/xfce/teaiso.git
+
+```
+sudo apt install xorriso grub-pc-bin grub-efi mtools make python3 \
+    dosfstools e2fsprogs squashfs-tools python3-yaml \
+    gcc wget curl unzip xz-utils zstd -y
+make && make install
+
+新建配置
+mkteaiso -c alpine
+vi build.sh
+mkteaiso --profile=$(pwd) --output=.. --work=/media/cnki/data/rpi/teaiso/work/
+
+打包
+mkteaiso --profile=/usr/src/teaiso-alpine-kde-stable
+mkteaiso --profile=$(pwd) --output=/output/ 
+
+alpine 镜像最小
+211M 12月19日 13:56 alpine-19-12-2024-x86_64.iso
+```
+
+### kde 镜像 1.3G
+
+```
+sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
+setup-xorg-base || true
+apk add plasma kde-applications-base elogind polkit-elogind dbus
+echo -e "live\nlive\n" | passwd root
+echo -e "live\nlive\n" | adduser user || true
+rc-update add dbus
+rc-update add sddm
+rc-update add udev
+rc-update add elogind
+```
+
+
+### xfce 镜像 430M
+
+xfce4-screensaver 没用
+
+```
+#!/usr/bin/env bash
+setup-xorg-base || true
+apk add  xfce4 xfce4-terminal xfce4-screensaver lightdm-gtk-greeter elogind polkit-elogind dbus
+echo -e "live\nlive\n" | passwd root
+rc-update add dbus
+rc-update add udev
+rc-update add elogind
+rc-update add lightdm
+```
+
+修改源码 /usr/lib/teaiso/distro/alpine.sh
+
+```
+write_repo()
+echo https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.20
+
+populate_rootfs()
+run_in_chroot apk add bash ca-certificates  mkinitfs linux-lts linux-firmware-none --allow-untrusted
+
+install_packages() 注释掉
+```
+
+# 自定义
+
+ debian-live-12.7.0-amd64-xfce-20230502.iso
+
+ ```
+alpine-live-20241220-x86_64.iso
+
+distro/functions.sh  引导菜单
+grep "^PRETTY_NAME="
+
+common/profile.py    文件名
+contents["iso_name"] 
+
+profile.yaml
+name: alpine-live
+label: ALPINE_LIVEOS
+
+ ```

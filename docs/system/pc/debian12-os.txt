@@ -1,0 +1,150 @@
+sudo apt install build-essential (default installed)
+sudo apt install git vim
+sudo apt install qtbase5-dev qtcreator
+sudo apt install rsync
+
+
+$$ next
+sudo apt install fcitx5
+运行Fcitx5配置，添加五笔拼音，Ctrl+空格。运行输入法设置，选择fcitx5
+
+sudo apt install neofetch cpu-x
+
+sudo apt install ntp -y
+sudo systemctl status ntp
+解决flatpak网络问题
+
+
+$$ next sudo apt install podman
+podman load -i AnolisOS-8.9-x86_64-docker.tar
+podman tag 3030d3 anolis   会被重命名为 localhost/anolis:latest
+podman run -it --rm anolis bash  不需要加localhost
+后台启动容器
+podman run -td --name build -v`pwd`:/build  anolis
+podman exec -it anolis bash
+
+$$ next(network error) sudo apt install flatpak 
+https://flathub.org/
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org
+sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+// same base
+sudo flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community
+sudo flatpak install flathub dev.zed.Zed
+// same base
+flatpak install flathub com.vscodium.codium
+sudo flatpak install flathub io.github.shiftey.Desktop
+
+错误： 无法从远程仓库 flathub 加载摘要：
+While fetching https://mirror.sjtu.edu.cn/flathub/summary.idx: [60] 
+SSL peer certificate or SSH remote key was not OK
+
+
+$$ projects
+======================
+/home/cnki/jvm/{node-20, jdk-8, jdk-17, maven, gradle, idea}  权限cnki:cnki
+npm, maven 设置国内源mirrors.tencent.com
+cd dist/fonts/
+sudo cp -a * /usr/local/share/fonts/
+
+$ sudo vi /etc/sudoer.d/cnki
+cnki  ALL=(ALL)  NOPASSWD:ALL
+
+$ sudo vi ~/.bashrc
+export NODE_HOME=/home/cnki/jvm/node-v20
+export JAVA_HOME=/home/cnki/jvm/jdk-8
+export M2_HOME=/home/cnki/jvm/apache-maven-3
+export PATH=... 
+
+$$ echo $XDG_SESSION_TYPE
+x11
+
+$$ lsblk 
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda      8:0    0 953.9G  0 disk 
+├─sda1   8:1    0   300M  0 part /boot/efi
+├─sda2   8:2    0 919.2G  0 part /
+└─sda3   8:3    0  34.4G  0 part [SWAP]
+
+$$ df -h
+文件系统        大小  已用  可用 已用% 挂载点
+udev             16G     0   16G    0% /dev
+tmpfs           3.2G  1.7M  3.2G    1% /run
+/dev/sda2       904G  8.7G  850G    2% /
+tmpfs            16G     0   16G    0% /dev/shm
+tmpfs           5.0M   12K  5.0M    1% /run/lock
+tmpfs            16G  604K   16G    1% /tmp
+/dev/sda1       300M  5.9M  294M    2% /boot/efi
+tmpfs           3.2G   80K  3.2G    1% /run/user/1000
+
+
+
+$$ dpkg -l | grep qt
+ii  fcitx-frontend-qt5:amd64               1.2.7-2+b7                           amd64        Free Chinese Input Toy of X - Qt5 IM Module frontend
+ii  libfcitx-qt5-1:amd64                   1.2.7-2+b7                           amd64        Free Chinese Input Toy of X - D-Bus client libraries for Qt5
+ii  libfcitx-qt5-data                      1.2.7-2                              all          Free Chinese Input Toy of X - data files for Qt5 integration
+ii  libfcitx5-qt-data                      5.0.16-1                             all          Qt library and IM module for fcitx5 (data files)
+ii  libfcitx5-qt1:amd64                    5.0.16-1+b3                          amd64        Qt library and IM module for fcitx5
+ii  libqt5core5a:amd64                     5.15.8+dfsg-11+deb12u2               amd64        Qt 5 core module
+ii  libqt5dbus5:amd64                      5.15.8+dfsg-11+deb12u2               amd64        Qt 5 D-Bus module
+ii  libqt5gui5:amd64                       5.15.8+dfsg-11+deb12u2               amd64        Qt 5 GUI module
+ii  libqt5help5:amd64                      5.15.8-2                             amd64        Qt 5 help module
+ii  libqt5multimedia5:amd64                5.15.8-2                             amd64        Qt 5 Multimedia module
+ii  libqt5multimedia5-plugins:amd64        5.15.8-2                             amd64        Qt 5 Multimedia module plugins
+ii  libqt5multimediagsttools5:amd64        5.15.8-2                             amd64        GStreamer tools for  Qt 5 Multimedia module
+ii  libqt5multimediawidgets5:amd64         5.15.8-2                             amd64        Qt 5 Multimedia Widgets module
+ii  libqt5network5:amd64                   5.15.8+dfsg-11+deb12u2               amd64        Qt 5 network module
+ii  libqt5positioning5:amd64               5.15.8+dfsg-3+deb12u1                amd64        Qt Positioning module
+ii  libqt5printsupport5:amd64              5.15.8+dfsg-11+deb12u2               amd64        Qt 5 print support module
+ii  libqt5qml5:amd64                       5.15.8+dfsg-3                        amd64        Qt 5 QML module
+ii  libqt5qmlmodels5:amd64                 5.15.8+dfsg-3                        amd64        Qt 5 QML Models library
+ii  libqt5quick5:amd64                     5.15.8+dfsg-3                        amd64        Qt 5 Quick library
+ii  libqt5quickwidgets5:amd64              5.15.8+dfsg-3                        amd64        Qt 5 Quick Widgets library
+ii  libqt5sensors5:amd64                   5.15.8-2                             amd64        Qt Sensors module
+ii  libqt5sql5:amd64                       5.15.8+dfsg-11+deb12u2               amd64        Qt 5 SQL module
+ii  libqt5sql5-sqlite:amd64                5.15.8+dfsg-11+deb12u2               amd64        Qt 5 SQLite 3 database driver
+ii  libqt5svg5:amd64                       5.15.8-3                             amd64        Qt 5 SVG module
+ii  libqt5waylandclient5:amd64             5.15.8-2                             amd64        QtWayland client library
+ii  libqt5waylandcompositor5:amd64         5.15.8-2                             amd64        QtWayland compositor library
+ii  libqt5webchannel5:amd64                5.15.8-2                             amd64        Web communication library for Qt
+ii  libqt5webengine-data                   5.15.13+dfsg-1~deb12u1               all          Web content engine library for Qt - Data
+ii  libqt5webenginecore5:amd64             5.15.13+dfsg-1~deb12u1               amd64        Web content engine library for Qt - Core
+ii  libqt5webenginewidgets5:amd64          5.15.13+dfsg-1~deb12u1               amd64        Web content engine library for Qt - Widget
+ii  libqt5webkit5:amd64                    5.212.0~alpha4-30                    amd64        Web content engine library for Qt
+ii  libqt5widgets5:amd64                   5.15.8+dfsg-11+deb12u2               amd64        Qt 5 widgets module
+ii  libqt5x11extras5:amd64                 5.15.8-2                             amd64        Qt 5 X11 extras
+ii  libqt5xml5:amd64                       5.15.8+dfsg-11+deb12u2               amd64        Qt 5 XML module
+ii  qt5-gtk-platformtheme:amd64            5.15.8+dfsg-11+deb12u2               amd64        Qt 5 GTK+ 3 platform theme
+ii  qttranslations5-l10n                   5.15.8-2                             all          translations for Qt 5
+ii  qtwayland5:amd64                       5.15.8-2                             amd64        QtWayland platform plugin
+ii  uim-qt5                                1:1.8.8-9.2+b2                       amd64        Universal Input Method - Qt 5.x front end
+ii  uim-qt5-immodule:amd64                 1:1.8.8-9.2+b2                       amd64        Universal Input Method - Qt 5.x IM module
+
+
+cnki@debian:/var/lib/flatpak/repo$ flatpak list
+名称                               应用程序 ID                                     版本                              分支                 安装
+IntelliJ IDEA Community            com.jetbrains.IntelliJ-IDEA-Community           2024.2.3                          stable               system
+Zed                                dev.zed.Zed                                     v0.155.2                          stable               system
+Mesa                               org.freedesktop.Platform.GL.default             24.2.3                            24.08                system
+Mesa (Extra)                       org.freedesktop.Platform.GL.default             24.2.3                            24.08extra           system
+openh264                           org.freedesktop.Platform.openh264               2.4.1                             2.4.1                system
+Freedesktop SDK                    org.freedesktop.Sdk                             freedesktop-sdk-24.08.2           24.08                system
+
+
+
+dev.zed.Zed permissions:
+    ipc              network               fallback-x11          gpg-agent
+    pulseaudio       ssh-auth              wayland               x11
+    dri              file access [1]       dbus access [2]
+
+    [1] home
+    [2] org.freedesktop.Flatpak, org.freedesktop.secrets,
+        org.gnome.keyring.SystemPrompter, org.kde.kwalletd6
+
+
+        ID                                  分支       操作 远程    下载
+ 1. [✓] org.freedesktop.Platform.GL.default 24.08      i    flathub  146.4 MB / 146.7 MB
+ 2. [✓] org.freedesktop.Platform.GL.default 24.08extra i    flathub   22.7 MB / 146.7 MB
+ 3. [✓] org.freedesktop.Platform.openh264   2.4.1      i    flathub    1.3 MB / 976.5 kB
+ 4. [✓] org.freedesktop.Sdk.Locale          24.08      i    flathub    6.9 MB / 385.0 MB
+ 5. [/] org.freedesktop.Sdk                 24.08      i    flathub  345.8 MB / 615.4 MB
+ 6. [ ] dev.zed.Zed                         stable     i    flathub < 60.8 MB

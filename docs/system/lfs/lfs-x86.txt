@@ -1,0 +1,21 @@
+https://www.linuxfromscratch.org/
+git clone https://git.linuxfromscratch.org/lfs.git lfs-git
+
+最新12.0 包含wget list
+https://www.linuxfromscratch.org/lfs/downloads/stable/
+
+umount -v $LFS/dev/pts
+umount -v $LFS/dev
+umount -v $LFS/run
+umount -v $LFS/proc
+umount -v $LFS/sys
+
+完整示例，vmware+deepin + lfs11
+https://www.cnblogs.com/hzmanage/p/15744414.html
+
+完整示例, 博客园搜索
+LFS 11.2（Linux From Scratch）构建过程全记录（十一）：收尾并启动LFS 
+
+参考
+https://lctt.github.io/LFS-BOOK/lfs-systemd/LFS-SYSD-BOOK.html
+https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/

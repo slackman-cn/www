@@ -1,0 +1,14 @@
+https://loongarch.dev/zh-cn/docs/clfs_for_loongarch64
+
+mount -t proc proc proc
+mount -t sysfs sys sys
+mount -t devtmpfs dev dev 
+mount -t devpts devpts dev/pts 
+mount -t tmpfs shm dev/shm
+
+export SYSDIR=/opt/mylaos
+mkdir -pv ${SYSDIR}
+mkdir -pv ${SYSDIR}/downloads
+mkdir -pv ${SYSDIR}/build
+install -dv ${SYSDIR}/cross-tools
+install -dv ${SYSDIR}/sysroot

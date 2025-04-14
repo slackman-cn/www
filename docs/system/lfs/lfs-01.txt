@@ -1,0 +1,77 @@
+
+```
+1. Source Code
+2. Toolchain
+3. Bootloader
+4. Kernel
+5. File Systems
+```
+
+## 1. Source Code
+
+方式: wget批量下载
+```
+git clone https://git.linuxfromscratch.org/lfs.git lfs-git
+make wget-list
+
+cd ~/public_html/lfs-book/
+export http_proxy='http://192.168.22.237:1080'
+export http_proxy='https://192.168.22.237:1080'
+wget -i wget-list
+```
+
+方式2: lfs-packages-12.2.tar
+
+https://developer.aliyun.com/mirror/lfs
+http://ftp.lfs-matrix.net/pub/lfs/lfs-packages/
+```
+bash check.sh
+
+都是 90 多个, 有这个文件, 名字不一样
+lfs-bootscripts-20240717.tar.xz misssing
+```
+
+
+创建磁盘, 虚拟磁盘很麻烦, 不如u盘  
+https://foxi.buduanwang.vip/linux/552.html/  
+https://developer.aliyun.com/article/513638  
+```
+sudo apt install qemu-utils
+qemu-img create disk.img 20G
+
+sudo fdisk -l disk.img
+sudo fdisk disk.img
+
+---- part1
+o
+n
+p
+/
++100M
+a
+---- part2
+n
+p
+/
+/
+w
+```
+
+u盘坏了,虚拟盘, 格式化之后再mount
+https://www.cnblogs.com/xingboy/p/16331165.html
+```
+sudo apt-get install kpartx
+
+sudo losetup -f 
+sudo losetup /dev/loopX disk.img
+sudo kpartx -av /dev/loop0
+
+sudo mkfs.ext4 /dev/mapper/loop0p1 
+sudo mkfs.ext4 /dev/mapper/loop0p2 
+sudo mount /dev/mapper/loop0p1 ./rootfs
+
+---- 还原
+sudo umount ./rootfs/
+sudo kpartx -dv /dev/loop0 
+sudo losetup -d /dev/loop0
+```

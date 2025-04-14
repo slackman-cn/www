@@ -1,0 +1,50 @@
+https://zxmls.lol/ 教程脚本地址不对，脚本有漏洞
+
+### Step1: 下载 termux apk 初始化
+
+https://termux.dev/en/
+```
+$ termux-change-repo  
+修改镜像源 https://mirrors.tuna.tsinghua.edu.cn/help/termux/
+选择一个就够了
+
+$ termux-setup-storage
+给予Termux对于存储空间的读写, 没发现有什么用
+
+$ pkg update
+$ pkg upgrade
+$ pkg install vim 
+```
+
+### Step2 开启ssh
+
+https://blog.csdn.net/Mingyueyixi/article/details/136010239  
+wifi连接，详情查看IP，默认端口8022  
+```
+$ pkg install openssh openssl
+$ ssk-keygen -A
+生成密钥
+
+$ whoami
+$ passwd
+用户名是随机的，自己设置密码
+
+$ ssh
+启动服务
+```
+
+### Step3 发行版
+
+https://www.bilibili.com/opus/829270876774989842  
+https://www.bilibili.com/opus/979890359056203794  
+```
+$ pkg install git wget
+$ pkg install proot proot-distro
+
+$ proot-dirstro list
+$ proot-distro install archlinux
+查看支持Linux版本  https://github.com/termux/proot-distro/releases
+
+$ proot-distro login archlinux
+从github下载rootfs有点慢，应该可以离线使用
+```
