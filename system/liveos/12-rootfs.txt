@@ -1,0 +1,7 @@
+create root filesystem
+
+from stratch
+
+alpine
+yum 
+deb

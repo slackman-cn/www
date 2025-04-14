@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">HOME</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../lfs/" class="nav-link">LFS</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-mkdoc/" class="dropdown-item">MkDocs</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">CGit</a>
+</li>
+                                    
+<li>
+    <a href="../03-wikijs/" class="dropdown-item">Wiki.js</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../script/source/" class="dropdown-item">Source</a>
+</li>
+                                    
+<li>
+    <a href="../../script/tools/" class="dropdown-item">Tools</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../system/01-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/02-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../01-mkdoc/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../03-wikijs/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/site.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#cgit" class="nav-link">CGit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="cgit">CGit</h1>
+<p>编译cgit 需要先下载git源码</p>
+<pre><code>https://git-scm.com/downloads
+https://github.com/git/git/tags
+
+$ git clone https://git.zx2c4.com/cgit
+$ git clone https://www.thedroneely.com/git/thedroneely/cgit
+
+方式1 git submodule init &amp;&amp; git submodule update
+方式2 make get-git
+    https://www.kernel.org/pub/software/scm/git/git-2.46.0.tar.xz 
+    &amp;&amp; rm -rf git
+    &amp;&amp; mv git-2.46.0 git
+</code></pre>
+<h3 id="cgit_1">编译cgit</h3>
+<p>https://git.zx2c4.com/cgit/about/</p>
+<pre><code>podman run -it --rm -v `pwd`:/build anolis bash
+yum install -y which 
+yum install -y gcc make
+yum install -y openssl-devel
+[openeuler] yum install -y findutils
+
+$ make clean
+$ make
+$ sudo make install
+
+install -m 0755 -d /var/www/htdocs/cgit
+install -m 0755 cgit /var/www/htdocs/cgit/cgit.cgi
+install -m 0755 -d /var/www/htdocs/cgit
+install -m 0644 cgit.css /var/www/htdocs/cgit/cgit.css
+install -m 0644 cgit.js /var/www/htdocs/cgit/cgit.js
+install -m 0644 cgit.png /var/www/htdocs/cgit/cgit.png
+install -m 0644 favicon.ico /var/www/htdocs/cgit/favicon.ico
+install -m 0644 robots.txt /var/www/htdocs/cgit/robots.txt
+install -m 0755 -d /usr/local/lib/cgit/filters
+cp -r filters/* /usr/local/lib/cgit/filters
+</code></pre>
+<h3 id="web-ui">Web UI</h3>
+<pre><code>[anolis]
+yum install epel-release
+yum install fcgi fcgiwrap
+yum install spawn-fcgi
+
+[openeuler]
+yum install fcgi
+yum install spawn-fcgi
+
+[openeuler 编译fcgiwrap]
+https://gitee.com/src-oepkgs/fcgiwrap/tree/master
+https://github.com/gnosek/fcgiwrap
+yum install -y automake autoconf
+yum install -y fcgi-devel
+
+
+yum install -y nginx  
+openEuler和anolis都改了nginx源码和首页
+
+spawn-fcgi -s /var/run/fcgiwrap.socket -M 0666 -U nginx -- /usr/sbin/fcgiwrap
+ps -ef | grep fcgi
+</code></pre>
+<h3 id="_1">配置文件</h3>
+<p>nginx.conf</p>
+<pre><code>location ~ ^/cgit\.(png|css)$ { root /var/www/htdocs/cgit/; }
+location ~ ^/cgit(/.*) {
+    fastcgi_pass unix:/var/run/fcgiwrap.socket;
+    fastcgi_param SCRIPT_FILENAME /var/www/htdocs/cgit/cgit.cgi;
+    fastcgi_param PATH_INFO       $1;
+    fastcgi_param CGIT_CONFIG     /data1/githost/cgitrc;
+    include fastcgi_params;
+}
+
+server {
+    listen       80;
+    server_name  githost;
+    location / {
+        rewrite ^/(.*) http://10.31.66.80/cgit/$1 permanent;
+    }
+}
+</code></pre>
+<p>cgitrc</p>
+<pre><code>virtual-root=/cgit
+scan-path=/data1/githost/
+
+# Here are some default values
+root-title=Git repository mirror
+root-desc=a fast webinterface for the git dscm
+
+# Custom configuration
+clone-prefix=http://githost
+
+# Syntax highlighting
+source-filter=/usr/local/lib/cgit/filters/syntax-highlighting.sh
+</code></pre>
+<h3 id="install-web-x">Install Web (x)</h3>
+<pre><code>sudo apt install nginx
+sudo apt install gitweb  # 主要是配置文件
+sudo apt install fcgiwrap
+
+依赖不如单独安装
+apt-get install libcgi-fast-perl
+apt-get install highlight
+
+------------- cgit
+apt install cgit  自动安装 apache2
+卸载cgit，不会卸载apache2
+
+
+----- REF
+https://leanhe.dev/posts/2021.05.02.1/  (cgit运行失败)
+https://fishilico.github.io/generic-config/etc-server/web/gitweb.html   (gitweb运行成功 + nginx)
+</code></pre>
+<h3 id="git-src">编译git-src</h3>
+<p>https://git.mosong.cc/guide/install-git-src.html </p>
+<pre><code>https://commandnotfound.cn/linux/1/174/cmp-%E5%91%BD%E4%BB%A4
+yum install -y diffutils
+
+yum install curl-devel expat-devel gettext-devel \
+    openssl-devel zlib-devel
+apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
+    libz-dev libssl-dev
+
+tar -zxf git-1.7.2.2.tar.gz
+cd git-1.7.2.2
+make prefix=/opt/git all
+sudo make prefix=/opt/git install
+默认安装 /root/{bin,libexec,share}
+
+
+/usr/lib/git-core/  对应 /opt/git/libexec/git-core
+/usr/share/git-core 对应 /opt/git/share/git-core
+/usr/share/gitweb 对应 /opt/git/share/gitweb
+</code></pre>
+<h3 id="nginx-src">编译nginx-src</h3>
+<pre><code>
+
+</code></pre>
+<h3 id="nginx-dir">Nginx dir</h3>
+<blockquote>
+<p>apt install spawn-fcgi fcgiwrap nginx  (autoindex没用)</p>
+</blockquote>
+<pre><code>mkdir -p /data/mirror/githost &amp;&amp; cd
+touch cgitrc
+
+mkdir lxqt &amp;&amp; cd
+git clone --mirror https://github.com/lxqt/lxqt
+vi lxqt.git/descritpion
+
+---------
+mkdir -p /data/mirror/gitpub
+vi /etc/nginx/sites-available/default
+location /pub/ {
+    charset gbk,utf-8;
+    alias /data/mirror/gitpub/;
+    index off;
+    autoindex on;
+    autoindex_localtime on;
+    autoindex_exact_size off;
+}
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

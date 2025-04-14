@@ -1,0 +1,19 @@
+https://tool.frogg.fr/Tutorial_Syslinux
+
+isolinux
+https://zdyxry.github.io/2019/12/01/Linux-%E5%BC%95%E5%AF%BC%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/
+https://www.linuxmi.com/syslinux-bootloaders.html
+
+
+livecd, change kylin iso
+https://blog.csdn.net/m0_57309959/article/details/134977729  [详细]
+https://blog.csdn.net/weixin_34025151/article/details/91547265
+https://blog.csdn.net/q1009020096/article/details/138839062  [修改 kylin]
+https://www.cnblogs.com/appresearch/p/5484450.html   [修改 centos]
+
+
+-------------- 怎么制作自己的发行版  /etc/os-release
+改源码 kylin-release  重新打包，替换iso
+创建 my-kylin-release.spec 提供 kylin-release  （anolis方案）
+
+ 

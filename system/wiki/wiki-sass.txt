@@ -1,0 +1,90 @@
+https://www.geeksforgeeks.org/how-to-install-dart-sass-in-linux
+
+
+文件系统
+https://www.geeksforgeeks.org/linux-file-system/?ref=outind
+
+
+# 安装 1
+
+https://github.com/sass/dart-sass/releases/
+
+$ sudo tar -xvzf ~/Downloads/dart-sass-1.52.1-linux-x64.tar.gz -C /opt/
+$ export PATH=/opt/dart-sass:$PATH
+
+$ sass –version
+
+
+# 安装 2
+
+
+```
+$ npm i -g sass
+$ sass –version
+```
+
+
+# 使用
+
+
+ sass input.scss:output.css
+
+```
+$font-lg: 48px; 
+$font-sm: 24px; 
+$lightcolor: #359917; 
+$darkcolor: #126d12; 
+$pd: 18px 36px; 
+    
+div { 
+    height: 100vh; 
+    width: 100vw; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 10%; 
+} 
+    
+h1 { 
+    font-size: $font-lg; 
+} 
+    
+a { 
+    background-color: $lightcolor; 
+    color: white; 
+    font-size: $font-sm; 
+    padding: $pd; 
+    text-decoration: none; 
+    &:hover { 
+        background-color: $darkcolor; 
+    } 
+    &:active { 
+        background-color: $darkcolor; 
+    } 
+}
+
+```
+index.html
+
+```
+<!DOCTYPE html> 
+<html lang="en"> 
+	
+<head> 
+	<link rel="stylesheet"
+		href="style.css"> 
+</head> 
+	
+<body> 
+	<div> 
+		<h1>Welcome to GeeksforGeeks.</h1> 
+		<br> 
+		<a href="https://www.geeksforgeeks.org/"> 
+			Visit 
+		</a> 
+	</div> 
+</body> 
+	
+</html>
+
+```

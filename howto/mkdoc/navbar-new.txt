@@ -1,0 +1,25 @@
+https://nextui.org/docs/components/navbar
+https://www.w3schools.com/Css/css_navbar.asp
+https://www.w3schools.com/csS/css_navbar_horizontal.asp
+
+https://foolishdeveloper.com/navigation-bar-html-css-javascript/
+https://onaircode.com/html-css-navbar-examples/
+https://codepen.io/acarlie/pen/JjPKmmV
+
+
+这个最好, 尽量减小体积
+https://codepen.io/ariona/pen/pENZXW
+https://codepen.io/pec-man/pen/bGbeXqZ   
+(直接使用native, 不要用jquery, 太大了还没法精简)
+https://zkrisj.github.io/vitepress-blog/posts/native-substitution-for-jquery.html
+https://www.cnblogs.com/moqiutao/p/9991678.html
+ 
+## scss 转 css, 并且压缩
+sass style.scss  style.css
+sass style.scss style-min.css --style compressed
+
+## webpack合并 css和js 到bundle.js
+https://www.javascriptcn.com/post/66561bfbd3423812e4abfbb4
+https://www.cnblogs.com/star2021/p/14392261.html
+pnpm add -D webpack webpack-cli uglifyjs-webpack-plugin
+pnpm add -D style-loader css-loader

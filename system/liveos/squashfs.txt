@@ -1,0 +1,26 @@
+https://www.cnblogs.com/qiuqiuqiuqiuqiu/p/17468305.html
+
+备份本地根目录下的文件到/path/to/backup/folder下
+sudo rsync -avx / /path/to/backup/folder --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run --exclude=/mnt --exclude=/media --exclude=/lost+found
+
+
+sudo mksquashfs /path/to/backup/folder mybackup.squashfs
+
+
+sudo genisoimage -o mybackup.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Ubuntu Backup" iso/
+
+sudo xorriso -as mkisofs -iso-level 3 -V "Ubuntu 20.04.3 LTS amd64" -o ubuntu.iso -J -J -isohybrid-mbr /usr/lib/syslinux/mbr/isohdpfx.bin -c isolinux/boot.cat -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e boot/grub/efi.img -no-emul-boot -isohybrid-gpt-basdat -udf -graft-points cd_root/
+
+-o 指定生成的 ISO 文件名，-b 指定引导文件，-c 指定引导文件的位置，-V 指定卷标，iso/ 是要添加到 ISO 文件中的文件的位置。
+-R: 将文件权限、所有者和时间戳信息保存到 ISO 文件中。-b: 指定 ISO 文件的引导映像文件路径。
+-c: 用于保存 ISO 文件中的目录结构，并提供一种快速检索文件的方法。
+-no-emul-boot: 禁用镜像启动的兼容性，确保它是真正的启动映像。
+-boot-load-size: 设置映像引导扇区的大小。
+-boot-info-table: 创建一个启动信息表格，用于引导镜像。
+-input-charset: 指定输入文件的字符集。
+-graft-points: 将文件添加到 ISO 文件中，并将它们映射到新的路径。
+-o: 指定输出文件名。总的来说，这些参数的作用是创建一个可以启动的 ISO 文件，其中包含文件的权限、所有者、时间戳信息和目录结构。
+-b参数用于指定引导映像文件，
+-boot-load-size参数设置引导扇区的大小，
+-boot-info-table参数创建一个启动信息表格，用于引导镜像。
+-o参数用于指定输出文件名。这个命令将创建一个名为mybackup.iso的ISO文件，并将之前创建的squashfs文件添加到其中。ISO文件将被命名为"Ubuntu Backup"并可用于启动安装或恢复Ubuntu 20.04系统。

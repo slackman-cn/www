@@ -1,0 +1,39 @@
+进一切可能减小体积  700M
+ * 不要文档
+ * 只要一种语言包
+ * cn-slackman 表示 https://slackman.cn
+
+---- 方案1
+AlpineLive-x86-cn.iso
+AlpineLive-arm-us.iso
+
+---- 方案2
+cn-slackman-alpine-x86.iso
+us-slackman-alpine-arm.iso
+cn-slackman-alpine-x86.doc.zip  
+
+----- 最终方案
+cn-slackman-x86.iso   不使用包管理器
+cn-slackman-deb12-x86.iso  基于debian, 使用apt包管理器, dpkg -l 后缀名
+cn-slackman-oe2203-x86.iso 基于openeuler,  rpm -qa 后缀名
+
+cn-slackman-x86.iso 
+cn-slackman-x86-deb12.iso   不好，架构最重要，和iso放在一起
+
+RescueLinux CD
+https://www.linuxmi.com/build-linux-live-cd.html
+https://www.linuxmi.com/systemrescue-9-00.html
+
+Alpine Desktop
+https://www.cnblogs.com/jinzhenshui/p/8418281.html
+https://wiki.alpinelinux.org/wiki/Tutorials_and_Howtos#Desktop_Environment
+https://wiki.alpinelinux.org/wiki/Xfce
+https://wiki.alpinelinux.org/wiki/Setup-desktop
+https://wiki.alpinelinux.org/wiki/LXQt
+
+Remote  Desktop
+https://wiki.alpinelinux.org/wiki/Remote_Desktop_Server
+https://www.ubuntumint.com/install-lxqt-alpine-linux/
+https://gitee.com/src-anolis-os/vino/blob/a8/vino.spec
+https://gitee.com/src-openeuler/vino/blob/master/vino.spec
+https://debian.pkgs.org/12/debian-main-amd64/vino_3.22.0-6_amd64.deb.html
