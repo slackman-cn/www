@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://slackman.cn/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/lfs/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/howto/01-mkdoc/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/howto/02-cgit/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/howto/03-wikijs/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/script/source/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/script/tools/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/system/01-bootcd/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://slackman.cn/system/02-diskimage/</loc>
-         <lastmod>2025-04-14</lastmod>
+         <lastmod>2025-04-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
