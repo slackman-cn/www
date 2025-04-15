@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../lfs/" class="nav-link">LFS</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-git/" class="dropdown-item">代码库 Git</a>
+</li>
+                                    
+<li>
+    <a href="../02-file/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../11-cgit/" class="dropdown-item">CGit</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+</li>
+                                    
+<li>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../02-file/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../11-cgit/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#shpinx" class="nav-link">文档 shpinx</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#wikijs" class="nav-link">文档 wiki.js</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#mkdocs" class="nav-link">文档 MkDocs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#mkdocs_1" class="nav-link">MkDocs 主题</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#mkdocs_2" class="nav-link">MkDocs 自定义样式</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="shpinx">文档 shpinx</h2>
+<pre><code>&gt;&gt; user-wide
+sudo apt install python3-venv
+python3 -m venv vbuild
+source vbuild/bin/activate
+deactive
+
+&gt;&gt; system-wide
+sudo apt install python3-sphinx python3-sphinx-rtd-theme
+sphinx-quickstart &amp;&amp; make html
+python3 -m http.server -d ./build/html/
+html_theme = 'sphinx_rtd_theme'
+</code></pre>
+<h2 id="wikijs">文档 wiki.js</h2>
+<p>[https://js.wiki/] open source Wiki software</p>
+<p>v2 支持导出， 不支持导入。 预计v3 支持</p>
+<p>目前只能迁移 postgres 数据库</p>
+<pre><code>https://docs.vultr.com/install-wiki-js-with-node-js-postgresql-and-nginx-on-ubuntu-20-04-lts
+https://docker.aityp.com/image/docker.io/postgres:alpine
+
+docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/postgres:alpine
+docker tag  swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/postgres:alpine  docker.io/postgres:alpine
+
+docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/postgres:15-alpine
+docker tag  swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/postgres:15-alpine  docker.io/postgres:15-alpine
+
+docker run --name postgres  -p 5432:5432 \
+  --restart unless-stopped \
+  -e POSTGRES_DB=wiki \
+  -e POSTGRES_PASSWORD=wikijsrocks \
+  -e POSTGRES_USER=wikijs \
+  -v /data/mirror/wiki/postgres:/var/lib/postgresql/data \
+  -d postgres:15-alpine
+</code></pre>
+<p>自定义</p>
+<pre><code>wget https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/v22.6.0/node-v22.6.0-linux-x64.tar.gz
+wget https://github.com/Requarks/wiki/releases/latest/download/wiki-js.tar.gz
+ln -s /opt/node-v20/bin/node /usr/local/bin/
+
+全部默认 cp config.sample.yml config.yml
+host: localhost
+port: 5432
+user: wikijs
+pass: wikijsrocks
+db: wiki
+
+$ /usr/lib/systemd/system/wikijs.service
+[Unit]
+Description=Wiki.js
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/node server
+Restart=always
+User=root
+Environment=NODE_ENV=production
+WorkingDirectory=/data/mirror/wiki
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<h2 id="mkdocs">文档 MkDocs</h2>
+<p>[https://www.mkdocs.org/] Project documentation with Markdown</p>
+<pre><code>sudo apt install python3-venv
+sudo apt install python3-pip
+
+python3 -m venv mysite
+source bin/activate
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+pip install mkdocs
+
+mkdocs new website
+mkdocs serve
+
+
+# sudo apt install python3-venv python3-pip
+# python3 -m venv vbuild &amp;&amp; source bin/active
+# pip install mkdocs
+# pip install mkdocs-material
+# 
+# cd xyz &amp;&amp; mkdocs .
+# mkdocs serve
+
+mkdocs build
+</code></pre>
+<p>新增页面</p>
+<pre><code>curl 'https://jaspervdj.be/lorem-markdownum/markdown.txt' &gt; docs/about.md
+
+$ vi mkdocs.yml
+site_name: Slackman
+plugins: []
+nav:
+ - Home: index.md
+ - About: about.md
+
+nav:
+ - SCRIPT:
+   - script/source.md
+   - script/tools.md
+ - HOWTO:
+   - howto/mkdocs.md
+   - howto/cgit.md
+ - REPOSITORY: about.md
+</code></pre>
+<h2 id="mkdocs_1">MkDocs 主题</h2>
+<pre><code>$ vi mkdocs.yml
+theme:
+  name: readthedocs
+</code></pre>
+<p>https://squidfunk.github.io/mkdocs-material/reference/grids/</p>
+<pre><code>pip install mkdocs-material
+$ vi mkdocs.yml
+theme:
+ name: material
+ language: zh
+ logo: xp.png
+ favicon: linux.ico
+ palette:
+   primary: teal
+ features:
+   - navigation.tabs
+extra:
+ generator: false
+</code></pre>
+<p>mkdocs.yaml</p>
+<pre><code>site_name: SLACKMAN.CN
+site_url: https://slackman.cn
+repo_url: https://github.com/slackman-cn/site.git
+edit_uri: '?'
+theme:
+ name: material
+ language: zh
+ logo: xp.png
+ favicon: linux.ico
+ palette:
+   primary: teal
+ features:
+   - navigation.tabs
+extra:
+ generator: false
+markdown_extensions: 
+  - attr_list
+  - md_in_html
+plugins: []
+
+nav:
+ - HOWTO:  '/howto/'
+ - SCRIPT: '/script/'
+ - SYSTEM: '/system/'
+ - About: about.md
+</code></pre>
+<p>目录 list-item</p>
+<pre><code>&lt;div class=&quot;grid cards&quot; markdown&gt;
+
+- [Boot CD](./01-bootcd)  启动盘
+- [Disk Image](./02-diskimage)  磁盘镜像
+
+&lt;/div&gt;
+
+&lt;div class=&quot;grid cards&quot; markdown&gt;
+
+- [MkDocs](./01-mkdoc) 
+
+    ---
+    Project documentation with Markdown
+
+- [Wiki.js](./03-wikijs)   &lt;sub&gt;https://js.wiki/&lt;/sub&gt;
+
+    ---
+    open source Wiki software
+
+- [CGit](./02-cgit)    &lt;sub&gt;https://git-scm.com/downloads&lt;/sub&gt;
+
+    ---
+    web interface for Git repositories
+
+&lt;/div&gt;
+</code></pre>
+<h2 id="mkdocs_2">MkDocs 自定义样式</h2>
+<p>(Support IE8)</p>
+<pre><code>theme:
+  name: null
+  custom_dir: 'theme/'
+
+extra:
+  version: 0.13.0
+  links:
+    - https://github.com/mkdocs
+    - https://docs.readthedocs.org/en/latest/builds.html#mkdocs
+    - https://www.mkdocs.org/
+</code></pre>
+<p>https://pure-css.github.io/    \</p>
+<p>https://v3.bootcss.com/  </p>
+<pre><code>https://www.w3schools.com/w3js/
+ &lt;script src=&quot;https://www.w3schools.com/lib/w3.js&quot;&gt;&lt;/script&gt; 
+&lt;script src=&quot;w3.js&quot;&gt;&lt;/script&gt; 
+
+https://www.w3schools.com/w3css/default.asp
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://www.w3schools.com/w3css/4/w3.css&quot;&gt; 
+&lt;link rel=&quot;stylesheet&quot; href=&quot;w3.css&quot;&gt; 
+
+https://nextui.org/docs/components/navbar
+https://www.w3schools.com/Css/css_navbar.asp
+https://www.w3schools.com/csS/css_navbar_horizontal.asp
+
+https://foolishdeveloper.com/navigation-bar-html-css-javascript/
+https://onaircode.com/html-css-navbar-examples/
+https://codepen.io/acarlie/pen/JjPKmmV
+
+
+这个最好, 尽量减小体积
+https://codepen.io/ariona/pen/pENZXW
+https://codepen.io/pec-man/pen/bGbeXqZ   
+(直接使用native, 不要用jquery, 太大了还没法精简)
+https://zkrisj.github.io/vitepress-blog/posts/native-substitution-for-jquery.html
+https://www.cnblogs.com/moqiutao/p/9991678.html
+
+## scss 转 css, 并且压缩
+sass style.scss  style.css
+sass style.scss style-min.css --style compressed
+
+## webpack合并 css和js 到bundle.js
+https://www.javascriptcn.com/post/66561bfbd3423812e4abfbb4
+https://www.cnblogs.com/star2021/p/14392261.html
+pnpm add -D webpack webpack-cli uglifyjs-webpack-plugin
+pnpm add -D style-loader css-loader
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

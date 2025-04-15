@@ -37,41 +37,69 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../howto/01-mkdoc/" class="dropdown-item">MkDocs</a>
+    <a href="../../howto/01-git/" class="dropdown-item">代码库 Git</a>
 </li>
                                     
 <li>
-    <a href="../../howto/02-cgit/" class="dropdown-item">CGit</a>
+    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/03-wikijs/" class="dropdown-item">Wiki.js</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="./" class="dropdown-item active" aria-current="page">Source</a>
+    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
-    <a href="../tools/" class="dropdown-item">Tools</a>
+    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -79,12 +107,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../../howto/03-wikijs/" class="nav-link">
+                                <a rel="prev" href="../11-bootcd/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../tools/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -111,16 +139,8 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#source" class="nav-link">Source</a>
+            <li class="nav-item" data-bs-level="1"><a href="#disk-image" class="nav-link">Disk Image</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -128,21 +148,11 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="source">Source</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h1 id="disk-image">Disk Image</h1>
+<p><strong>livekit create iso</strong></p>
+<p><a href="https://docs.livekit.io/home/self-hosting/local/">https://docs.livekit.io/home/self-hosting/local/</a></p>
+<p><a href="https://www.linux-live.org/">https://www.linux-live.org/</a>   </p>
+<p><a href="https://wiki.aosc.io/zh/aosc-os/installation/livekit/">https://wiki.aosc.io/zh/aosc-os/installation/livekit/</a></p></div>
             </div>
         </div>
 

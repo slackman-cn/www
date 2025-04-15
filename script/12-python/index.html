@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../lfs/" class="nav-link">LFS</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../howto/01-git/" class="dropdown-item">代码库 Git</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+</li>
+                                    
+<li>
+    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Python</a>
+</li>
+                                    
+<li>
+    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../11-clang/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../13-ruby/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#hello-world" class="nav-link">Hello World</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">字典, 列表, 循环</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">函数, 面向对象</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">模块, 异常</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">单元测试</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#100" class="nav-link">100示例</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="hello-world">Hello World</h2>
+<p>func</p>
+<pre><code>def print_hi(name):
+    print(f'Hi, {name}') 
+    print('hello, ' + name)
+
+if __name__ == '__main__':
+    print_hi('PyCharm')
+</code></pre>
+<p>vars</p>
+<pre><code>len('asdfa')
+int('123'), float, bool, str(1234)
+ii = None
+type(ii)
+3 / 2  结果1.5
+3 //2  结果1  向下取整
+
+if True:
+  pass
+elif a == 10 or a == 11:   # and,or,not
+  pass
+else:
+  pass
+</code></pre>
+<h2 id="_1">字典, 列表, 循环</h2>
+<pre><code>mylist = [1,2,3]
+mylist.append(4)
+len(list)
+
+mydict = {}
+mydict = {'name': 'xiao', 'age': 12}
+mydict['name'] = 'xiao2'
+len(mydict)   # 键值对
+'name' in mydict
+del mydict['name']
+
+mytuple = ('aa', 'bb')  # 不可变
+
+===== 循环
+for v in mylist:
+  pass
+for k,v in mydict.items():  # 键值对
+  pass
+for in in range(1,10):    # 不包括10  (1,10,2)步长2
+  pass
+
+mydict.keys()
+mydict.values()
+mydict.items()  
+</code></pre>
+<h2 id="_2">函数, 面向对象</h2>
+<pre><code>class ATM:
+   def __init__(self, id, name):
+      self.id = id
+      self.name = name
+
+   def show(self):
+       print(self.id, self.name)
+
+a1 = ATM('01', 'xiao')
+a1.show()
+print(a1.name)
+
+
+class SubATM(ATM):   # 继承
+   def show(self):
+      pass
+
+</code></pre>
+<h2 id="_3">模块, 异常</h2>
+<pre><code>https://docs.python.org/zh-cn/3/library/math.html
+import math
+math.sin(1)
+
+标准库 https://docs.python.org/zh-cn/3/libray/index.html
+import xxx
+xxx.函数
+xxx.变量
+
+from xxx import 变量,函数
+from xxx import *
+</code></pre>
+<p>IO模块, 异常</p>
+<pre><code>with open('./aaa.txt', 'r', encoding='utf-8') as f:
+   txt = f.read()  # 全部内容  read(10)只读取10字节
+   row = f.readline()  # while判断 row != ''
+   lines = f.readlines()
+   for row in lines:
+      pass
+
+with open('./output.txt', 'w', encoding='utf-8') as f:
+  #  模式w 清空, 模式a 追加,  模式r+ 读写追加
+  f.write('hello\n')
+
+try:
+  xxx()
+except ValueError:
+  print(xxxx)
+except:
+  print('all error')
+else:
+  print('no error')
+finally:
+  print('程序结束')
+</code></pre>
+<h2 id="_4">单元测试</h2>
+<pre><code>assert len('he') == 2  # 报错停止程序
+$ python -m unittest
+
+import unittest
+from 文件名 import 函数名
+from 文件名 import 类名
+
+
+class MyTestCase(unittest.TestCase):
+    def setUp(self):
+     self.xxx = 创建类
+
+    def test_something(self):         # 函数必须test_xxx
+        self.assertEqual(True, False)  
+        self.assertTrue(xxx)
+
+
+if __name__ == '__main__':
+    unittest.main()
+</code></pre>
+<h1 id="100">100示例</h1>
+<p>加法</p>
+<pre><code>n1 = 10
+n2 = input(&quot;number 2: &quot;)
+sum = n1 + float(n2)
+print(&quot;加法: &quot;, sum)
+</code></pre>
+<p>阶乘</p>
+<pre><code>count = 1
+for i in range(1, 6):
+    # count = count * i
+    count *= i
+print(&quot;阶乘5: &quot;, count)
+</code></pre>
+<p>算法1: 不重复三位数</p>
+<pre><code>nums = [1,2,3,4]
+
+for i in nums:
+    for j in nums:
+        for k in nums:
+            if (i != j and i != k and j != k):
+                print(i,j,k)
+</code></pre>
+<p>算法2: 判断闰年</p>
+<pre><code>def check(n):
+    if n % 4 ==0 and n %100 !=0:
+        return True
+    if n % 400 == 0:
+        return True
+    return False
+
+检查 print('2004', check(2004))
+http://www.runnian.cc/runnianrunyue.aspx
+</code></pre>
+<p>算法3: Fib数列</p>
+<pre><code>def fib(n):
+    if n == 1 or n == 2 :
+        return 1
+    return fib(n-1) + fib(n-2)
+
+检查 0,1,1,2,3,5,8,13 ...
+https://oi-wiki.org/math/combinatorics/fibonacci/
+
+==== 方式1
+a = 1
+b = 1
+for n in range(3,41):
+    tmp = a+b
+    a = b
+    b = tmp
+    print(f'fib({n}) = {b}')
+
+==== 方式2
+dp = [0,1,1]
+for i in range(10):
+    dp.append(dp[-1] + dp[-2])
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

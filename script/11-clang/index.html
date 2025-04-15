@@ -37,41 +37,69 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../howto/01-mkdoc/" class="dropdown-item">MkDocs</a>
+    <a href="../../howto/01-git/" class="dropdown-item">代码库 Git</a>
 </li>
                                     
 <li>
-    <a href="../../howto/02-cgit/" class="dropdown-item">CGit</a>
+    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/03-wikijs/" class="dropdown-item">Wiki.js</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../script/source/" class="dropdown-item">Source</a>
+    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
-    <a href="../../script/tools/" class="dropdown-item">Tools</a>
+    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">DiskImage</a>
+    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -79,12 +107,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../01-bootcd/" class="nav-link">
+                                <a rel="prev" href="../02-scons/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../12-python/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -111,7 +139,22 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#disk-image" class="nav-link">Disk Image</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#c" class="nav-link">C 语法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">内存分配</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">源码 Lua</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -120,11 +163,123 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="disk-image">Disk Image</h1>
-<p><strong>livekit create iso</strong></p>
-<p><a href="https://docs.livekit.io/home/self-hosting/local/">https://docs.livekit.io/home/self-hosting/local/</a></p>
-<p><a href="https://www.linux-live.org/">https://www.linux-live.org/</a>   </p>
-<p><a href="https://wiki.aosc.io/zh/aosc-os/installation/livekit/">https://wiki.aosc.io/zh/aosc-os/installation/livekit/</a></p></div>
+<h2 id="install">Install</h2>
+<pre><code>sudo apt install build-essential cmake meson
+sudo apt install crossbuild-essential-arm64
+eclipse-cpp.tar.gz
+
+&gt;&gt; GUI
+sudo apt install qtcreator qtbase5-dev
+sudo apt install libwxgtk3.2-dev codelbocks
+</code></pre>
+<h2 id="c">C 语法</h2>
+<p>typedef unsigned int ID;</p>
+<pre><code>struct Stu {
+    成员
+} 变量;
+
+struct Stu {
+    int id;
+    char name[20];
+    float score;
+};
+struct Stu s1,s2;
+struct Stu s1 = {1, &quot;xiao&quot;, 9.9};
+
+typedef struct student {
+    ...
+} Stu;
+Stu s1;
+</code></pre>
+<p><code>#define 标识符 常量</code>  没有分号</p>
+<pre><code>#define MAX_SIZE 20
+
+数组
+typedef struct {
+    T data[MAX_SIZE];
+    int length;
+} SqList;
+
+链表
+typedef struct LNode {
+    T data;
+    struct LNode *next;
+} LNode, *LinkList;
+
+LNode *p;
+LinkList p;
+</code></pre>
+<p>其他方式 struct</p>
+<pre><code>struct Stu {
+    int id;
+    char name[20];
+    float score;
+} s1, s2;
+
+struct {
+    int id;
+    char name[20];
+    float score;
+} s1, s2;
+</code></pre>
+<h2 id="_1">内存分配</h2>
+<p>C 指针</p>
+<pre><code>int a = 10;
+int *p = &amp;a;
+
+switch (a) {
+    case 常量: 语句;
+    default:  语句;
+}
+
+int *p;
+p = (int*) malloc(sizeof(int));
+
+free(p);
+
+输入输出
+int n;
+scanf(&quot;%d&quot;, &amp;n);
+
+printf(&quot;hello\n&quot;)
+</code></pre>
+<p>C++ 内存分配</p>
+<pre><code>int *p = new int;
+delete p;
+
+引用
+int n =10;
+int&amp; n2 = n;
+
+输入输出
+int n;
+cin &gt;&gt; n;
+count &lt;&lt; &quot;hello\n&quot;;
+</code></pre>
+<h2 id="lua">源码 Lua</h2>
+<pre><code>yum install lua
+/usr/bin/lua
+/usr/bin/luac
+
+$ lua -v
+$ lua
+print(1+1)
+</code></pre>
+<p>https://www.lua.org/ftp/lua-5.4.7.tar.gz</p>
+<pre><code>$ cd src
+yum install @development
+yum install readline-devel ncurses-devel
+make -j8
+
+或者 cd lua-5.4.7
+make
+make install 安装到 /usr/local
+make local   安装到 ./install
+
+==== 静态编译 (alma报错, arch成功)
+$ vim src/Makefile
+MYLDFLAGS=-static
+</code></pre></div>
             </div>
         </div>
 

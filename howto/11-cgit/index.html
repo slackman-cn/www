@@ -37,15 +37,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-mkdoc/" class="dropdown-item">MkDocs</a>
+    <a href="../01-git/" class="dropdown-item">代码库 Git</a>
+</li>
+                                    
+<li>
+    <a href="../02-file/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../03-doc/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">CGit</a>
-</li>
-                                    
-<li>
-    <a href="../03-wikijs/" class="dropdown-item">Wiki.js</a>
 </li>
                                 </ul>
                             </li>
@@ -54,11 +58,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../script/source/" class="dropdown-item">Source</a>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../../script/tools/" class="dropdown-item">Tools</a>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -67,11 +83,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -79,12 +107,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../01-mkdoc/" class="nav-link">
+                                <a rel="prev" href="../03-doc/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../03-wikijs/" class="nav-link">
+                                <a rel="next" href="../../script/01-ninja/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -111,7 +139,22 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#cgit" class="nav-link">CGit</a>
+            <li class="nav-item" data-bs-level="2"><a href="#cgit" class="nav-link">CGit 源码</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#cgit_1" class="nav-link">编译cgit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#web-ui" class="nav-link">Web UI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">配置文件</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -120,7 +163,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="cgit">CGit</h1>
+<h2 id="cgit">CGit 源码</h2>
 <p>编译cgit 需要先下载git源码</p>
 <pre><code>https://git-scm.com/downloads
 https://github.com/git/git/tags
@@ -134,7 +177,7 @@ $ git clone https://www.thedroneely.com/git/thedroneely/cgit
     &amp;&amp; rm -rf git
     &amp;&amp; mv git-2.46.0 git
 </code></pre>
-<h3 id="cgit_1">编译cgit</h3>
+<h2 id="cgit_1">编译cgit</h2>
 <p>https://git.zx2c4.com/cgit/about/</p>
 <pre><code>podman run -it --rm -v `pwd`:/build anolis bash
 yum install -y which 
@@ -157,7 +200,7 @@ install -m 0644 robots.txt /var/www/htdocs/cgit/robots.txt
 install -m 0755 -d /usr/local/lib/cgit/filters
 cp -r filters/* /usr/local/lib/cgit/filters
 </code></pre>
-<h3 id="web-ui">Web UI</h3>
+<h2 id="web-ui">Web UI</h2>
 <pre><code>[anolis]
 yum install epel-release
 yum install fcgi fcgiwrap
@@ -180,7 +223,7 @@ openEuler和anolis都改了nginx源码和首页
 spawn-fcgi -s /var/run/fcgiwrap.socket -M 0666 -U nginx -- /usr/sbin/fcgiwrap
 ps -ef | grep fcgi
 </code></pre>
-<h3 id="_1">配置文件</h3>
+<h2 id="_1">配置文件</h2>
 <p>nginx.conf</p>
 <pre><code>location ~ ^/cgit\.(png|css)$ { root /var/www/htdocs/cgit/; }
 location ~ ^/cgit(/.*) {
@@ -251,10 +294,6 @@ sudo make prefix=/opt/git install
 /usr/lib/git-core/  对应 /opt/git/libexec/git-core
 /usr/share/git-core 对应 /opt/git/share/git-core
 /usr/share/gitweb 对应 /opt/git/share/gitweb
-</code></pre>
-<h3 id="nginx-src">编译nginx-src</h3>
-<pre><code>
-
 </code></pre>
 <h3 id="nginx-dir">Nginx dir</h3>
 <blockquote>

@@ -37,15 +37,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../howto/01-mkdoc/" class="dropdown-item">MkDocs</a>
+    <a href="../../howto/01-git/" class="dropdown-item">代码库 Git</a>
 </li>
                                     
 <li>
-    <a href="../../howto/02-cgit/" class="dropdown-item">CGit</a>
+    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/03-wikijs/" class="dropdown-item">Wiki.js</a>
+    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
 </li>
                                 </ul>
                             </li>
@@ -54,11 +58,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../source/" class="dropdown-item">Source</a>
+    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Tools</a>
+    <a href="./" class="dropdown-item active" aria-current="page">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -67,11 +83,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -79,12 +107,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../source/" class="nav-link">
+                                <a rel="prev" href="../01-ninja/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../system/01-bootcd/" class="nav-link">
+                                <a rel="next" href="../11-clang/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -111,16 +139,23 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#tools" class="nav-link">Tools</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#start" class="nav-link">Start</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#library" class="nav-link">Library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -128,21 +163,97 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="tools">Tools</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h2 id="install">Install</h2>
+<pre><code>sudo apt-get install scons
+
+$ python -m venv vbuild
+$ pip install scons
+$ scons --version
+
+没有其他依赖
+(vbuild) [root@archiso ~]# pip list
+Package Version
+------- -------
+pip     24.3.1
+SCons   4.8.1
+</code></pre>
+<p>Source Install</p>
+<pre><code>方式1
+SCons-4.8.1.tar.gz
+$ pip install wheel setuptools
+$ python setup.py bdist_wheel
+$ pip install build/dist/SCons-4.8.1-py3-none-any.whl
+python setup.py install #有点问题
+
+方式2
+scons-local-4.8.1.tar.gz
+python /path/to/unpacked/scripts/scons.py --version
+</code></pre>
+<h2 id="start">Start</h2>
+<p>make -s, --silent, --quiet   Don't echo recipes</p>
+<pre><code>$ scons
+$ scons --clean;  scons -c
+$ ./hello
+减少输出
+$ scons -Q
+
+==== SConstruct 单文件
+print('xxx')
+Program('hello.c')
+Program('new_hello', 'hello.c')
+Object('hello.c')
+
+==== hello.c
+#include &lt;stdio.h&gt;
+int main()
+{
+   printf(&quot;Hello, world!\n&quot;);
+}
+</code></pre>
+<p>SConstruct 多文件</p>
+<pre><code>Program('program', ['prog.c', 'file1.c', 'file2.c'])
+Program('program', Glob('*.c'))
+Program('program', Split('main.c file1.c file2.c'))
+
+src_files = Split('main.c file1.c file2.c')
+Program(target='program', source=src_files)
+</code></pre>
+<h2 id="library">Library</h2>
+<p>SConstruct 默认静态库</p>
+<pre><code>Library('foo', ['f1.c', 'f2.c', 'f3.c'])
+StaticLibrary('foo', ['f1.c', 'f2.c', 'f3.c'])
+StaticLibrary('foo', ['f1.c', 'f2.c', 'f3.c'])
+
+Library('foo', ['f1.c', 'f2.c', 'f3.c'])
+Program('prog.c', LIBS='foo', LIBPATH='.')   等价 LIBS=['foo']
+Program('prog.c', LIBS=['foo', 'bar'], LIBPATH='.')
+
+系统库
+Program('prog.c', LIBS = 'm',
+                  LIBPATH = ['/usr/lib', '/usr/local/lib'])
+</code></pre>
+<p>SConstruct ENV</p>
+<pre><code>env=Environment(VAR=&quot;value&quot;)
+n=File(&quot;foo.c&quot;)
+print(env.GetBuildPath([n, &quot;sub/dir/$VAR&quot;]))
+
+env = Environment()
+conf = Configure(env)
+# Checks for libraries, header files, etc. go here!
+env = conf.Finish()
+
+hello = env.Program('hello.c')
+env.Install('/usr/bin', hello)
+</code></pre>
+<h1 id="about-links">About Links</h1>
+<p><a href="https://scons.org/pages/download.html">https://scons.org/pages/download.html</a></p>
+<p><a href="https://scons.org/doc/production/HTML/scons-user.html">https://scons.org/doc/production/HTML/scons-user.html</a></p>
+<p><strong>Demos</strong></p>
+<p>https://wiki.lckfb.com/zh-hans/hspi-d133ebs/rtos-sdk/user-guide/sconstruct.html</p>
+<p>https://github.com/bobwenstudy/scons_demo</p>
+<p>https://www.scons.org/doc/0.92/HTML/scons-user/c108.html</p>
+<p><strong>Python Version</strong>  3.11 security; 3.12 bugfix</p>
+<p><a href="https://devguide.python.org/versions/">https://devguide.python.org/versions/</a></p></div>
             </div>
         </div>
 

@@ -37,15 +37,19 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">MkDocs</a>
+    <a href="./" class="dropdown-item active" aria-current="page">代码库 Git</a>
 </li>
                                     
 <li>
-    <a href="../02-cgit/" class="dropdown-item">CGit</a>
+    <a href="../02-file/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../03-wikijs/" class="dropdown-item">Wiki.js</a>
+    <a href="../03-doc/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../11-cgit/" class="dropdown-item">CGit</a>
 </li>
                                 </ul>
                             </li>
@@ -54,11 +58,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../script/source/" class="dropdown-item">Source</a>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../../script/tools/" class="dropdown-item">Tools</a>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -67,11 +83,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/12-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -84,7 +112,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../02-cgit/" class="nav-link">
+                                <a rel="next" href="../02-file/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -111,7 +139,22 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#mkdocs" class="nav-link">MkDocs 创建网站</a>
+            <li class="nav-item" data-bs-level="2"><a href="#git-client" class="nav-link">Git Client</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#git-server" class="nav-link">Git Server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#forgejo-service" class="nav-link">Forgejo Service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#git-daemon-service" class="nav-link">Git Daemon Service</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -120,104 +163,118 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="mkdocs">MkDocs 创建网站</h1>
-<p>https://www.mkdocs.org/getting-started/</p>
-<pre><code>sudo apt install python3-venv
-sudo apt install python3-pip
+<h2 id="git-client">Git Client</h2>
+<p>sudo apt install git git-lfs</p>
+<pre><code>&gt;&gt; ssh -V
+&gt;&gt; vi ~/.ssh/config
+StrictHostKeyChecking no
+UserKnownHostsFile /dev/null
 
-python3 -m venv mysite
-source bin/activate
-pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
-pip install mkdocs
+Host *
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
 
-mkdocs new website
-mkdocs serve
+&gt;&gt; /etc/ssh/sshd_config:
+PasswordAuthentication yes
+PermitRootLogin yes
+
+报错原因
+https://www.cnblogs.com/fatedeity/p/17267481.html  
+https://blog.twofei.com/881/  
 </code></pre>
-<h3 id="_1">新增页面</h3>
-<pre><code>curl 'https://jaspervdj.be/lorem-markdownum/markdown.txt' &gt; docs/about.md
-$ vi mkdocs.yml
-site_name: Slackman
-plugins: []
-nav:
- - Home: index.md
- - About: about.md
+<pre><code>git config --global user.name  &quot;gechao1000&quot;
+git config --global user.email &quot;gechao1000@outlook.com&quot;
+git config --global core.autocrlf input
+git config --global credential.helper store
 
-nav:
- - SCRIPT:
-   - script/source.md
-   - script/tools.md
- - HOWTO:
-   - howto/mkdocs.md
-   - howto/cgit.md
- - REPOSITORY: about.md
+// default 15m, set 1h
+git config --global credential.helper cache
+git config credential.helper 'cache --timeout=3600' 
+
+&gt;&gt; git lfs install
+git lfs track &quot;*.pdf&quot;
+
+git init --bare xxx.git
+echo &quot;Some short description&quot; &gt; ~/repos/[repo-name]/description
+
+Git 理解警告“LF将被CRLF替换”
+git config --global core.autocrlf false
 </code></pre>
-<h3 id="_2">主题</h3>
-<pre><code>$ vi mkdocs.yml
-theme:
-  name: readthedocs
+<h2 id="git-server">Git Server</h2>
+<pre><code>ssh:// - default port 22
+git:// - default port 9418
+http:// - default port 80
+https:// - default port 443
+
+git clone --mirror https://github.com/ninja-build/ninja
+git clone  git://localhost/github.com/ninja-build/ninja
+
+$ export GIT_CONFIG_GLOBAL=/gitmirror.conf
+$ vi /gitmirror.conf
+[http]
+    sslVerify = false
+[url &quot;git://192.168.2.2/github.com&quot;]
+    insteadOf = https://github.com
 </code></pre>
-<p>https://squidfunk.github.io/mkdocs-material/reference/grids/</p>
-<pre><code>pip install mkdocs-material
-$ vi mkdocs.yml
-theme:
- name: material
- language: zh
- logo: xp.png
- favicon: linux.ico
- palette:
-   primary: teal
- features:
-   - navigation.tabs
-extra:
- generator: false
+<h2 id="forgejo-service">Forgejo Service</h2>
+<p>https://forgejo.org/docs/latest/admin/installation-binary/</p>
+<pre><code>sudo chmod 755 /usr/local/bin/forgejo
+
+sudo mkdir /data/forgejo
+sudo chown cnki:cnki /data/forgejo
+
+########## app.ini
+.....
+[i18n]
+LANGS = zh-CN,en-US
+NAMES = 简体中文,English
+
+[migrations]
+ALLOWED_DOMAINS = 127.0.0.1,192.168.22.239
+ALLOW_LOCALNETWORKS = true
 </code></pre>
-<h3 id="support-ie8">自定义样式 (Support IE8)</h3>
-<pre><code>theme:
-  name: null
-  custom_dir: 'theme/'
+<p>/usr/lib/systemd/system/forgejo.service</p>
+<pre><code>wget https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service
 
-extra:
-  version: 0.13.0
-  links:
-    - https://github.com/mkdocs
-    - https://docs.readthedocs.org/en/latest/builds.html#mkdocs
-    - https://www.mkdocs.org/
+[Unit]
+Description=Forgejo (Beyond coding. We forge.)
+After=syslog.target
+After=network.target
+
+[Service]
+RestartSec=2s
+Type=simple
+User=cnki
+Group=cnki
+WorkingDirectory=/data/forgejo/
+
+ExecStart=/usr/local/bin/forgejo web --config /data/forgejo/app.ini
+Restart=always
+Environment=USER=cnki HOME=/home/cnki FORGEJO_WORK_DIR=/data/forgejo
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
-<p>https://pure-css.github.io/  <br />
-https://v3.bootcss.com/  </p>
-<pre><code>https://www.w3schools.com/w3js/
- &lt;script src=&quot;https://www.w3schools.com/lib/w3.js&quot;&gt;&lt;/script&gt; 
-&lt;script src=&quot;w3.js&quot;&gt;&lt;/script&gt; 
+<h2 id="git-daemon-service">Git Daemon Service</h2>
+<pre><code>[Unit]
+Description=Start Git Daemon
 
-https://www.w3schools.com/w3css/default.asp
-&lt;link rel=&quot;stylesheet&quot; href=&quot;https://www.w3schools.com/w3css/4/w3.css&quot;&gt; 
-&lt;link rel=&quot;stylesheet&quot; href=&quot;w3.css&quot;&gt; 
+[Service]
+ExecStart=/usr/bin/git daemon --base-path=/data/cgit --export-all --reuseaddr --informative-errors --verbose
 
-https://nextui.org/docs/components/navbar
-https://www.w3schools.com/Css/css_navbar.asp
-https://www.w3schools.com/csS/css_navbar_horizontal.asp
+Restart=always
+RestartSec=2s
 
-https://foolishdeveloper.com/navigation-bar-html-css-javascript/
-https://onaircode.com/html-css-navbar-examples/
-https://codepen.io/acarlie/pen/JjPKmmV
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=git-daemon
 
+User=root
+Group=root
 
-这个最好, 尽量减小体积
-https://codepen.io/ariona/pen/pENZXW
-https://codepen.io/pec-man/pen/bGbeXqZ   
-(直接使用native, 不要用jquery, 太大了还没法精简)
-https://zkrisj.github.io/vitepress-blog/posts/native-substitution-for-jquery.html
-https://www.cnblogs.com/moqiutao/p/9991678.html
+[Install]
+WantedBy=multi-user.target
 
-## scss 转 css, 并且压缩
-sass style.scss  style.css
-sass style.scss style-min.css --style compressed
-
-## webpack合并 css和js 到bundle.js
-https://www.javascriptcn.com/post/66561bfbd3423812e4abfbb4
-https://www.cnblogs.com/star2021/p/14392261.html
-pnpm add -D webpack webpack-cli uglifyjs-webpack-plugin
-pnpm add -D style-loader css-loader
 </code></pre></div>
             </div>
         </div>

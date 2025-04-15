@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../lfs/" class="nav-link">LFS</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../howto/01-git/" class="dropdown-item">代码库 Git</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+</li>
+                                    
+<li>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,CPP,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../11-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../12-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../01-system/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../03-buildah/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#linuxamd64-linuxarm64" class="nav-link">linux/amd64; linux/arm64</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#github-actions" class="nav-link">Github Actions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#anolis" class="nav-link">Anolis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#ubuntu" class="nav-link">Ubuntu</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#from-ubuntu" class="nav-link">FROM Ubuntu</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="linuxamd64-linuxarm64">linux/amd64;  linux/arm64</h2>
+<p>19.03+ 版本开始可以使用 docker buildx build 命令利用 BuildKit 构建镜像</p>
+<pre><code># build x64
+docker build -t ubuntu .
+
+# crossbuild arm64
+docker buildx build --platform linux/arm64 -t ubuntu-arm64 .
+
+
+yum install docker-buildx
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+
+$ sudo docker version
+Client:
+ Version:           27.3.1
+
+$ docker buildx version
+github.com/docker/buildx 0.17.1 1.fc41
+
+$ sudo docker buildx ls
+NAME/NODE     DRIVER/ENDPOINT   STATUS    BUILDKIT   PLATFORMS
+default*      docker                                 
+ \_ default    \_ default       running   v0.16.0    linux/amd64, linux/amd64/v2, linux/amd64/v3, linux/arm64, linux/riscv64, linux/ppc64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/loong64, linux/arm/v7, linux/arm/v6
+</code></pre>
+<h2 id="github-actions">Github Actions</h2>
+<pre><code>## 其他默认，只修改jobs部分
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Quay.io
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USERNAME }}
+          password: ${{ secrets.QUAY_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: quay.io/slackman/osarch:latest,quay.io/slackman/osarch:${{ github.ref_name }}
+          outputs: type=image,name=target
+</code></pre>
+<h2 id="anolis">Anolis</h2>
+<pre><code>FROM scratch
+LABEL \
+    org.opencontainers.image.title=&quot;Anolis OS Base Image&quot; \
+    org.opencontainers.image.vendor=&quot;Anolis OS 8.9&quot; \
+    org.opencontainers.image.licenses=&quot;Mulan PSL v2&quot; \
+    org.opencontainers.image.created=&quot;2024-04-25&quot; \
+    maintainer=&quot;OpenAnolis Cloud Native SIG&quot;
+
+ADD AnolisOS8.9-base-amd64-20240425.tar.xz  /
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo Asia/Shanghai &gt; /etc/timezone
+ENV TZ=Asia/Shanghai
+
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<h2 id="ubuntu">Ubuntu</h2>
+<p>http://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/</p>
+<pre><code>FROM scratch
+LABEL \
+    org.opencontainers.image.title=&quot;Ubuntu 22.04 LTS (Jammy Jellyfish)&quot; \
+    org.opencontainers.image.release=&quot;jammy&quot; \
+    org.opencontainers.image.architecture=&quot;amd64&quot; \
+    org.opencontainers.image.variant=&quot;default&quot; \
+    org.opencontainers.image.created=&quot;20250320&quot; \
+    maintainer=&quot;localhost&quot;
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ADD ubuntu-base-22.04-base-amd64.tar.gz /
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; \
+    sed -i s@/security.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; \
+    apt-get -q update; \
+    apt-get install -qy --no-install-recommends ca-certificates curl tzdata libssl-dev zlib1g-dev; \
+    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; \
+    echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone; \
+    rm -rf /var/lib/apt/lists/*
+
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<p>linux/arm64</p>
+<pre><code>FROM scratch
+LABEL \
+    org.opencontainers.image.title=&quot;Ubuntu 22.04 LTS (Jammy Jellyfish)&quot; \
+    org.opencontainers.image.release=&quot;jammy&quot; \
+    org.opencontainers.image.architecture=&quot;arm64&quot; \
+    org.opencontainers.image.variant=&quot;default&quot; \
+    org.opencontainers.image.created=&quot;20250320&quot; \
+    maintainer=&quot;localhost&quot;
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ADD ubuntu-base-22.04-base-arm64.tar.gz /
+RUN sed -i s@/ports.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; \
+    apt-get -q update; \
+    apt-get install -qy --no-install-recommends ca-certificates curl tzdata libssl-dev zlib1g-dev; \
+    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime; \
+    echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone; \
+    rm -rf /var/lib/apt/lists/*
+
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<h2 id="from-ubuntu">FROM Ubuntu</h2>
+<pre><code>FROM ubuntu:22.04
+LABEL \
+    org.opencontainers.image.title=&quot;OpenNebula 6.10&quot; \
+    org.opencontainers.image.vendor=&quot;Ubuntu22 build system&quot; \
+    org.opencontainers.image.licenses=&quot;Apache&quot; \
+    org.opencontainers.image.created=&quot;2025-04-09&quot; \
+    maintainer=&quot;localhost&quot;
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai \
+    LANG=en_US.UTF8 \
+    LC_ALL=en_US.UTF8 \
+    LANGUAGE=enUS:en
+
+ADD sources.list /etc/apt/sources.list
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends tzdata \
+    &amp;&amp; ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    &amp;&amp; echo $TZ &gt; /etc/timezone \
+    &amp;&amp; dpkg-reconfigure -f noninteractive tzdata 
+
+# Install build base
+RUN apt-get install --no-install-recommends --yes \
+    language-pack-en build-essential vim less git wget curl \
+    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<pre><code>FROM ubuntu:22.04
+LABEL \
+    org.opencontainers.image.title=&quot;OpenNebula 6.10&quot; \
+    org.opencontainers.image.vendor=&quot;Ubuntu22 build system&quot; \
+    org.opencontainers.image.licenses=&quot;Apache&quot; \
+    org.opencontainers.image.created=&quot;2025-04-09&quot; \
+    maintainer=&quot;localhost&quot;
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai \
+    LANG=en_US.UTF8 \
+    LC_ALL=en_US.UTF8 \
+    LANGUAGE=enUS:en
+
+ADD sources.list /etc/apt/sources.list
+RUN apt-get update &amp;&amp; apt-get install -y --no-install-recommends tzdata \
+    &amp;&amp; ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    &amp;&amp; echo $TZ &gt; /etc/timezone \
+    &amp;&amp; dpkg-reconfigure -f noninteractive tzdata 
+
+# Install build base
+RUN apt-get install -y language-pack-en \
+    build-essential less wget curl file vim \
+    bc binutils bison dwarves flex gcc git gnupg2 gzip \
+    libelf-dev libncurses5-dev libssl-dev make openssl pahole perl-base rsync tar xz-utils \
+    &amp;&amp; apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+CMD [&quot;/bin/bash&quot;]
+</code></pre>
+<h1 id="about-links">About Links</h1>
+<p>https://www.cnblogs.com/dazhoushuoceshi/p/7066041.html</p>
+<p>https://docs.docker.net.cn/build/buildkit/</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>
