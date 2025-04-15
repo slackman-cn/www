@@ -15,11 +15,8 @@ Basic System:
 * GCC (GNU Compiler Collection)
 * Binutils (binary tools like the assembler and linker)
 
+
 ## Linux From Scratch
-
-[__LFS for beginners__](https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/)
-
-[__LFS Source Download__](https://mirrors.ustc.edu.cn/lfs/lfs-packages/)  
 
 1. __Source Code__  
 In Linux From Scratch, you’ll compile everything from source code. This means you’ll be downloading raw code files and compiling them into binaries that your system can run.     
@@ -41,3 +38,9 @@ In LFS, you’ll download and compile the kernel yourself.
 LFS requires a solid understanding of Linux file systems, such as ext4. You’ll need to format partitions, create a root file system, and set up the necessary directories for your system.
 
 
+
+# About Links
+
+<https://mirrors.ustc.edu.cn/lfs/lfs-packages/>
+
+<https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/>

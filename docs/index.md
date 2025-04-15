@@ -4,7 +4,7 @@ since: 202412
 ---
 
 
-# RaspberryPi 4B
+## RaspberryPi 4B
 
 Broadcom BCM2711, Quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.8GH
 
@@ -34,7 +34,7 @@ Caches (sum of all):
   L2:                     1 MiB (1 instance)
 ```
 
-# NanoPi R5S
+## NanoPi R5S
 
 Rockchip RK3568B2, Quad-core ARM Cortex-A55 CPU, up to 2.0GHz
 
@@ -70,14 +70,6 @@ Caches (sum of all):
 # About Links
 
 <https://www.wikihow.com/Main-Page>
-
-- __Markdown__ 日常写作记录
-- __reStructuredText__ used by Sphinx
-- __HTML__ for content and structure
-- __JavaScript__ for interactivity
-- __CSS__ for text running out of boxes
-- __Internet Explorer__ ... huh?
-
 
 __ISA__
 
