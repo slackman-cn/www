@@ -4,7 +4,7 @@ since: 202412
 about: https://git-scm.com/downloads
 ---
 
-# CGit
+## CGit 源码
 
 编译cgit 需要先下载git源码
 
@@ -22,7 +22,7 @@ $ git clone https://www.thedroneely.com/git/thedroneely/cgit
     && mv git-2.46.0 git
 ```
 
-### 编译cgit
+## 编译cgit
 
 https://git.zx2c4.com/cgit/about/
 
@@ -49,7 +49,7 @@ install -m 0755 -d /usr/local/lib/cgit/filters
 cp -r filters/* /usr/local/lib/cgit/filters
 ```
 
-### Web UI
+## Web UI
 
 ```
 [anolis]
@@ -75,7 +75,7 @@ spawn-fcgi -s /var/run/fcgiwrap.socket -M 0666 -U nginx -- /usr/sbin/fcgiwrap
 ps -ef | grep fcgi
 ```
 
-### 配置文件
+## 配置文件
 
 nginx.conf
 
@@ -158,14 +158,6 @@ sudo make prefix=/opt/git install
 /usr/lib/git-core/  对应 /opt/git/libexec/git-core
 /usr/share/git-core 对应 /opt/git/share/git-core
 /usr/share/gitweb 对应 /opt/git/share/gitweb
-```
-
-
-### 编译nginx-src
-
-```
-
-
 ```
 
 
