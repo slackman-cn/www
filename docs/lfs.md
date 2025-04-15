@@ -1,9 +1,9 @@
 ---
-title: LFS
+title: 'LFS'
 since: 202412
 ---
 
-# Toolchain
+## Toolchain
 
 * GCC compiler, Binutils, and Glibc.
 
@@ -14,6 +14,8 @@ Basic System:
 * Bash shell
 * GCC (GNU Compiler Collection)
 * Binutils (binary tools like the assembler and linker)
+
+## Linux From Scratch
 
 [__LFS for beginners__](https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/)
 
