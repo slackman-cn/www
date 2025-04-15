@@ -62,7 +62,6 @@ Caches (sum of all):
   L1d:                    128 KiB (4 instances)
   L1i:                    128 KiB (4 instances)
   L2:                     512 KiB (1 instance)
-
 ```
 
 ![RK3658](./img/rk3568.jpeg)

@@ -1,6 +1,6 @@
 site_name: SLACKMAN.CN
 site_url: https://slackman.cn
-repo_url: https://github.com/slackman-cn/site.git
+repo_url: https://github.com/slackman-cn/www.git
 plugins: []
 theme:
   name: null
