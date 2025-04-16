@@ -66,7 +66,7 @@
 </li>
                                     
 <li>
-    <a href="../11-clang/" class="dropdown-item">C,CPP,LUA</a>
+    <a href="../11-clang/" class="dropdown-item">C,C++,LUA</a>
 </li>
                                     
 <li>
@@ -139,7 +139,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#hello-world" class="nav-link">Hello World</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#ruby" class="nav-link">Ruby 语法</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -168,7 +173,26 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="hello-world">Hello World</h2>
+<h2 id="install">Install</h2>
+<pre><code>sudo apt install ruby ruby-dev ruby-bundler
+
+root@ubuntu22:~# ruby --version
+ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
+
+root@ubuntu22:~# bundler --version
+Bundler version 2.3.5
+
+===== 默认源
+root@ubuntu22:~/ruby# gem sources
+*** CURRENT SOURCES ***
+
+https://rubygems.org/
+
+===== 国内源
+gem sources --remove https://rubygems.org/
+gem sources -a https://mirrors.aliyun.com/rubygems/
+</code></pre>
+<h2 id="ruby">Ruby 语法</h2>
 <pre><code>print &quot;Hello world!\n&quot;
 # 输出 p(”hee&quot;)
 print(&quot;hello&quot;)
