@@ -3,8 +3,30 @@ title: Ruby
 since: 202503
 ---
 
+## Install
 
-## Hello World
+```
+sudo apt install ruby ruby-dev ruby-bundler
+
+root@ubuntu22:~# ruby --version
+ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
+
+root@ubuntu22:~# bundler --version
+Bundler version 2.3.5
+
+===== 默认源
+root@ubuntu22:~/ruby# gem sources
+*** CURRENT SOURCES ***
+
+https://rubygems.org/
+
+===== 国内源
+gem sources --remove https://rubygems.org/
+gem sources -a https://mirrors.aliyun.com/rubygems/
+```
+
+
+## Ruby 语法
 
 ```
 print "Hello world!\n"

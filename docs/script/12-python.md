@@ -3,7 +3,20 @@ title: Python
 since: 202503
 ---
 
-## Hello World
+## Install
+
+```
+pacman -S python-pip
+yum install python3-pip
+sudo apt install python3-venv
+
+$ python3 --version
+$ python3 -m venv vbuild
+
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+```
+
+## Python 语法
 
 func
 ```

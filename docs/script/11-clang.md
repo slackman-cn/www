@@ -1,5 +1,5 @@
 ---
-title: C,CPP,LUA
+title: C,C++,LUA
 since: 202503
 ---
 
