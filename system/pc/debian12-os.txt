@@ -41,18 +41,18 @@ SSL peer certificate or SSH remote key was not OK
 
 $$ projects
 ======================
-/home/cnki/jvm/{node-20, jdk-8, jdk-17, maven, gradle, idea}  权限cnki:cnki
+/home/cccc/jvm/{node-20, jdk-8, jdk-17, maven, gradle, idea}  权限cccc:cccc
 npm, maven 设置国内源mirrors.tencent.com
 cd dist/fonts/
 sudo cp -a * /usr/local/share/fonts/
 
-$ sudo vi /etc/sudoer.d/cnki
-cnki  ALL=(ALL)  NOPASSWD:ALL
+$ sudo vi /etc/sudoer.d/cccc
+cccc  ALL=(ALL)  NOPASSWD:ALL
 
 $ sudo vi ~/.bashrc
-export NODE_HOME=/home/cnki/jvm/node-v20
-export JAVA_HOME=/home/cnki/jvm/jdk-8
-export M2_HOME=/home/cnki/jvm/apache-maven-3
+export NODE_HOME=/home/cccc/jvm/node-v20
+export JAVA_HOME=/home/cccc/jvm/jdk-8
+export M2_HOME=/home/cccc/jvm/apache-maven-3
 export PATH=... 
 
 $$ echo $XDG_SESSION_TYPE
@@ -120,7 +120,7 @@ ii  uim-qt5                                1:1.8.8-9.2+b2                       
 ii  uim-qt5-immodule:amd64                 1:1.8.8-9.2+b2                       amd64        Universal Input Method - Qt 5.x IM module
 
 
-cnki@debian:/var/lib/flatpak/repo$ flatpak list
+cccc@debian:/var/lib/flatpak/repo$ flatpak list
 名称                               应用程序 ID                                     版本                              分支                 安装
 IntelliJ IDEA Community            com.jetbrains.IntelliJ-IDEA-Community           2024.2.3                          stable               system
 Zed                                dev.zed.Zed                                     v0.155.2                          stable               system
