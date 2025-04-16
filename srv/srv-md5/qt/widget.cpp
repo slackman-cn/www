@@ -85,7 +85,7 @@ void Widget::onSelect()
 {
 
 //    QString fpath = QFileDialog::getOpenFileName(this, "Open File");
-    QString fpath = "/home/cnki/centos.iso";
+    QString fpath = "/home/cccc/centos.iso";
     if (fpath.isEmpty())
     {
       return;

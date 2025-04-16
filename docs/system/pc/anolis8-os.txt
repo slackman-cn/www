@@ -31,13 +31,13 @@ kernel-5.10     AnolisOS-8 - Kernel 5.10
 ```
 [local-BaseOS]
 name=local
-baseurl=file:///run/media/cnki/anolis-8-x86_64-dvd/BaseOS
+baseurl=file:///run/media/cccc/anolis-8-x86_64-dvd/BaseOS
 enabled=1
 gpgcheck=0
 
 [local-AppStream]
 name=local-AppStream
-baseurl=file:///run/media/cnki/anolis-8-x86_64-dvd/AppStream
+baseurl=file:///run/media/cccc/anolis-8-x86_64-dvd/AppStream
 enabled=1
 gpgcheck=0
 ```

@@ -55,8 +55,8 @@ Step1:  Start Filezilla
 Edit => Setting  设置端口， 默认21
 
 Step2: Edit => Users
-创建用户cnki,  输入密码cnki2023
-添加目录D:\pub,  分配给用户cnki, 所有权限(不需要设置home)
+创建用户cccc,  输入密码cccc2023
+添加目录D:\pub,  分配给用户cccc, 所有权限(不需要设置home)
 ```
 
 客户端
@@ -68,19 +68,19 @@ Step2: Edit => Users
 
 ===== 命令行
 install curlftpfs 
-curlftpfs cnki:cnki2023@192.168.2.2 ./pub/
+curlftpfs cccc:cccc2023@192.168.2.2 ./pub/
 ```
 
 ## 文件服务器 Rsync
 
 ```
-rsync -avzP ./kylin10sp1-desktop-x64-template.qcow2   cnki@10.31.66.80::backup
-rsync -avzP ./newdir/   cnki@10.31.66.80::backup
+rsync -avzP ./kylin10sp1-desktop-x64-template.qcow2   cccc@10.31.66.80::backup
+rsync -avzP ./newdir/   cccc@10.31.66.80::backup
 ```
 
 服务器配置
 ```
-echo "cnki:cnki2023" > /etc/rsync.password
+echo "cccc:cccc2023" > /etc/rsync.password
 chmod 600 /etc/rsync.password
 
 sudo systemctl start rsyncd
@@ -100,7 +100,7 @@ transfer logging = yes
 timeout = 900
 ignore nonreadable = yes
 dont compress   = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2
-auth users = cnki
+auth users = cccc
 secrets file = /etc/rsync.password
 
 [backup]
@@ -137,7 +137,7 @@ https://discussion.fedoraproject.org/t/smbclient-works-but-how-to-mount-as-user/
 ```
 # mount -t cifs -o rw,vers=3.0,credentials=/data/shareuser //192.168.2.3/Share /data/Share
 
-sudo mount -t cifs -o username=cnki,password=cnki2023,uid=1000,gid=1000 //192.168.2.3/Share /data/Share
+sudo mount -t cifs -o username=cccc,password=cccc2023,uid=1000,gid=1000 //192.168.2.3/Share /data/Share
 ```
 
 Fedora FileManager mount

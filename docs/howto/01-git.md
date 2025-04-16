@@ -74,7 +74,7 @@ https://forgejo.org/docs/latest/admin/installation-binary/
 sudo chmod 755 /usr/local/bin/forgejo
 
 sudo mkdir /data/forgejo
-sudo chown cnki:cnki /data/forgejo
+sudo chown cccc:cccc /data/forgejo
 
 ########## app.ini
 .....
@@ -99,13 +99,13 @@ After=network.target
 [Service]
 RestartSec=2s
 Type=simple
-User=cnki
-Group=cnki
+User=cccc
+Group=cccc
 WorkingDirectory=/data/forgejo/
 
 ExecStart=/usr/local/bin/forgejo web --config /data/forgejo/app.ini
 Restart=always
-Environment=USER=cnki HOME=/home/cnki FORGEJO_WORK_DIR=/data/forgejo
+Environment=USER=cccc HOME=/home/cccc FORGEJO_WORK_DIR=/data/forgejo
 
 [Install]
 WantedBy=multi-user.target

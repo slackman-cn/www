@@ -11,7 +11,7 @@ make && make install
 新建配置
 mkteaiso -c alpine
 vi build.sh
-mkteaiso --profile=$(pwd) --output=.. --work=/media/cnki/data/rpi/teaiso/work/
+mkteaiso --profile=$(pwd) --output=.. --work=/media/cccc/data/rpi/teaiso/work/
 
 打包
 mkteaiso --profile=/usr/src/teaiso-alpine-kde-stable
