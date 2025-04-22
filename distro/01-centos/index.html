@@ -33,15 +33,15 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/01-centos/" class="dropdown-item">CentOS</a>
+    <a href="./" class="dropdown-item active" aria-current="page">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../02-archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                 </ul>
                             </li>
@@ -92,27 +92,27 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-system/" class="dropdown-item">系统设置</a>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../02-docker-image/" class="dropdown-item">DockerImage</a>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Podman & Buildah</a>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
 </li>
                                     
 <li>
-    <a href="../04-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/04-bootcd/" class="dropdown-item">BootCD</a>
 </li>
                                     
 <li>
-    <a href="../05-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../system/05-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -120,12 +120,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../02-docker-image/" class="nav-link">
+                                <a rel="prev" href="../../linux/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../04-bootcd/" class="nav-link">
+                                <a rel="next" href="../02-archlinux/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -152,22 +152,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">封装系统环境</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#ubuntu22" class="nav-link">Ubuntu22</a>
+            <li class="nav-item" data-bs-level="2"><a href="#desktop" class="nav-link">Desktop</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#anolis" class="nav-link">Anolis</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#openeuler" class="nav-link">openEuler</a>
+            <li class="nav-item" data-bs-level="2"><a href="#centos-baserepo" class="nav-link">CentOS-Base.repo</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -176,93 +171,113 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="_1">封装系统环境</h2>
-<p>ubuntu =&gt; ubuntu-devel</p>
-<pre><code>https://docker.aityp.com/image/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04-linuxarm64
+<h2 id="install">Install</h2>
+<p>CentOS-7-x86_64-Minimal-2009.iso</p>
+<pre><code>[root@centos ~]# ldd --version
+ldd (GNU libc) 2.17
 
-buildah containers
-buildah images
+[root@centos ~]# uname -r
+3.10.0-1160.el7.x86_64
 
-buildah from anolis  // anolis-working-container
-buildah from --name builder anolis
-删除容器(不需要关闭)
-buildah rm  $containername
-使用修改后的容器创建镜像
-buildah commit builder anolis-devel
+[root@centos ~]# rpm -qa | wc -l
+299
 
-podman run -it --rm --privileged ubuntu-devel
-podman run -td --name build --privileged -v `pwd`:/build anolis
-podman exec -it build bash
+[root@centos ~]# cat /etc/os-release
+NAME=&quot;CentOS Linux&quot;
+VERSION=&quot;7 (Core)&quot;
+ID=&quot;centos&quot;
+ID_LIKE=&quot;rhel fedora&quot;
+VERSION_ID=&quot;7&quot;
+PRETTY_NAME=&quot;CentOS Linux 7 (Core)&quot;
+ANSI_COLOR=&quot;0;31&quot;
+CPE_NAME=&quot;cpe:/o:centos:centos:7&quot;
+HOME_URL=&quot;https://www.centos.org/&quot;
+BUG_REPORT_URL=&quot;https://bugs.centos.org/&quot;
+
+CENTOS_MANTISBT_PROJECT=&quot;CentOS-7&quot;
+CENTOS_MANTISBT_PROJECT_VERSION=&quot;7&quot;
+REDHAT_SUPPORT_PRODUCT=&quot;centos&quot;
+REDHAT_SUPPORT_PRODUCT_VERSION=&quot;7&quot;
+
+[root@centos ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0   20G  0 disk
+├─sda1            8:1    0    1G  0 part /boot
+└─sda2            8:2    0   19G  0 part
+  ├─centos-root 253:0    0   17G  0 lvm  /
+  └─centos-swap 253:1    0    2G  0 lvm  [SWAP]
+sr0              11:0    1 1024M  0 rom
+
+[root@centos ~]# df -hT
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  3.9G     0  3.9G   0% /dev
+tmpfs                   tmpfs     3.9G     0  3.9G   0% /dev/shm
+tmpfs                   tmpfs     3.9G  8.6M  3.9G   1% /run
+tmpfs                   tmpfs     3.9G     0  3.9G   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        17G  1.3G   16G   8% /
+/dev/sda1               xfs      1014M  137M  878M  14% /boot
+tmpfs                   tmpfs     799M     0  799M   0% /run/user/0
 </code></pre>
-<h2 id="ubuntu22">Ubuntu22</h2>
-<p>https://developer.aliyun.com/mirror/ubuntu</p>
-<pre><code>buildah from --name builder ubuntu
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-buildah config --env LANGUAGE=enUS:en builder
+<h2 id="desktop">Desktop</h2>
+<pre><code>yum grouplist
+yum grouplist --installed // not support
+yum grouplist --ids       // not support
 
-buildah copy builder sources.list /etc/apt/
+yum groupinstall 'X Window System'
 
-buildah run builder apt update
-buildah run builder apt install language-pack-en  
-buildah run builder apt install build-essential
-buildah run builder apt install vim less git wget curl
+# Option
+yum groups install &quot;GNOME Desktop&quot;
+yum groups install &quot;KDE Plasma Workspaces&quot;
+yum groups install &quot;Graphical Administration Tools&quot;
 
-buildah commit builder ubuntu-devel
+
+====== startx
+systemctl set-default graphical.target
+systemctl set-default multi-user.target
 </code></pre>
-<p>sources.list</p>
-<pre><code>====== Ubuntu22 x86
-deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+<h2 id="centos-baserepo">CentOS-Base.repo</h2>
+<pre><code>[os]
+name=Qcloud centos os - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/os/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-updates main restricted universe multiverse
-EOF
+[updates]
+name=Qcloud centos updates - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/updates/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
+[centosplus]
+name=Qcloud centosplus - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/centosplus/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
-====== Ubuntu22 ARM
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
+[cr]
+name=Qcloud centos cr - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/cr/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-updates main restricted universe multiverse
-EOF
-</code></pre>
-<h2 id="anolis">Anolis</h2>
-<p>https://mirrors.openanolis.cn/anolis/8.9/isos/GA/x86_64/</p>
-<pre><code>buildah from --name builder anolis
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-rpm -qa | grep glibc-langpack
-buildah run builder yum install glibc-langpack-zh -y
-buildah run builder yum install glibc-langpack-en -y
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
+[extras]
+name=Qcloud centos extras - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/extras/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
-buildah commit builder anolis-devel
-</code></pre>
-<h2 id="openeuler">openEuler</h2>
-<p>https://repo.openeuler.org/openEuler-22.03-LTS-SP4/docker_img/x86_64/</p>
-<p>https://mirrors.tuna.tsinghua.edu.cn/openeuler/openEuler-22.03-LTS-SP4/</p>
-<pre><code>buildah from --name builder openeuler
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-openeuler需要安装
-buildah run builder glibc-locale-archive -y  
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
+[fasttrack]
+name=Qcloud centos fasttrack - $basearch
+baseurl=http://mirrors.cloud.tencent.com/centos/$releasever/fasttrack/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=http://mirrors.cloud.tencent.com/centos/RPM-GPG-KEY-CentOS-7
 
-buildah commit builder openeuler-devel
 </code></pre></div>
             </div>
         </div>

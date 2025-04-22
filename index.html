@@ -30,14 +30,27 @@
                                 <a href="." class="nav-link active" aria-current="page"></a>
                             </li>
                             <li class="nav-item">
-                                <a href="lfs/" class="nav-link">LFS</a>
+                                <a href="linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="distro/01-centos/" class="dropdown-item">CentOS</a>
+</li>
+                                    
+<li>
+    <a href="distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+</li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="howto/01-git/" class="dropdown-item">代码库 Git</a>
+    <a href="howto/01-git/" class="dropdown-item">代码库</a>
 </li>
                                     
 <li>
@@ -95,11 +108,11 @@
 </li>
                                     
 <li>
-    <a href="system/11-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="system/04-bootcd/" class="dropdown-item">BootCD</a>
 </li>
                                     
 <li>
-    <a href="system/12-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="system/05-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -112,7 +125,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="lfs/" class="nav-link">
+                                <a rel="next" href="linux/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -184,6 +197,26 @@ Caches (sum of all):
   L1i:                    192 KiB (4 instances)
   L2:                     1 MiB (1 instance)
 </code></pre>
+<p>Ubuntu22,  GCC11, ldd (Ubuntu GLIBC 2.35-0ubuntu3.9) 2.35</p>
+<pre><code>                                                 MultiCore SingleCore
+Workload Name                                     (iter/s)   (iter/s)    Scaling
+----------------------------------------------- ---------- ---------- ----------
+cjpeg-rose7-preset                                  232.56      62.50       3.72
+core                                                  2.40       0.60       4.00
+linear_alg-mid-100x100-sp                           231.48      60.31       3.84
+loops-all-mid-10k-sp                                  3.97       2.10       1.89
+nnet_test                                            10.01       3.02       3.31
+parser-125k                                           8.62       9.17       0.94
+radix2-big-64k                                       94.93     216.17       0.44
+sha-test                                            384.62     109.89       3.50
+zip-test                                            129.03      38.46       3.35
+
+MARK RESULTS TABLE
+
+Mark Name                                        MultiCore SingleCore    Scaling
+----------------------------------------------- ---------- ---------- ----------
+CoreMark-PRO                                       4486.36    1958.70       2.29
+</code></pre>
 <h2 id="nanopi-r5s">NanoPi R5S</h2>
 <p>Rockchip RK3568B2, Quad-core ARM Cortex-A55 CPU, up to 2.0GHz</p>
 <p><a href="https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh">https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh</a></p>
@@ -210,6 +243,26 @@ Caches (sum of all):
   L1i:                    128 KiB (4 instances)
   L2:                     512 KiB (1 instance)
 </code></pre>
+<p>Ubuntu22,  GCC11, ldd (Ubuntu GLIBC 2.35-0ubuntu3.9) 2.35</p>
+<pre><code>                                                 MultiCore SingleCore
+Workload Name                                     (iter/s)   (iter/s)    Scaling
+----------------------------------------------- ---------- ---------- ----------
+cjpeg-rose7-preset                                  222.22      61.35       3.62
+core                                                  1.97       0.50       3.94
+linear_alg-mid-100x100-sp                           100.20      26.34       3.80
+loops-all-mid-10k-sp                                  2.50       0.99       2.53
+nnet_test                                             6.15       1.86       3.31
+parser-125k                                          13.29       8.93       1.49
+radix2-big-64k                                       91.26      71.52       1.28
+sha-test                                            333.33     106.38       3.13
+zip-test                                            102.56      29.41       3.49
+
+MARK RESULTS TABLE
+
+Mark Name                                        MultiCore SingleCore    Scaling
+----------------------------------------------- ---------- ---------- ----------
+CoreMark-PRO                                       3588.78    1298.55       2.76
+</code></pre>
 <p><img alt="RK3658" src="img/rk3568.jpeg" /></p>
 <h1 id="about-links">About Links</h1>
 <p><a href="https://www.wikihow.com/Main-Page">https://www.wikihow.com/Main-Page</a></p>
@@ -234,6 +287,6 @@ Caches (sum of all):
 </html>
 
 <!--
-MkDocs version : 1.6.0
-Build Date UTC : 2025-04-16 08:25:37.561656+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-04-22 05:29:52.074236+00:00
 -->

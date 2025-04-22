@@ -2,82 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://slackman.cn/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://slackman.cn/lfs/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://slackman.cn/linux/</loc>
+         <lastmod>2025-04-22</lastmod>
+    </url>
+    <url>
+         <loc>https://slackman.cn/distro/01-centos/</loc>
+         <lastmod>2025-04-22</lastmod>
+    </url>
+    <url>
+         <loc>https://slackman.cn/distro/02-archlinux/</loc>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/01-git/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/02-file/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/03-doc/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/11-cgit/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/01-ninja/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/02-scons/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/11-clang/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/12-python/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/13-ruby/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/system/01-system/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/system/02-docker-image/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/system/03-buildah/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://slackman.cn/system/11-bootcd/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://slackman.cn/system/04-bootcd/</loc>
+         <lastmod>2025-04-22</lastmod>
     </url>
     <url>
-         <loc>https://slackman.cn/system/12-diskimage/</loc>
-         <lastmod>2025-04-16</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://slackman.cn/system/05-diskimage/</loc>
+         <lastmod>2025-04-22</lastmod>
     </url>
 </urlset>
