@@ -1,5 +1,5 @@
 ---
-title: 'LFS'
+title: 'Linux'
 since: 202412
 ---
 

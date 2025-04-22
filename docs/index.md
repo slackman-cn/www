@@ -34,6 +34,31 @@ Caches (sum of all):
   L2:                     1 MiB (1 instance)
 ```
 
+Ubuntu22,  GCC11, ldd (Ubuntu GLIBC 2.35-0ubuntu3.9) 2.35
+```
+                                                 MultiCore SingleCore
+Workload Name                                     (iter/s)   (iter/s)    Scaling
+----------------------------------------------- ---------- ---------- ----------
+cjpeg-rose7-preset                                  232.56      62.50       3.72
+core                                                  2.40       0.60       4.00
+linear_alg-mid-100x100-sp                           231.48      60.31       3.84
+loops-all-mid-10k-sp                                  3.97       2.10       1.89
+nnet_test                                            10.01       3.02       3.31
+parser-125k                                           8.62       9.17       0.94
+radix2-big-64k                                       94.93     216.17       0.44
+sha-test                                            384.62     109.89       3.50
+zip-test                                            129.03      38.46       3.35
+
+MARK RESULTS TABLE
+
+Mark Name                                        MultiCore SingleCore    Scaling
+----------------------------------------------- ---------- ---------- ----------
+CoreMark-PRO                                       4486.36    1958.70       2.29
+```
+
+
+
+
 ## NanoPi R5S
 
 Rockchip RK3568B2, Quad-core ARM Cortex-A55 CPU, up to 2.0GHz
@@ -63,6 +88,29 @@ Caches (sum of all):
   L1i:                    128 KiB (4 instances)
   L2:                     512 KiB (1 instance)
 ```
+
+Ubuntu22,  GCC11, ldd (Ubuntu GLIBC 2.35-0ubuntu3.9) 2.35
+```
+                                                 MultiCore SingleCore
+Workload Name                                     (iter/s)   (iter/s)    Scaling
+----------------------------------------------- ---------- ---------- ----------
+cjpeg-rose7-preset                                  222.22      61.35       3.62
+core                                                  1.97       0.50       3.94
+linear_alg-mid-100x100-sp                           100.20      26.34       3.80
+loops-all-mid-10k-sp                                  2.50       0.99       2.53
+nnet_test                                             6.15       1.86       3.31
+parser-125k                                          13.29       8.93       1.49
+radix2-big-64k                                       91.26      71.52       1.28
+sha-test                                            333.33     106.38       3.13
+zip-test                                            102.56      29.41       3.49
+
+MARK RESULTS TABLE
+
+Mark Name                                        MultiCore SingleCore    Scaling
+----------------------------------------------- ---------- ---------- ----------
+CoreMark-PRO                                       3588.78    1298.55       2.76
+```
+
 
 ![RK3658](./img/rk3568.jpeg)
 

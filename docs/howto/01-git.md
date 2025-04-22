@@ -1,5 +1,5 @@
 ---
-title: 代码库 Git
+title: 代码库
 since: 202412
 about: https://git-scm.com/downloads
 ---
