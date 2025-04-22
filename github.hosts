@@ -1,0 +1,28 @@
+
+
+# Windows：C:\Windows\System32\drivers\etc\hosts
+# Windows：ipconfig /flushdns
+# Mac/Linux：/etc/hosts
+140.82.112.3 github.com
+185.199.108.133 assets-cdn.github.com
+185.199.109.133 assets-cdn.github.com
+185.199.110.133 assets-cdn.github.com
+185.199.111.133 assets-cdn.github.com
+
+# SSH Client
+# ssh-keygen | ssh-keygen -t ed25519
+# mkdir ~/.ssh && dropbearkey -t ed25519 -f ~/.ssh/id_dropbear
+# ssh -V
+# ssh -T git@github.com
+
+
+# SSH Server
+# >> vi ~/.ssh/config
+# StrictHostKeyChecking no
+# UserKnownHostsFile /dev/null
+
+
+# GIT Client
+# git config --global user.name  "slackman"
+# git config --global user.email "slackman@disroot.org"
+# git config --global core.autocrlf [ input | true | false ]
