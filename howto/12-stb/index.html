@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../distro/01-centos/" class="dropdown-item">CentOS</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../01-git/" class="dropdown-item">代码库</a>
+</li>
+                                    
+<li>
+    <a href="../02-file/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../03-doc/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../11-vt/" class="dropdown-item">VT</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">USTB</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+</li>
+                                    
+<li>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+<li>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
+</li>
+                                    
+<li>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+</li>
+                                    
+<li>
+    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../system/04-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/05-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../11-vt/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../script/01-ninja/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#ustb" class="nav-link">USTB</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#8421-bcd" class="nav-link">8421 BCD编码</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#unicode" class="nav-link">字符编码 （unicode）</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#nasm-c" class="nav-link">NASM 和 C</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#gtk-qt" class="nav-link">GTK 和 Qt</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">编程也是编码</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">函数也是命令</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#stack-based-machine" class="nav-link">Stack Based Machine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#lua-based-language" class="nav-link">Lua Based Language</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="ustb">USTB</h2>
+<pre><code>大一：高等数学、C/C++、离散数学
+大二：计算机组成原理、数字电路、数据结构、线性代数
+大三：编译原理、操作系统、模拟电路、网络原理、汇编相关课程、概率论
+
+
+要自学计算机专业课的话，一般先学C语言（系统编程的基础，最经典的过程式程序设计语言）和离散数学（计算机科学的数学基础）；
+然后学习数据结构（所有专业课的基础）和计算机系统基础（这其中包括汇编）；
+
+。模拟电路和计算机专业知识几乎没有任何关系，自学的话不建议学
+
+数字电路-组成原理是一条线，操作系统是一条线，计网是一条线，编译是一条线，算法是一条线，C++等面向对象语言是一条线，这些不分先后都可以按需学习
+</code></pre>
+<p>功能，可靠性，可用性，效率</p>
+<p>可维护，可移植，兼容性(Compatibility)</p>
+<pre><code>功能是否完备, 是软件质量的核心,正确地执行所需的功能
+在一定时间内能够持续正常地运行
+易于使用
+消耗的资源量，包括时间、内存和磁盘空间等
+
+---&gt;
+容易维护和修改
+容易在不同的平台上运行
+能够与其他软件和硬件兼容
+</code></pre>
+<h3 id="_1">架构设计原则</h3>
+<p>编程第一原则：先把东西做出来</p>
+<pre><code>● 要有注释，但不能太多，单行注释足够了 #xxx
+● 网络不安全，所以不会滚动更新
+● 时间效率，高于空间效率
+● 没有包管理器，每个软件都是一体的，和依赖要在一起
+● 库很重要， 和flatpack一样默认没有任何仓库，有一个中央仓库，可以自建，可以用git/svn管理
+● 约定大于配置, spec描述文件
+● 变量小写，常量大写
+● 必须有输出   bin/   lib/  ScriptSpec  Specfile
+● 数据和类型一体，不可分割
+</code></pre>
+<p>指令系统 8类</p>
+<pre><code>A算数arithmetic,B逻辑bit,C控制control  =&gt; ALU
+U字符unicode,V向量vector,G图连接graph
+X,Y 扩展，动态引擎，运行时引擎 java,js,gui,axv多媒体
+</code></pre>
+<p>表示数据</p>
+<pre><code>表示数字  0xFF  8bit   或 0xFFFF 16bit
+表示字符串  u'asdf'  或 'adsf'  不要双引号
+int num = 'a'  这是一个ASCII编码
+</code></pre>
+<p>标准库</p>
+<pre><code> c语言  #include &lt;stdint.h&gt;   c++11  #include &lt;cstdint&gt;
+https://www.runoob.com/cplusplus/cpp-libs-cstdint.html
+// 声明固定宽度的整数类型
+int8_t a = -128; // 最小值
+uint8_t b = 255; // 最大值
+int16_t c = -32768;
+uint16_t d = 65535;
+int32_t e = -2147483648;
+uint32_t f = 4294967295U; // 使用 U 后缀表示无符号常量
+int64_t g = -9223372036854775807LL; // 使用 LL 后缀表示长长整型常量
+uint64_t h = 18446744073709551615ULL; // 使用 ULL 后缀表示无符号长长整型常量
+
+INT8_MIN, INT8_MAX, UINT8_MAX
+INT16_MIN, INT16_MAX, UINT16_MAX
+INT32_MIN, INT32_MAX, UINT32_MAX
+INT64_MIN, INT64_MAX, UINT64_MAX
+</code></pre>
+<h3 id="_2">仓库/模块/包</h3>
+<p>一切皆文件</p>
+<pre><code>include包含, 没有包管理器, 只有文件和目录 两种东西
+没有 module /require/ import /namespace之类的东西，每个文件就是一个模块(不声明module)
+include &quot;xxx.tsc&quot;  引入所有， 隐式模块
+include &quot;xxx&quot;   引入 xxx/* ，   显式模块
+</code></pre>
+<pre><code>目录可以包含任意文件 xxx/
+VERSION
+VERSION.tsc
+
+相对位置，不能只导入一部分，文件文件无法分割
+#include &quot;VERSION&quot;
+#include &quot;VERSION.rst&quot;
+util = include(&quot;util.tsc&quot;)
+util = include &quot;util.tsc&quot;
+
+# 入口可以任意文件名
+index, main, index.tsc, __init__
+
+# 描述文件Specfile,  有约定和约束
+不使用json,xml 使用自己的脚本语言
+XXX = Specification()
+XXX::Specification
+env: bash
+</code></pre>
+<h3 id="_3">类型系统独立</h3>
+<pre><code>使用protoc兼容
+type +  c-like/c-link  + assembly
+类型(auto), 函数, 结构体, 模块
+注释#  多条语句;  行尾可以加也可以不加
+</code></pre>
+<p>方案1</p>
+<pre><code>常量
+A = 10
+PI = 3.12
+NUL
+
+变量
+a = 10; b = &quot;eee&quot;
+a = int     是类型，也是初值
+a = int(10) 是类型，也是函数
+b = bytes
+
+语句块函数块，是否等价; 不等价，函数全局，为了复用
+语句块可以加{}也可以不加，缩进足够了; 函数只能用关键字声明
+if TRUE
+  ...
+else if TRUE
+  ...
+else
+  ...
+
+输出到控制台
+message(&quot;lll ${name}, ls {:name}&quot;)
+message(&quot;lll ${name}, ls {:name}&quot;, ctx)
+
+返回状态码 OK, exitCode
+def add(a,b, out c)
+  c = a + b
+enf
+a = 10; b = 20
+c 
+add(a,b,c)
+
+C语言没有异常处理，只处理error
+def add(a=int, b=bytes, out c=int)
+  return  //什么都不返回，终止
+  exit(&quot;asdf&quot;) 错误信息
+  exit(-2)     错误码
+enf
+
+特殊指令
+#!/bin/bash
+include &quot;xxx&quot;
+</code></pre>
+<p>方案2</p>
+<pre><code>fn = add(a,b,c) // return Function Type
+fn.params
+fn.args
+fn.value // return  不throw new Error(&quot;asdf&quot;)除了OK，全是异常
+fn.result
+if (fn == NUL)  重写运算符，比较 fn.value == NUL
+
+结构体类型
+typedef Stu(int,bytes) // 没有string，本质是bytes
+ss = Stu(10, &quot;adf3&quot;)   
+ss = Stu
+ss[0]
+ss[1]
+
+结构体类型2
+typedef Stu(id = int, name = bytes)
+ss = Stu(10,&quot;ss&quot;)  声明 + 赋值
+ss = Stu                 声明 + 初值
+ss.name
+ss.id
+
+
+值类型value, return Value Type; rename type
+typedef Stu = int
+ss = Stu(10)  // 等价 ss = int(10) 
+ss = Stu      // 等价 ss = int
+ss = 10
+
+元组类型 Tuple, Array
+typedef Stu = [int,bytes]
+ss = Stu([10, &quot;www&quot;])
+ss = Stu
+ss = [10, &quot;234&quot;]  // return Array Type
+ss[0]
+ss[1]
+
+
+初始化函数
+typedef Stu(id = int, name = bytes)
+  $id++
+endf
+</code></pre>
+<p>属性顺序最重要，为了序列化;  有构造，没有析构</p>
+<pre><code>值类型
+typedef Person = int
+typedef Person::id = int
+
+基础类型
+typedef Person(id = int, name=bytes)  
+enf
+typedef Person
+  id = int
+  name = bytes
+enf
+p = Person;  p.id = 12; p.name = &quot;asdf&quot;
+p = Person {
+  id = 32  # 属性初始化
+  name = &quot;asdf
+}
+p = Person(12)
+p = Person(12, &quot;asdf&quot;)
+
+继承有用吗，为了少写几个属性，还是为了继承方法
+typedef Student
+  id = int     # 优先级最高，解释型就是这样，先定义先使用
+  name = bytes # 显示类型会覆盖隐式类型，就像maven依赖一样
+  ::Person   # 所有Person属性
+  ::Person2  # 所有Person2属性
+  Person::   # 所有Person属性, 这个比较好
+  Person::*
+  Person::{id,name}
+
+enf
+s = Student(10, n)
+</code></pre>
+<p>方案3</p>
+<pre><code>fn = add(a,b,c) // return Function Type
+fn.params
+fn.args
+fn.value // return  不throw new Error(&quot;asdf&quot;)除了OK，全是异常
+fn.result
+if (fn == NUL)  重写运算符，比较 fn.value == NUL
+
+结构体类型
+typedef Stu(int,bytes) // 没有string，本质是bytes
+ss = Stu(10, &quot;adf3&quot;)   
+ss = Stu
+ss[0]
+ss[1]
+
+结构体类型2
+typedef Stu(id = int, name = bytes)
+ss = Stu(10,&quot;ss&quot;)  声明 + 赋值
+ss = Stu                 声明 + 初值
+ss.name
+ss.id
+
+
+值类型value, return Value Type; rename type
+typedef Stu = int
+ss = Stu(10)  // 等价 ss = int(10) 
+ss = Stu      // 等价 ss = int
+ss = 10
+
+元组类型 Tuple, Array
+typedef Stu = [int,bytes]
+ss = Stu([10, &quot;www&quot;])
+ss = Stu
+ss = [10, &quot;234&quot;]  // return Array Type
+ss[0]
+ss[1]
+
+
+初始化函数
+typedef Stu(id = int, name = bytes)
+  $id++
+endf
+
+
+废弃
+ss: Stu = 10
+typedef Stu(id: int, name: bytes)
+</code></pre>
+<h2 id="8421-bcd">8421 BCD编码</h2>
+<pre><code>2 + 3 = 0010 + 0011 = 0101 = 5  ; 结果&lt;=9 正常
+2 + 9 = 0010 + 1001 = 1011    ; 结果 &gt;9, 修正结果+6  1000/0001 = 11
+</code></pre>
+<p>2421 编码</p>
+<pre><code>0000 -&gt; 0
+0001 -&gt; 1
+0010 -&gt; 2
+0011 -&gt; 3=2+1
+0100 -&gt; 4
+
+1011 -&gt; 5=2+0+2+1
+1100 -&gt; 6=2+4
+1101 -&gt; 7=2+4+0+1
+1110 -&gt; 8=2+4+2+0
+1111 -&gt; 9=2+4+2+1
+</code></pre>
+<h2 id="unicode">字符编码 （unicode）</h2>
+<p><a href="https://wuli.wiki/online/encode.html">https://wuli.wiki/online/encode.html</a><br />
+<a href="https://www.cnblogs.com/xtuz/p/12448200.html">https://www.cnblogs.com/xtuz/p/12448200.html</a>  </p>
+<pre><code>NUL 字符是 ascii 表中编号为 0 的字符，也就是说在该子节中，所有的比特都为零
+NUL 字符通常用于 C 语言的字符串的最后代表字符串结束，但几乎不用于文本文件中（无论使用哪种编码）
+
+&gt; ASCII 编码，每个字符占据1bytes
+用二进制表示的话最高位必须为0（扩展的ASCII不在考虑范围内），因此ASCII只能表示128个字
+目前世界上除ASCII之外的其它通行的字符编码方案，基本上都兼容ASCII，但相互之间并不兼容
+
+&gt; ANSI编码，表示英文字符时用一个字节，表示中文用两个字节
+遇到字节是以0开头的，就知道这一个字节就表示了一个字符；遇到字节是以1开头的，就知道要加上下一个字节合起来表示一个字符
+必须是两个大于127的字节连在一起来共同表示一个汉字(GB2312为双字节编码)，前一字节称为高字节，后一字节称为低字节
+在GB2312中收录了6763个汉字以及682个特殊符号，已经囊括了生活中最常用的所有汉字
+简体中文系统下，ANSI 编码可以是 GB2312 或者 GBK 编码，在日文操作系统下 ANSI 编码代表 JIS 编码
+
+&gt; Unicode 编码，ISO规定每个字符必须使用两个字节
+对于ASCII编码表里的字符，保持其编码不变，只是将长度扩展到了16位，其他国家的字符全部统一重新编码
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>中文字符</th>
+<th>ANSI(GBK)</th>
+<th>Unicode</th>
+<th>UTF-8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中</td>
+<td>0xD6D0</td>
+<td>0x4E2D</td>
+<td>0xE4B8AD</td>
+</tr>
+</tbody>
+</table>
+<p>字/半字</p>
+<pre><code>数据总线16bit, 32bit, 64bit
+32 位系统，字 = 32bit = 4byte
+64 位系统，字 = 64bit = 8byte
+龙芯 bit b,   Byte B,    Word W 32b,   Halfword H 16b,    Doubleword D 64b
+</code></pre>
+<h2 id="nasm-c">NASM 和 C</h2>
+<p>FC/NES 用 6505汇编NESASM,  GBA开始用C 32bit。FC的资料比GBK多</p>
+<p>NES好理解 <a href="https://happysoul.github.io/nes/asm_cn/">https://happysoul.github.io/nes/asm_cn/</a></p>
+<pre><code>直接控制硬件，图形，声音，输入输出
+ROM, RAM
+PRG / Program Memory   / code of game  / ROM
+CHR / Character Memory / data of graphisc / RAM or ROM
+CPU, Picture PU, Audio PU
+</code></pre>
+<p>现在绝大部分单片机都用C，公司不要求汇编</p>
+<p>单片机 <a href="http://www.51hei.com/bbs/dpj-227533-1.html">http://www.51hei.com/bbs/dpj-227533-1.html</a></p>
+<p>汇编   <a href="https://cs.lmu.edu/~ray/notes/nasmtutorial/">https://cs.lmu.edu/~ray/notes/nasmtutorial/</a></p>
+<pre><code>sudo apt install nasm
+nasm --help
+
+sudo apt install sasm  非常难用
+sudo apt install gcc-multilib  会重启所有服务
+IDE
+
+nasm -felf64 hello.asm &amp;&amp; ld hello.o &amp;&amp; ./a.out
+</code></pre>
+<h2 id="gtk-qt">GTK 和 Qt</h2>
+<p><a href="https://www.kancloud.cn/apachecn/zetcode-zh/1950323">https://www.kancloud.cn/apachecn/zetcode-zh/1950323</a><br />
+<a href="https://developer.aliyun.com/article/1245602">https://developer.aliyun.com/article/1245602</a><br />
+<a href="https://notes.leconiot.com/gtk.html">https://notes.leconiot.com/gtk.html</a> </p>
+<pre><code>$sudo apt-get install libgtk-3-dev
+$sudo apt-get source libgtk-3-dev
+
+$sudo apt-get install automake
+$./configure --prefix=/opt/gtk3
+$make
+$make install
+</code></pre>
+<h2 id="_4">编程也是编码</h2>
+<p>编程与编码，都是二进制;  bin 目录，bin文件，二进制Binary；asci 编码, u8编码</p>
+<pre><code>
+代码段 .text   指令流code
+数据点 .data   数据流data
+
+指令 + 变量 + 控制流
+code 指令，ByteCode 字节码
+data 数据，bytes = (string = byte[])
+</code></pre>
+<h2 id="_5">函数也是命令</h2>
+<pre><code>Exit Status
+Return Value
+
+shell buildin 内建命令
+type cd 
+
+type -a echo 外部命令
+/usr/bin/echo
+</code></pre>
+<h2 id="stack-based-machine">Stack Based Machine</h2>
+<pre><code>栈机用内存，寄存器用CPU。 以后内存会越来越快
+基于栈的优点是可移植性更好、指令更短、实现起来简单，但不能随机访问栈中的元素，完成相同功能所需要的指令数也比寄存器的要多，需要频繁的入栈和出栈。
+基于寄存器的优点是速度快，有利于程序运行速度的优化，但操作数需要显式指定，指令也比较长。
+
+关键点
+* 栈机，龙芯指令 2^7 用ASCII编码 （参考JVM指令集）
+https://javabetter.cn/jvm/zijiema-zhiling.html
+* 指令和数据分离，数据是根本，计算机本质是数据，算法本质是指令。
+* 兼容性有限，必要的程序换一个java native env环境运行，或者用C写，用汇编写
+* SQL存储过程
+* 类型是必要的，默认只有 Number 和 Text,  常量, 标准SQL类型 推断
+https://www.runoob.com/sql/sql-datatypes-general.html
+* 引入其他类型stdlib.h   java.h
+</code></pre>
+<p>cpuid 十进制计算机
+ABCDEF 表示指令, 0123456789 表示数据</p>
+<pre><code>模拟 8bit   计算器。先用软件实现Qt, Java
+物理 64bit 计算机。二进制编码，存储系统，指令系统
+
+VT 两种模式
+V全模拟全APP，与 Runtime 绑定
+T高性能单APP，与 Runtime 分离
+</code></pre>
+<p>网络计算机，时间必须同步</p>
+<pre><code>Linux 内核
+GNU 工具
+Linux 桌面环境
+应用软件
+&gt; 发行版 LiveCD
+</code></pre>
+<h2 id="lua-based-language">Lua Based Language</h2>
+<p>https://www.lua.org/versions.html</p>
+<pre><code>[openEuler]
+yum install -y gcc
+[anolis]
+yum install -y gcc make
+
+
+## lua 5.3依赖  (5.4不依赖)
+yum install -y readline-devel
+
+## 
+readline 是基础库,openeuler和anolis都有
+
+## 教程:写一个编程语言
+Building a Programming Language
+https://classpert.com/classpertx/courses/building-a-programming-language/cohort
+</code></pre>
+<p>函数有返回值, 过程没有</p>
+<pre><code>typedef xxx
+  return 10
+enf
+aa = xxx()  // aa = 10
+if (aa != nil) ...
+if (aa) ...
+
+https://c-cpp.com/c/program/EXIT_status.html
+没有返回值,  本质是 int main(void) 只返回执行状态
+def yyy
+  return 10
+  exit(1);
+  exit(EXIT_FAILURE);
+  return EXIT_SUCCESS;
+enf
+aa = xxx() // aa = FunctionReturn{exitCode, retValue,}  {error,value)
+aa.value   // 类似Optional&lt;int&gt; 
+if (aa) 
+</code></pre>
+<p>ExitCode</p>
+<pre><code>System.exit(int status)
+
+C语言 &lt;stdlib.h&gt;
+EXIT_SUCCESS  或为零
+EXIT_FAILURE
+
+OK 0
+WARN 5
+ERROR 10
+FAILURE 20
+
+    0: Success—Indicates that the command or program executed successfully without any errors.
+    1: General Error—A catch-all exit code for a variety of general errors. Often used when the command or program encounters an error, but no specific exit code is available for the situation.
+    2: Misuse of shell built-ins—Indicates incorrect usage of shell built-in commands or misuse of shell syntax.
+    126: Command cannot execute—The command was found, but it could not be executed, possibly due to insufficient permissions or other issues.
+    127: Command not found—The command was not found in the system's PATH, indicating that either the command does not exist or the PATH variable is incorrectly set.
+    128: Invalid exit argument—Returned when a script exits with an invalid argument. This usually indicates an error in the script itself.
+    128 + N: Fatal error signal N—Indicates that the command or program was terminated by a fatal error signal. For example, an exit code of 137 (128 + 9) means that the command was terminated by a SIGKILL signal.
+    130: Script terminated by Control-C—Indicates that the command or script was terminated by the user using Control-C (SIGINT signal).
+    255: Exit status out of range—Returned when the exit status is outside the valid range (0 to 254).
+</code></pre>
+<p>关键字 Keyworkd (尽量生僻一点，不要让所有人避讳)</p>
+<pre><code>def      / enf
+typedef  / enf
+
+call,  syscall
+exec aaaa  /  aaaa()
+
+------
+函数是头等公民，为了区分代码块，不适用 { } 或者 begin/end  do/end 包围函数体
+第一行是声明，格式固定  或者到 (参数结尾)
+def aaa
+enf
+def a2(aaa)
+def a3(p1,p2
+        ,p3)
+
+------ 函数也是类型，可以作为参数 
+函数实际名称
+def aaa  ==&gt;  aaa, aaa_*
+def aaa()  ==&gt; aaa, aaa_0
+def aaa(p1,p2)  =&gt; aaa_2
+def aaa(.number p1, .number p2)  =&gt;  aaa_2_i_i
+
+(.number p1  .string p2  .exec aaa)  名称只是为了捕获传参
+_i
+_f  // float 还是 function 有歧义
+
+-------- 函数内声明子函数
+sub marine {
+    $n += 1;  # Global variable $n
+    print &quot;Hello, sailor number $n!\n&quot;;
+}
+
+f1(a,b) = {}
+
+[function] f1(aa, bb) {
+
+}
+
+f1()
+</code></pre>
+<p>编译脚本 执行./build.sh  类似 gradle (build.bat  和  build)</p>
+<pre><code>spec: v1.2  // 规范（cmake最低版本）
+name: xxxx
+
+project = xxxx
+version = v1.2
+source  = ./src
+target  = ./dist
+
+set(X2_VERSION)  // 内置全局变量，内置函数
+set(CC = '')  //全局变量，源码使用 $CC获取
+set(GCC = '')
+set(CXX = '')
+
+// default value, gcc
+clink('system dir') { 
+  include &lt;aaa.h&gt;
+  -lpng
+  -lm
+}
+
+set(JAVA_HOME='')
+set(JAVAC = '')
+set(JAVA  = '')
+
+// default value, jdk
+jlink('mavem repo') {  
+  import &quot;net.aaa.bb:cc:1.2&quot;
+}
+</code></pre>
+<p>作用域 do...end</p>
+<pre><code>
+-------- lua
+do
+  local a2 = 2*a
+  local d = sqrt(b^2 - 4*a*c)
+  x1 = (-b + d)/a2
+  x2 = (-b - d)/a2
+end          -- scope of `a2' and `d' ends here
+print(x1, x2)
+
+
+https://www.runoob.com/linux/linux-shell-process-control.html
+
+--------- shell
+if condition1
+then
+    command1
+elif condition2 
+then 
+    command2
+else
+    commandN
+fi
+
+for loop in 1 2 3 4 5
+do
+    echo &quot;The value is: $loop&quot;
+done
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

@@ -62,7 +62,11 @@
 </li>
                                     
 <li>
-    <a href="../../howto/11-cgit/" class="dropdown-item">CGit</a>
+    <a href="../../howto/11-vt/" class="dropdown-item">VT</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/12-stb/" class="dropdown-item">USTB</a>
 </li>
                                 </ul>
                             </li>
@@ -162,6 +166,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#livecd" class="nav-link">LiveCD</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#centos-baserepo" class="nav-link">CentOS-Base.repo</a>
               <ul class="nav flex-column">
               </ul>
@@ -224,9 +233,10 @@ yum grouplist --installed // not support
 yum grouplist --ids       // not support
 
 yum groupinstall 'X Window System'
-
-# Option
 yum groups install &quot;GNOME Desktop&quot;
+yum remove gnome-initial-setup
+
+# Others
 yum groups install &quot;KDE Plasma Workspaces&quot;
 yum groups install &quot;Graphical Administration Tools&quot;
 
@@ -234,6 +244,20 @@ yum groups install &quot;Graphical Administration Tools&quot;
 ====== startx
 systemctl set-default graphical.target
 systemctl set-default multi-user.target
+</code></pre>
+<h2 id="livecd">LiveCD</h2>
+<pre><code>https://github.com/livecd-tools/livecd-tools.git
+livecd-creator
+
+yum install livecd-tools
+yum install glibc-langpack-zh -y
+yum install glibc-langpack-en -y
+
+livecd-creator --verbose \
+  --config=centos-7-en.cfg \
+  --fslabel=&quot;CentOS-7-x86_64-LIVE-2009-en&quot; \
+  --title=&quot;CentOS 7 LIVE 2009&quot; \
+  --product=&quot;CentOS 7 LIVE 2009 (en)&quot;
 </code></pre>
 <h2 id="centos-baserepo">CentOS-Base.repo</h2>
 <pre><code>[os]

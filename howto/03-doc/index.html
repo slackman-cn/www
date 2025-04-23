@@ -62,7 +62,11 @@
 </li>
                                     
 <li>
-    <a href="../11-cgit/" class="dropdown-item">CGit</a>
+    <a href="../11-vt/" class="dropdown-item">VT</a>
+</li>
+                                    
+<li>
+    <a href="../12-stb/" class="dropdown-item">USTB</a>
 </li>
                                 </ul>
                             </li>
@@ -125,7 +129,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../11-cgit/" class="nav-link">
+                                <a rel="next" href="../11-vt/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -152,17 +156,22 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#shpinx" class="nav-link">文档 shpinx</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">本地文档</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#wikijs" class="nav-link">文档 wiki.js</a>
+            <li class="nav-item" data-bs-level="2"><a href="#shpinx" class="nav-link">在线文档 shpinx</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#mkdocs" class="nav-link">文档 MkDocs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#wikijs" class="nav-link">在线文档 wiki.js</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#mkdocs" class="nav-link">在线文档 MkDocs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -181,7 +190,26 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="shpinx">文档 shpinx</h2>
+<h2 id="_1">本地文档</h2>
+<p>https://obsidian.md/download</p>
+<pre><code>设置 -&gt; 文件链接
+- 附件存放位置 【当前目录指定文件夹】
+- 内部链接类型 【当前笔记相对路径】
+
+设置 -&gt; 编辑器
+- 关闭拼写检查
+
+切换主题  Notation 2
+
+touch .ignore
+## Obsidian Desktop
+.obsidian/
+</code></pre>
+<p>https://joplinapp.org/</p>
+<p>缺点：文件名随机字符串</p>
+<p>https://simplenote.com/</p>
+<p>缺点：必须登录</p>
+<h2 id="shpinx">在线文档 shpinx</h2>
 <pre><code>&gt;&gt; user-wide
 sudo apt install python3-venv
 python3 -m venv vbuild
@@ -194,7 +222,7 @@ sphinx-quickstart &amp;&amp; make html
 python3 -m http.server -d ./build/html/
 html_theme = 'sphinx_rtd_theme'
 </code></pre>
-<h2 id="wikijs">文档 wiki.js</h2>
+<h2 id="wikijs">在线文档 wiki.js</h2>
 <p>[https://js.wiki/] open source Wiki software</p>
 <p>v2 支持导出， 不支持导入。 预计v3 支持</p>
 <p>目前只能迁移 postgres 数据库</p>
@@ -243,7 +271,7 @@ WorkingDirectory=/data/mirror/wiki
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-<h2 id="mkdocs">文档 MkDocs</h2>
+<h2 id="mkdocs">在线文档 MkDocs</h2>
 <p>[https://www.mkdocs.org/] Project documentation with Markdown</p>
 <pre><code>sudo apt install python3-venv
 sudo apt install python3-pip

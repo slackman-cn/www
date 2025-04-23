@@ -62,7 +62,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">CGit</a>
+    <a href="./" class="dropdown-item active" aria-current="page">VT</a>
+</li>
+                                    
+<li>
+    <a href="../12-stb/" class="dropdown-item">USTB</a>
 </li>
                                 </ul>
                             </li>
@@ -125,7 +129,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../script/01-ninja/" class="nav-link">
+                                <a rel="next" href="../12-stb/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -152,22 +156,27 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#cgit" class="nav-link">CGit 源码</a>
+            <li class="nav-item" data-bs-level="2"><a href="#vt4" class="nav-link">VT4 主战坦克</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#cgit_1" class="nav-link">编译cgit</a>
+            <li class="nav-item" data-bs-level="2"><a href="#kv2" class="nav-link">KV2 重型坦克</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#web-ui" class="nav-link">Web UI</a>
+            <li class="nav-item" data-bs-level="2"><a href="#25q2" class="nav-link">25Q2</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">配置文件</a>
+            <li class="nav-item" data-bs-level="2"><a href="#25q1" class="nav-link">25Q1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#24q4" class="nav-link">24Q4</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -176,162 +185,42 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="cgit">CGit 源码</h2>
-<p>编译cgit 需要先下载git源码</p>
-<pre><code>https://git-scm.com/downloads
-https://github.com/git/git/tags
-
-$ git clone https://git.zx2c4.com/cgit
-$ git clone https://www.thedroneely.com/git/thedroneely/cgit
-
-方式1 git submodule init &amp;&amp; git submodule update
-方式2 make get-git
-    https://www.kernel.org/pub/software/scm/git/git-2.46.0.tar.xz 
-    &amp;&amp; rm -rf git
-    &amp;&amp; mv git-2.46.0 git
-</code></pre>
-<h2 id="cgit_1">编译cgit</h2>
-<p>https://git.zx2c4.com/cgit/about/</p>
-<pre><code>podman run -it --rm -v `pwd`:/build anolis bash
-yum install -y which 
-yum install -y gcc make
-yum install -y openssl-devel
-[openeuler] yum install -y findutils
-
-$ make clean
-$ make
-$ sudo make install
-
-install -m 0755 -d /var/www/htdocs/cgit
-install -m 0755 cgit /var/www/htdocs/cgit/cgit.cgi
-install -m 0755 -d /var/www/htdocs/cgit
-install -m 0644 cgit.css /var/www/htdocs/cgit/cgit.css
-install -m 0644 cgit.js /var/www/htdocs/cgit/cgit.js
-install -m 0644 cgit.png /var/www/htdocs/cgit/cgit.png
-install -m 0644 favicon.ico /var/www/htdocs/cgit/favicon.ico
-install -m 0644 robots.txt /var/www/htdocs/cgit/robots.txt
-install -m 0755 -d /usr/local/lib/cgit/filters
-cp -r filters/* /usr/local/lib/cgit/filters
-</code></pre>
-<h2 id="web-ui">Web UI</h2>
-<pre><code>[anolis]
-yum install epel-release
-yum install fcgi fcgiwrap
-yum install spawn-fcgi
-
-[openeuler]
-yum install fcgi
-yum install spawn-fcgi
-
-[openeuler 编译fcgiwrap]
-https://gitee.com/src-oepkgs/fcgiwrap/tree/master
-https://github.com/gnosek/fcgiwrap
-yum install -y automake autoconf
-yum install -y fcgi-devel
-
-
-yum install -y nginx  
-openEuler和anolis都改了nginx源码和首页
-
-spawn-fcgi -s /var/run/fcgiwrap.socket -M 0666 -U nginx -- /usr/sbin/fcgiwrap
-ps -ef | grep fcgi
-</code></pre>
-<h2 id="_1">配置文件</h2>
-<p>nginx.conf</p>
-<pre><code>location ~ ^/cgit\.(png|css)$ { root /var/www/htdocs/cgit/; }
-location ~ ^/cgit(/.*) {
-    fastcgi_pass unix:/var/run/fcgiwrap.socket;
-    fastcgi_param SCRIPT_FILENAME /var/www/htdocs/cgit/cgit.cgi;
-    fastcgi_param PATH_INFO       $1;
-    fastcgi_param CGIT_CONFIG     /data1/githost/cgitrc;
-    include fastcgi_params;
-}
-
-server {
-    listen       80;
-    server_name  githost;
-    location / {
-        rewrite ^/(.*) http://10.31.66.80/cgit/$1 permanent;
-    }
-}
-</code></pre>
-<p>cgitrc</p>
-<pre><code>virtual-root=/cgit
-scan-path=/data1/githost/
-
-# Here are some default values
-root-title=Git repository mirror
-root-desc=a fast webinterface for the git dscm
-
-# Custom configuration
-clone-prefix=http://githost
-
-# Syntax highlighting
-source-filter=/usr/local/lib/cgit/filters/syntax-highlighting.sh
-</code></pre>
-<h3 id="install-web-x">Install Web (x)</h3>
-<pre><code>sudo apt install nginx
-sudo apt install gitweb  # 主要是配置文件
-sudo apt install fcgiwrap
-
-依赖不如单独安装
-apt-get install libcgi-fast-perl
-apt-get install highlight
-
-------------- cgit
-apt install cgit  自动安装 apache2
-卸载cgit，不会卸载apache2
-
-
------ REF
-https://leanhe.dev/posts/2021.05.02.1/  (cgit运行失败)
-https://fishilico.github.io/generic-config/etc-server/web/gitweb.html   (gitweb运行成功 + nginx)
-</code></pre>
-<h3 id="git-src">编译git-src</h3>
-<p>https://git.mosong.cc/guide/install-git-src.html </p>
-<pre><code>https://commandnotfound.cn/linux/1/174/cmp-%E5%91%BD%E4%BB%A4
-yum install -y diffutils
-
-yum install curl-devel expat-devel gettext-devel \
-    openssl-devel zlib-devel
-apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \
-    libz-dev libssl-dev
-
-tar -zxf git-1.7.2.2.tar.gz
-cd git-1.7.2.2
-make prefix=/opt/git all
-sudo make prefix=/opt/git install
-默认安装 /root/{bin,libexec,share}
-
-
-/usr/lib/git-core/  对应 /opt/git/libexec/git-core
-/usr/share/git-core 对应 /opt/git/share/git-core
-/usr/share/gitweb 对应 /opt/git/share/gitweb
-</code></pre>
-<h3 id="nginx-dir">Nginx dir</h3>
+<h2 id="vt4">VT4 主战坦克</h2>
+<p>英文：VT-4 Main Battle Tank, 又称：MBT-3000</p>
+<p>中国北方工业公司研制, 单价600万美元</p>
+<h2 id="kv2">KV2 重型坦克</h2>
+<p>英文: KV-2 Heavy Tank</p>
+<p><img alt="KV2" src="../../img/tank.webp" /></p>
+<h2 id="25q2">25Q2</h2>
 <blockquote>
-<p>apt install spawn-fcgi fcgiwrap nginx  (autoindex没用)</p>
+<p>一杯敬朝阳，一杯敬月光
+- 一杯敬故乡，一杯敬远方
+- 一杯敬明天，一杯敬过往
+- 一杯敬自由，一杯敬死亡</p>
 </blockquote>
-<pre><code>mkdir -p /data/mirror/githost &amp;&amp; cd
-touch cgitrc
-
-mkdir lxqt &amp;&amp; cd
-git clone --mirror https://github.com/lxqt/lxqt
-vi lxqt.git/descritpion
-
----------
-mkdir -p /data/mirror/gitpub
-vi /etc/nginx/sites-available/default
-location /pub/ {
-    charset gbk,utf-8;
-    alias /data/mirror/gitpub/;
-    index off;
-    autoindex on;
-    autoindex_localtime on;
-    autoindex_exact_size off;
-}
-
-</code></pre></div>
+<h2 id="25q1">25Q1</h2>
+<blockquote>
+<p>接触到一个新东西
+- 先不管原理概念
+- 能实操一定要实操
+- 把环境搭起来，工具用起来
+- 慢慢就熟练了，一点一点掌握</p>
+</blockquote>
+<h2 id="24q4">24Q4</h2>
+<blockquote>
+<p>庭中梨花谢又一年
+- 立清宵 月华洒空阶
+- 梦里笙箫奏旧乐
+- 梦醒泪染胭脂面
+- 小重山 念一遍又一遍
+- ...
+- 这一世
+- 太漫长却止步咫尺天涯间
+- 谁仍记 那梨花若雪时节
+我心匪石不可转
+- 我心匪席不可卷
+- ...</p>
+</blockquote></div>
             </div>
         </div>
 
