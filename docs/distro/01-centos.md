@@ -62,9 +62,10 @@ yum grouplist --installed // not support
 yum grouplist --ids       // not support
 
 yum groupinstall 'X Window System'
-
-# Option
 yum groups install "GNOME Desktop"
+yum remove gnome-initial-setup
+
+# Others
 yum groups install "KDE Plasma Workspaces"
 yum groups install "Graphical Administration Tools"
 
@@ -72,6 +73,24 @@ yum groups install "Graphical Administration Tools"
 ====== startx
 systemctl set-default graphical.target
 systemctl set-default multi-user.target
+```
+
+
+## LiveCD
+
+```
+https://github.com/livecd-tools/livecd-tools.git
+livecd-creator
+
+yum install livecd-tools
+yum install glibc-langpack-zh -y
+yum install glibc-langpack-en -y
+
+livecd-creator --verbose \
+  --config=centos-7-en.cfg \
+  --fslabel="CentOS-7-x86_64-LIVE-2009-en" \
+  --title="CentOS 7 LIVE 2009" \
+  --product="CentOS 7 LIVE 2009 (en)"
 ```
 
 

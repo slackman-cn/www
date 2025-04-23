@@ -3,8 +3,37 @@ title: 文档库
 since: 202412
 ---
 
+## 本地文档 
 
-## 文档 shpinx
+https://obsidian.md/download
+
+```
+设置 -> 文件链接
+- 附件存放位置 【当前目录指定文件夹】
+- 内部链接类型 【当前笔记相对路径】
+
+设置 -> 编辑器
+- 关闭拼写检查
+
+切换主题  Notation 2
+
+touch .ignore
+## Obsidian Desktop
+.obsidian/
+```
+
+https://joplinapp.org/
+
+缺点：文件名随机字符串
+
+
+https://simplenote.com/
+
+缺点：必须登录
+
+
+
+## 在线文档 shpinx
 
 ```
 >> user-wide
@@ -20,7 +49,7 @@ python3 -m http.server -d ./build/html/
 html_theme = 'sphinx_rtd_theme'
 ```
 
-## 文档 wiki.js
+## 在线文档 wiki.js
 
 [https://js.wiki/] open source Wiki software
 
@@ -76,7 +105,7 @@ WorkingDirectory=/data/mirror/wiki
 WantedBy=multi-user.target
 ```
 
-## 文档 MkDocs
+## 在线文档 MkDocs
 
 [https://www.mkdocs.org/] Project documentation with Markdown
 ```
