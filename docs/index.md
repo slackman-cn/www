@@ -8,7 +8,13 @@ since: 202412
 
 Broadcom BCM2711, Quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.8GH
 
+<figure>
+<img src="./img/raspberry-pi-4.jpg" width="40%" />
+<img src="./img/raspberry-pi-4.png" width="50%" />
+</figure>
+
 <https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/>
+
 ```
 Architecture:             aarch64
   CPU op-mode(s):         32-bit, 64-bit
@@ -58,10 +64,15 @@ CoreMark-PRO                                       4486.36    1958.70       2.29
 
 
 
-
 ## NanoPi R5S
 
 Rockchip RK3568B2, Quad-core ARM Cortex-A55 CPU, up to 2.0GHz
+
+<figure>
+<img src="./img/R5SC-01.jpg" width="25%" />
+<img src="./img/NanoPi_R5S-01B.jpg" width="30%" />
+<img src="./img/NanoPi_R5S_Layout.jpg" width="40%" />
+</figure>
 
 <https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S/zh>
 ```
@@ -116,6 +127,10 @@ CoreMark-PRO                                       3588.78    1298.55       2.76
 
 
 # About Links
+
+<https://www.microcenter.com/product/637834/raspberry-pi-4-model-b>
+
+<https://wiki.friendlyelec.com/wiki/index.php/NanoPi_R5S>
 
 <https://www.wikihow.com/Main-Page>
 

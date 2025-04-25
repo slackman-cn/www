@@ -3,7 +3,7 @@ title: ArchLinux
 since: 202412
 ---
 
-## Install
+## archlinux-2025.04.01
 
 archlinux-2025.04.01-x86_64.iso
 

@@ -4,7 +4,7 @@ since: 202412
 ---
 
 
-##  Install
+##  CentOS-7-Minimal
 
 CentOS-7-x86_64-Minimal-2009.iso
 ```
@@ -78,19 +78,25 @@ systemctl set-default multi-user.target
 
 ## LiveCD
 
+Fedora 41
 ```
-https://github.com/livecd-tools/livecd-tools.git
-livecd-creator
-
-yum install livecd-tools
 yum install glibc-langpack-zh -y
 yum install glibc-langpack-en -y
+yum install livecd-tools
+yum install spin-kickstarts
+
+less /usr/share/doc/livecd-tools/livecd-fedora-minimal.ks
+https://github.com/livecd-tools/livecd-tools/blob/main/config/livecd-fedora-minimal.ks
+
+curl "http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=x86_64"
+https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/
+https://mirrors.aliyun.com/fedora/development/rawhide/Everything/x86_64/os/
 
 livecd-creator --verbose \
-  --config=centos-7-en.cfg \
-  --fslabel="CentOS-7-x86_64-LIVE-2009-en" \
-  --title="CentOS 7 LIVE 2009" \
-  --product="CentOS 7 LIVE 2009 (en)"
+  --config=livecd-fedora-minimal.ks \
+  --fslabel="Fedora-41-x86_64-LIVE-2024-en" \
+  --title="Fedora 41 LIVE" \
+  --product="Fedora 41 LIVE (en)"
 ```
 
 
