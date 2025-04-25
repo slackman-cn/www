@@ -79,11 +79,13 @@ systemctl set-default multi-user.target
 ## LiveCD
 
 Fedora 41
+
+> qemu-kvm -m 2048 -vga qxl -cdrom fedora-i3-live-x86_64.iso
 ```
 yum install glibc-langpack-zh -y
 yum install glibc-langpack-en -y
-yum install livecd-tools
-yum install spin-kickstarts
+sudo dnf install livecd-tools
+sudo dnf install pykickstart
 
 less /usr/share/doc/livecd-tools/livecd-fedora-minimal.ks
 https://github.com/livecd-tools/livecd-tools/blob/main/config/livecd-fedora-minimal.ks
@@ -92,13 +94,23 @@ curl "http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=x86_64"
 https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/
 https://mirrors.aliyun.com/fedora/development/rawhide/Everything/x86_64/os/
 
-livecd-creator --verbose \
+sudo livecd-creator --verbose \
   --config=livecd-fedora-minimal.ks \
   --fslabel="Fedora-41-x86_64-LIVE-2024-en" \
   --title="Fedora 41 LIVE" \
   --product="Fedora 41 LIVE (en)"
-```
 
+
+git clone https://pagure.io/fedora-kickstarts.git
+git clone https://pagure.io/fedora-kickstarts -b f41
+ksflatten -c fedora-live-i3.ks -o flatten-i3.ks
+
+sudo livecd-creator --verbose \
+ --config=flatten-i3.ks \
+ --fslabel=Fedora-i3-live \
+ --title=Fedora-i3-Spin \
+ --releasever=41 --cache=./cache/live 
+```
 
 
 ## CentOS-Base.repo

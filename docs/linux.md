@@ -43,4 +43,6 @@ LFS requires a solid understanding of Linux file systems, such as ext4. You’ll
 
 <https://mirrors.ustc.edu.cn/lfs/lfs-packages/>
 
+<https://batocera.org/>  <https://github.com/batocera-linux/>
+
 <https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/>
