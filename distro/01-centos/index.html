@@ -43,6 +43,10 @@
 <li>
     <a href="../02-archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
+                                    
+<li>
+    <a href="../03-nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -247,10 +251,13 @@ systemctl set-default multi-user.target
 </code></pre>
 <h2 id="livecd">LiveCD</h2>
 <p>Fedora 41</p>
+<blockquote>
+<p>qemu-kvm -m 2048 -vga qxl -cdrom fedora-i3-live-x86_64.iso</p>
+</blockquote>
 <pre><code>yum install glibc-langpack-zh -y
 yum install glibc-langpack-en -y
-yum install livecd-tools
-yum install spin-kickstarts
+sudo dnf install livecd-tools
+sudo dnf install pykickstart
 
 less /usr/share/doc/livecd-tools/livecd-fedora-minimal.ks
 https://github.com/livecd-tools/livecd-tools/blob/main/config/livecd-fedora-minimal.ks
@@ -259,11 +266,22 @@ curl &quot;http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&amp;arch=x86
 https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/
 https://mirrors.aliyun.com/fedora/development/rawhide/Everything/x86_64/os/
 
-livecd-creator --verbose \
+sudo livecd-creator --verbose \
   --config=livecd-fedora-minimal.ks \
   --fslabel=&quot;Fedora-41-x86_64-LIVE-2024-en&quot; \
   --title=&quot;Fedora 41 LIVE&quot; \
   --product=&quot;Fedora 41 LIVE (en)&quot;
+
+
+git clone https://pagure.io/fedora-kickstarts.git
+git clone https://pagure.io/fedora-kickstarts -b f41
+ksflatten -c fedora-live-i3.ks -o flatten-i3.ks
+
+sudo livecd-creator --verbose \
+ --config=flatten-i3.ks \
+ --fslabel=Fedora-i3-live \
+ --title=Fedora-i3-Spin \
+ --releasever=41 --cache=./cache/live 
 </code></pre>
 <h2 id="centos-baserepo">CentOS-Base.repo</h2>
 <pre><code>[os]
