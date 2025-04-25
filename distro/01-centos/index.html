@@ -156,7 +156,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+            <li class="nav-item" data-bs-level="2"><a href="#centos-7-minimal" class="nav-link">CentOS-7-Minimal</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -180,7 +180,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="install">Install</h2>
+<h2 id="centos-7-minimal">CentOS-7-Minimal</h2>
 <p>CentOS-7-x86_64-Minimal-2009.iso</p>
 <pre><code>[root@centos ~]# ldd --version
 ldd (GNU libc) 2.17
@@ -246,18 +246,24 @@ systemctl set-default graphical.target
 systemctl set-default multi-user.target
 </code></pre>
 <h2 id="livecd">LiveCD</h2>
-<pre><code>https://github.com/livecd-tools/livecd-tools.git
-livecd-creator
-
-yum install livecd-tools
-yum install glibc-langpack-zh -y
+<p>Fedora 41</p>
+<pre><code>yum install glibc-langpack-zh -y
 yum install glibc-langpack-en -y
+yum install livecd-tools
+yum install spin-kickstarts
+
+less /usr/share/doc/livecd-tools/livecd-fedora-minimal.ks
+https://github.com/livecd-tools/livecd-tools/blob/main/config/livecd-fedora-minimal.ks
+
+curl &quot;http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&amp;arch=x86_64&quot;
+https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/
+https://mirrors.aliyun.com/fedora/development/rawhide/Everything/x86_64/os/
 
 livecd-creator --verbose \
-  --config=centos-7-en.cfg \
-  --fslabel=&quot;CentOS-7-x86_64-LIVE-2009-en&quot; \
-  --title=&quot;CentOS 7 LIVE 2009&quot; \
-  --product=&quot;CentOS 7 LIVE 2009 (en)&quot;
+  --config=livecd-fedora-minimal.ks \
+  --fslabel=&quot;Fedora-41-x86_64-LIVE-2024-en&quot; \
+  --title=&quot;Fedora 41 LIVE&quot; \
+  --product=&quot;Fedora 41 LIVE (en)&quot;
 </code></pre>
 <h2 id="centos-baserepo">CentOS-Base.repo</h2>
 <pre><code>[os]
