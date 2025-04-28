@@ -15,7 +15,7 @@ since: 202412
 
 英文: KV-2 Heavy Tank
 
-![KV2](../img/tank.webp)
+![KV2](../../img/tank.webp)
 
 
 ## 25Q2

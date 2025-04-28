@@ -1,5 +1,5 @@
 ---
-title: Podman & Buildah
+title: Buildah
 since: 202503
 ---
 

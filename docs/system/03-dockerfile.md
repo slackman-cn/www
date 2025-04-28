@@ -1,5 +1,5 @@
 ---
-title: DockerImage
+title: Dockerfile
 since: 202503
 ---
 
