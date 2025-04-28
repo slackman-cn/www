@@ -1,0 +1,153 @@
+https://github.com/nir9/welcome/
+
+[root@archiso pub]# ls -lh
+total 780K
+-rwxr-xr-x 1 root root  16K Feb  4 22:12 a.out
+-rwxr-xr-x 1 root root 758K Feb  4 22:14 shell
+-rw-r--r-- 1 root root  386 Feb  4 22:12 shell.c
+
+
+为了减少体积，不使用C库，摆脱libc
+自己系统调用(read,write,fork)
+
+[root@archiso pub]# ls -lh
+total 32K
+-rwxr-xr-x 1 root root  211 Feb  4 23:07 build.sh
+-rwxr-xr-x 1 root root 8.9K Feb  4 23:08 shell
+-rw-r--r-- 1 root root  488 Feb  4 22:58 shell.c
+-rw-r--r-- 1 root root 1.6K Feb  4 23:07 shell.o
+-rw-r--r-- 1 root root  960 Feb  4 23:07 sys.o
+-rw-r--r-- 1 root root  317 Feb  4 23:04 sys.S
+
+
+=========  sys.S 
+Intel语法更清晰; Linux流行 AT&T;  info as
+
+查找kernel syscall,  arch/x86/include/generated/asm/syscalls_64.h
+__SYSCALL(1, sys_write)
+```
+.intel_syntax  noprefix
+
+.global write
+.global read
+.global execve
+.global fork
+.global raw_waitid
+.global _exit
+
+write:
+mov rax, 1
+syscall
+ret
+
+read:
+mov rax, 0
+syscall
+ret
+
+execve:
+mov rax, 59
+syscall
+ret
+
+fork:
+mov rax, 57
+syscall
+ret
+
+raw_waitid:
+mov rax, 247
+mov r10, rcx
+syscall
+ret
+
+_exit:
+mov rax, 60
+syscall
+```
+
+
+======== shell.c
+```
+#include <unistd.h>
+#include <sys/wait.h>
+
+int raw_waitid(idtype_t idtype, id_t id, siginfo_t *infop, int options, void*);
+
+int main() 
+{
+    char cmd[255];  //buffer
+    for (;;) {
+		write(1, "# ", 2);
+		int count = read(0, cmd, 255);
+		// run /bin/ls\0
+		cmd[count-1] = 0;
+		pid_t fork_result = fork();
+		if (fork_result == 0) {
+		   execve(cmd, 0, 0); 
+		   break;
+		} else  {
+			// wait
+			siginfo_t info;
+			raw_waitid(P_ALL, 0,  &info, WEXITED, 0);
+		}
+	     
+    }
+    _exit(0);
+}
+```
+
+
+====== Step 1  (shell)
+gcc -c shell.c  
+生成shell.o
+
+as sys.S -o sys.o
+生成sys.o
+
+ld -o shell shell.o sys.o --entry main -z noexecstack
+
+```
+#!/bin/bash
+gcc -c -Os -fno-ident -fno-asynchronous-unwind-tables -fno-stack-protector -fomit-frame-pointer -o shell.o shell.c
+as sys.S -o sys.o
+ld shell.o sys.o -o init -T custom.ld --strip-all -z noexecstack
+```
+
+====== Step2  (geniso)
+mv shell init
+
+[root@archiso pub]# echo init | cpio -H newc -o > init.cpio
+19 blocks
+
+pacman -S cdrkit  // 代替genisoimage
+pacman -S syslinux
+
+
+cd linux-v5.15
+make isoimage FDARGS="initrd=/init.cpio" FDINITRD=/home/pub/init.cpio
+
+
+测试运行
+qemu-system-x86_64 -cdrom  arch/x86/boot/image.iso
+
+
+
+====== Step3 (lua static)
+pacman -S readline
+
+vi src/Makefile
+MYLDFLAGS=-static
+
+cd src
+make -j8
+
+./src/lua
+> print(1+1)
+
+
+cp lua /home/pub
+echo init >> files
+echo lua >> files
+[root@archiso pub]# cat files | cpio -H newc -o > init.cpio
+2927 blocks

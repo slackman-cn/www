@@ -1,0 +1,52 @@
+man 2 read
+man 2 write
+
+gcc shell.c -o shell
+gcc -static shell.c  -o shell
+```
+#include <unistd.h>
+
+int main() 
+{
+    char cmd[255];  //buffer
+    for (;;) {
+		write(1, "# ", 2);
+		int count = read(0, cmd, 255);
+		// run /bin/ls\0
+		cmd[count-1] = 0;
+	    execve(cmd, 0, 0);  
+    }
+
+}
+```
+
+
+fork, run cmd in child process
+man 2 fork
+man 2 wait
+
+```
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() 
+{
+    char cmd[255];  //buffer
+    for (;;) {
+		write(1, "# ", 2);
+		int count = read(0, cmd, 255);
+		// run /bin/ls\0
+		cmd[count-1] = 0;
+		pid_t fork_result = fork();
+		if (fork_result == 0) {
+		   execve(cmd, 0, 0); 
+		   break;
+		} else  {
+			// wait
+			siginfo_t info;
+			waitid(P_ALL, 0,  &info, WEXITED);
+		}
+	     
+    }
+}
+```

@@ -17,8 +17,93 @@ sudo apt install bc binutils bison dwarves flex gcc git \
     make openssl pahole perl-base rsync tar xz-utils
 
 $ make defconfig
+$ make menuconfig
 $ make -j8
+
 编译结果 arch/x86/boot/bzImage
+Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #1 SMP Mon Apr 28 15:56:47 CST 2025
+, RO-rootFS, swap_dev 0XA, Normal VGA
+```
+
+## NanoLinux source
+
+```
+wget -i wget-list
+
+sudo apt install gawk texinfo
+readlink -f /bin/sh
+$ sudo ln -sf bash /bin/sh
+$ sudo ln -sf dash /bin/sh
+```
+
+## NanoLinux disk
+
+```
+sudo apt install qemu-utils
+qemu-img create disk.img 20G
+
+sudo fdisk -l disk.img
+sudo fdisk disk.img
+
+---- part1
+o
+n
+p
+/
++100M
+a
+---- part2
+n
+p
+/
+/
+w
+```
+
+## NanoLinux rootfs
+
+```
+mount -t proc /proc /mnt/rootfs/proc
+mount -t sysfs /sys /mnt/rootfs/sys
+mount -o bind /dev /mnt/rootfs/dev
+mount -o bind /dev/pts /mnt/rootfs/dev/pts
+
+$ chroot /mnt/rootfs
+
+umount  /mnt/rootfs/dev/pts
+umount  /mnt/rootfs/dev
+umount  /mnt/rootfs/proc
+umount  /mnt/rootfs/sys
+```
+
+filesystem
+```
+$ man interfaces
+$ man resolv.conf
+$ man hostname
+$ man hosts
+
+export LC_ALL=en_US.UTF-8
+apt-get install locales
+dpkg-reconfigure locales
+
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo Asia/Shanghai > /etc/timezone
+
+dbus-uuidgen > /etc/machine-id
+apt-get autoremove -y
+apt-get clean -y
+
+tar -cvpf /tmp/system.tar --directory=/ \
+  --exclude=proc --exclude=sys --exclude=dev --exclude=run \
+   --exclude=boot .
+
+-e "var/cache/apt/archives/*" \
+-e "root/*" \
+-e "root/.*" \
+-e "tmp/*" \
+-e "tmp/.*" \
+-e "swapfile"
 ```
 
 
@@ -26,12 +111,23 @@ $ make -j8
 
 <https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2>
 ```
+// sudo apt build-dep busybox
+
+sudo apt install build-essential libncurses5 libncurses5-dev
+
 方式1：执行 make menuconfig 选择 Build Static Binary
 方式2：执行 make defconfig 修改 .config文件
 CONFIG_STATIC=y
-
 $ make -j8
-编译结果 当前目录 busybox二进制文件
+
+编译结果 ./busybox
+ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=f4272eda9a1f20e170627b3f01499d5fa553e13e
+, for GNU/Linux 3.2.0, stripped
+
+安装使用
+mkdir /root/afs/bin
+./busybox --install /root/afs/bin
+ls -i bin
 ```
  
 initrd
