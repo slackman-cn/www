@@ -3,8 +3,15 @@ title: Dockerfile
 since: 202503
 ---
 
+Container 运行操作系统的用户模式部分（不包括内核）
 
-## linux/amd64;  linux/arm64
+![LICENSE](../img/container-diagram.svg)
+
+Virtual Machine 运行的是完整的操作系统（包括内核），因此需要更多的系统资源（CPU、内存和存储）
+
+![LICENSE](../img/virtual-machine-diagram.svg)
+
+## Docker buildx
 
 
 19.03+ 版本开始可以使用 docker buildx build 命令利用 BuildKit 构建镜像
