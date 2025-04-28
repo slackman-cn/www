@@ -4,19 +4,19 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
-        <link rel="shortcut icon" href="../../img/linux.ico">
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../css/brands.min.css" rel="stylesheet">
-        <link href="../../css/solid.min.css" rel="stylesheet">
-        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../img/linux.ico">
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../../css/brands.min.css" rel="stylesheet">
+        <link href="../../../css/solid.min.css" rel="stylesheet">
+        <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
             <div class="container">
-                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <a class="navbar-brand" href="../../..">SLACKMAN.CN</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,25 +27,33 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../.." class="nav-link"></a>
+                                <a href="../../.." class="nav-link"></a>
                             </li>
                             <li class="nav-item">
-                                <a href="../../linux/" class="nav-link">Linux</a>
+                                <a href="../../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/01-centos/" class="dropdown-item">CentOS</a>
+    <a href="../../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../../../distro/centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/03-nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="../../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -54,24 +62,30 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-git/" class="dropdown-item">代码库</a>
+    <a href="../../artifact/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../02-file/" class="dropdown-item">制品库</a>
+    <a href="../../docs/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
-    <a href="../03-doc/" class="dropdown-item">文档库</a>
+    <a href="../../git/" class="dropdown-item">代码库</a>
 </li>
                                     
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../" class="dropdown-item">USTB</a>
+</li>
+            
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">VT</a>
 </li>
-                                    
-<li>
-    <a href="../12-stb/" class="dropdown-item">USTB</a>
-</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -79,23 +93,23 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
 </li>
                                     
 <li>
-    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
+    <a href="../../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
 </li>
                                     
 <li>
-    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+    <a href="../../../script/12-python/" class="dropdown-item">Python</a>
 </li>
                                     
 <li>
-    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -104,23 +118,27 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-system/" class="dropdown-item">系统设置</a>
+    <a href="../../../system/01-sysinit/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-docker-image/" class="dropdown-item">DockerImage</a>
+    <a href="../../../system/02-sysdev/" class="dropdown-item">系统编译环境</a>
 </li>
                                     
 <li>
-    <a href="../../system/03-buildah/" class="dropdown-item">Podman & Buildah</a>
+    <a href="../../../system/03-dockerfile/" class="dropdown-item">Dockerfile</a>
 </li>
                                     
 <li>
-    <a href="../../system/04-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../../system/04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="../../system/05-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../../system/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../../system/06-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -128,12 +146,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../03-doc/" class="nav-link">
+                                <a rel="prev" href="../" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../12-stb/" class="nav-link">
+                                <a rel="next" href="../../../script/01-ninja/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -194,7 +212,7 @@
 <p>中国北方工业公司研制, 单价600万美元</p>
 <h2 id="kv2">KV2 重型坦克</h2>
 <p>英文: KV-2 Heavy Tank</p>
-<p><img alt="KV2" src="../../img/tank.webp" /></p>
+<p><img alt="KV2" src="../../../img/tank.webp" /></p>
 <h2 id="25q2">25Q2</h2>
 <blockquote>
 <p>软件为硬件服务
@@ -235,8 +253,8 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../js/bootstrap.bundle.min.js"></script>
-        <script src="../../js/base.js"></script>
+        <script src="../../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../../js/base.js"></script>
 
     </body>
 </html>

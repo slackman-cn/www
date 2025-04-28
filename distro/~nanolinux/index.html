@@ -33,27 +33,27 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
+    <a href="../centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+    <a href="../ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                     
 <li>
-    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="./" class="dropdown-item active" aria-current="page">NanoLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
+    <a href="../~toolchain/" class="dropdown-item">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -89,27 +89,27 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">C,C++,LUA</a>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
 </li>
                                     
 <li>
-    <a href="../12-python/" class="dropdown-item">Python</a>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
 </li>
                                     
 <li>
-    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -146,12 +146,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../02-scons/" class="nav-link">
+                                <a rel="prev" href="../ubuntu/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../12-python/" class="nav-link">
+                                <a rel="next" href="../~toolchain/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -178,22 +178,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+            <li class="nav-item" data-bs-level="2"><a href="#kernel" class="nav-link">Kernel</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#c" class="nav-link">C 语法</a>
+            <li class="nav-item" data-bs-level="2"><a href="#busybox-initrd" class="nav-link">Busybox &amp; initrd</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">内存分配</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">源码 Lua</a>
+            <li class="nav-item" data-bs-level="2"><a href="#shell-iso" class="nav-link">Shell &amp; ISO</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -202,122 +197,89 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="install">Install</h2>
-<pre><code>sudo apt install build-essential cmake meson
-sudo apt install crossbuild-essential-arm64
-eclipse-cpp.tar.gz
+<p>FROM:  NanoPi R5S,  GNU nano editor, iPod nano </p>
+<h2 id="kernel">Kernel</h2>
+<p><a href="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz</a></p>
+<pre><code>// sudo apt build-dep linux-image-amd64
 
-&gt;&gt; GUI
-sudo apt install qtcreator qtbase5-dev
-sudo apt install libwxgtk3.2-dev codelbocks
+sudo apt install bc binutils bison dwarves flex gcc git \
+     gnupg2 gzip libelf-dev libncurses5-dev libssl-dev \
+    make openssl pahole perl-base rsync tar xz-utils
+
+$ make defconfig
+$ make -j8
+编译结果 arch/x86/boot/bzImage
 </code></pre>
-<h2 id="c">C 语法</h2>
-<p>typedef unsigned int ID;</p>
-<pre><code>struct Stu {
-    成员
-} 变量;
+<h2 id="busybox-initrd">Busybox &amp; initrd</h2>
+<p><a href="https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2">https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2</a></p>
+<pre><code>方式1：执行 make menuconfig 选择 Build Static Binary
+方式2：执行 make defconfig 修改 .config文件
+CONFIG_STATIC=y
 
-struct Stu {
-    int id;
-    char name[20];
-    float score;
-};
-struct Stu s1,s2;
-struct Stu s1 = {1, &quot;xiao&quot;, 9.9};
-
-typedef struct student {
-    ...
-} Stu;
-Stu s1;
+$ make -j8
+编译结果 当前目录 busybox二进制文件
 </code></pre>
-<p><code>#define 标识符 常量</code>  没有分号</p>
-<pre><code>#define MAX_SIZE 20
+<p>initrd</p>
+<pre><code>mkdir -p initrd/{bin,sys,dev,proc}
+cd initrd/bin &amp;&amp; bash ./busybox_expat.sh
+cd initrd &amp;&amp; bash ./create.sh
 
-数组
-typedef struct {
-    T data[MAX_SIZE];
-    int length;
-} SqList;
-
-链表
-typedef struct LNode {
-    T data;
-    struct LNode *next;
-} LNode, *LinkList;
-
-LNode *p;
-LinkList p;
+测试启动
+qemu-system-x86_64 --kernel ./bzImage --initrd ./initrd.img
 </code></pre>
-<p>其他方式 struct</p>
-<pre><code>struct Stu {
-    int id;
-    char name[20];
-    float score;
-} s1, s2;
+<p>Script</p>
+<pre><code>cp busybox-1.36.1/busybox initrd/bin/
+=========== initrd/bin/busybox_expat.sh
+for cmd in $(./busybox --list); do
+   ln -s ./busybox ./$cmd
+done
 
-struct {
-    int id;
-    char name[20];
-    float score;
-} s1, s2;
+========== initrd/init
+#!/bin/sh
+mount -t sysfs sysfs /sys
+mount -t proc proc /proc
+mount -p devtmpfs udev /dev
+sysctl -w kernel.printk=&quot;2 4 1 7&quot;
+
+clear
+/bin/sh
+
+========== initrd/create.sh
+rm -rf ../initrd.img
+find . | cpio -o -H newc &gt; ../initrd.img
 </code></pre>
-<h2 id="_1">内存分配</h2>
-<p>C 指针</p>
-<pre><code>int a = 10;
-int *p = &amp;a;
+<h2 id="shell-iso">Shell &amp; ISO</h2>
+<p>man 2 <xx> // read,write,execve,fork,wait</p>
+<pre><code>#include &lt;unistd.h&gt;
+#include &lt;sys/wait.h&gt;
 
-switch (a) {
-    case 常量: 语句;
-    default:  语句;
+int main()
+{
+    char cmd[255];
+    for (;;) {
+        write(1, &quot;# &quot;, 2);
+        int count = read(0, cmd, 255);
+        cmd[count-1] = 0;
+        pid_t fork_result = fork();
+        if (fork_result == 0) {
+            execve(cmd, 0, 0);
+            break;
+        } else {
+            siginfo_t info;
+            waitid(P_ALL, 0, &amp;info, WEXITED);
+        }
+    }
 }
-
-int *p;
-p = (int*) malloc(sizeof(int));
-
-free(p);
-
-输入输出
-int n;
-scanf(&quot;%d&quot;, &amp;n);
-
-printf(&quot;hello\n&quot;)
 </code></pre>
-<p>C++ 内存分配</p>
-<pre><code>int *p = new int;
-delete p;
+<p>sudo apt install syslinux isolinux</p>
+<pre><code>gcc -static shell.c -o init
+echo init | cpio -H newc -o &gt; init.cpio
 
-引用
-int n =10;
-int&amp; n2 = n;
+cd linux-v5.15
+make isoimage FDARGS=&quot;initrd=/init.cpio&quot; FDINITRD=~/pub/init.cpio
 
-输入输出
-int n;
-cin &gt;&gt; n;
-count &lt;&lt; &quot;hello\n&quot;;
-</code></pre>
-<h2 id="lua">源码 Lua</h2>
-<pre><code>yum install lua
-/usr/bin/lua
-/usr/bin/luac
-
-$ lua -v
-$ lua
-print(1+1)
-</code></pre>
-<p>https://www.lua.org/ftp/lua-5.4.7.tar.gz</p>
-<pre><code>$ cd src
-yum install @development
-yum install readline-devel ncurses-devel
-make -j8
-
-或者 cd lua-5.4.7
-make
-make install 安装到 /usr/local
-make local   安装到 ./install
-
-==== 静态编译 (alma报错, arch成功)
-$ vim src/Makefile
-MYLDFLAGS=-static
+实际执行脚本
+arch/x86/boot/genimage.sh
 </code></pre></div>
             </div>
         </div>

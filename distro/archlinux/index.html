@@ -33,19 +33,27 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/01-centos/" class="dropdown-item">CentOS</a>
+    <a href="./" class="dropdown-item active" aria-current="page">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/03-nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="../ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../~toolchain/" class="dropdown-item">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -54,24 +62,30 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../howto/01-git/" class="dropdown-item">代码库</a>
+    <a href="../../howto/artifact/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
+    <a href="../../howto/docs/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
+    <a href="../../howto/git/" class="dropdown-item">代码库</a>
 </li>
                                     
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
 <li>
-    <a href="../../howto/11-vt/" class="dropdown-item">VT</a>
+    <a href="../../howto/ustb/" class="dropdown-item">USTB</a>
 </li>
-                                    
+            
 <li>
-    <a href="../../howto/12-stb/" class="dropdown-item">USTB</a>
+    <a href="../../howto/ustb/vt/" class="dropdown-item">VT</a>
 </li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -100,27 +114,31 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-system/" class="dropdown-item">系统设置</a>
+    <a href="../../system/01-sysinit/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../02-docker-image/" class="dropdown-item">DockerImage</a>
+    <a href="../../system/02-sysdev/" class="dropdown-item">系统编译环境</a>
 </li>
                                     
 <li>
-    <a href="../03-buildah/" class="dropdown-item">Podman & Buildah</a>
+    <a href="../../system/03-dockerfile/" class="dropdown-item">Dockerfile</a>
 </li>
                                     
 <li>
-    <a href="../04-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">DiskImage</a>
+    <a href="../../system/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/06-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -128,12 +146,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../04-bootcd/" class="nav-link">
+                                <a rel="prev" href="../../linux/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../centos/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -160,7 +178,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#disk-image" class="nav-link">Disk Image</a>
+            <li class="nav-item" data-bs-level="2"><a href="#archlinux-20250401" class="nav-link">archlinux-2025.04.01</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#desktop" class="nav-link">Desktop</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -169,11 +192,78 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="disk-image">Disk Image</h1>
-<p><strong>livekit create iso</strong></p>
-<p><a href="https://docs.livekit.io/home/self-hosting/local/">https://docs.livekit.io/home/self-hosting/local/</a></p>
-<p><a href="https://www.linux-live.org/">https://www.linux-live.org/</a>   </p>
-<p><a href="https://wiki.aosc.io/zh/aosc-os/installation/livekit/">https://wiki.aosc.io/zh/aosc-os/installation/livekit/</a></p></div>
+<h2 id="archlinux-20250401">archlinux-2025.04.01</h2>
+<p>archlinux-2025.04.01-x86_64.iso</p>
+<p>Step1: Disk</p>
+<pre><code>$ fdisk -l 查看gpt还是dos
+$ fdisk /dev/sda  添加两个p分区，sda1=300M, 设置boot
+输入m，输入o修改dos, 输入g修改gpt, 输入a修改boot标签
+
+mkfs.fat -F 32 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+====== 其他分区工具 
+cfdisk  /dev/sda  两个分区 sda1 EFI, sda2 linux filesystem
+</code></pre>
+<p>Step2: RootFS</p>
+<pre><code>mount /dev/sda2 /mnt
+mount --mkdir /dev/sda1 /mnt/boot
+
+修改宿主机 /etc/pacman.d/mirrorlist
+pacstrap /mnt base base-devel linux linux-firmware
+pacstrap /mnt networkmanager vim sudo bash bash-completion
+
+genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
+<p>Step3: Base OS</p>
+<pre><code>umount -R /mnt
+# vim /etc/hostname
+# vim /etc/hosts
+# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+vim /etc/locale.gen
+locale-gen
+# 这里不建议将 en_US.UTF-8 改为zh_CN.UTF-8 ，这样会导致终端乱码！ 
+echo &quot;LANG=en_US.UTF-8&quot; &gt;&gt; /etc/locale.conf
+echo &quot;LANG=en_US.UTF-8&quot; &gt;&gt; /etc/profile
+
+# passwd root
+# pacman -S grub
+# grub-install /dev/sda
+# grub-mkconfig -o /boot/grub/grub.cfg
+
+$ systemctl enable NetworkManager 
+
+======== 也可以手动激活网络
+nmtui  激活connection  或者 nmcli dev up ens33
+</code></pre>
+<p>Step4: Others</p>
+<pre><code>pacman -S arch-install-scripts  // 有 arch-install, pacstrap
+pacman -S openssh 
+修改 sshd_config  {PermitRootLogin yes; PasswordAuthentication yes}
+
+$ systemctl enable NetworkManager 
+$ systemctl enable sshd
+
+pacman -S less wget  zip unzip
+pacman -S helix nano
+ln -s /usr/bin/helix  /usr/bin/vi
+&gt; helix相当于一个已经配置完整的vim, space查看功能
+&gt; nano复制比较方便
+</code></pre>
+<h2 id="desktop">Desktop</h2>
+<pre><code>pacman -S xorg  # Install 330M  包含了 xorg-server, 等于--needed安装包数量
+pacman -S --needed qemu-desktop
+pacman -S firefox vlc 
+
+# Install 1.7G  包含了gdm（可以直接root登录）
+// pacman -S gnome 
+# Install 890M  足够使用：桌面环境(文件管理器), 终端, 文件编辑器，系统设置
+pacman -S gnome-desktop gnome-terminal gnome-text-editor gnome-system-monitor gnome-control-center gdm
+
+systemctl enable gdm
+pacman -S gnome-disk-utility  不是必须
+</code></pre></div>
             </div>
         </div>
 

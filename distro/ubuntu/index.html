@@ -33,19 +33,27 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/01-centos/" class="dropdown-item">CentOS</a>
+    <a href="../archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/02-archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/03-nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../~toolchain/" class="dropdown-item">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -54,24 +62,30 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../howto/01-git/" class="dropdown-item">代码库</a>
+    <a href="../../howto/artifact/" class="dropdown-item">制品库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/02-file/" class="dropdown-item">制品库</a>
+    <a href="../../howto/docs/" class="dropdown-item">文档库</a>
 </li>
                                     
 <li>
-    <a href="../../howto/03-doc/" class="dropdown-item">文档库</a>
+    <a href="../../howto/git/" class="dropdown-item">代码库</a>
 </li>
                                     
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
 <li>
-    <a href="../../howto/11-vt/" class="dropdown-item">VT</a>
+    <a href="../../howto/ustb/" class="dropdown-item">USTB</a>
 </li>
-                                    
+            
 <li>
-    <a href="../../howto/12-stb/" class="dropdown-item">USTB</a>
+    <a href="../../howto/ustb/vt/" class="dropdown-item">VT</a>
 </li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -100,27 +114,31 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-system/" class="dropdown-item">系统设置</a>
+    <a href="../../system/01-sysinit/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../02-docker-image/" class="dropdown-item">DockerImage</a>
+    <a href="../../system/02-sysdev/" class="dropdown-item">系统编译环境</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Podman & Buildah</a>
+    <a href="../../system/03-dockerfile/" class="dropdown-item">Dockerfile</a>
 </li>
                                     
 <li>
-    <a href="../04-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../system/04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="../05-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../system/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../system/06-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -128,12 +146,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../02-docker-image/" class="nav-link">
+                                <a rel="prev" href="../centos/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../04-bootcd/" class="nav-link">
+                                <a rel="next" href="../~nanolinux/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -160,22 +178,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">封装系统环境</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rootfs" class="nav-link">rootfs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#ubuntu22" class="nav-link">Ubuntu22</a>
+            <li class="nav-item" data-bs-level="2"><a href="#debootstrap" class="nav-link">debootstrap</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#anolis" class="nav-link">Anolis</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#openeuler" class="nav-link">openEuler</a>
+            <li class="nav-item" data-bs-level="2"><a href="#chroot-qemu" class="nav-link">chroot (QEMU)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -184,93 +197,43 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="_1">封装系统环境</h2>
-<p>ubuntu =&gt; ubuntu-devel</p>
-<pre><code>https://docker.aityp.com/image/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04-linuxarm64
+<h2 id="rootfs">rootfs</h2>
+<pre><code>ubuntu-base-22.04-base-amd64.tar.gz
+https://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/
+https://mirrors.ustc.edu.cn/ubuntu-cdimage/ubuntu-base/releases/
 
-buildah containers
-buildah images
-
-buildah from anolis  // anolis-working-container
-buildah from --name builder anolis
-删除容器(不需要关闭)
-buildah rm  $containername
-使用修改后的容器创建镜像
-buildah commit builder anolis-devel
-
-podman run -it --rm --privileged ubuntu-devel
-podman run -td --name build --privileged -v `pwd`:/build anolis
-podman exec -it build bash
+AnolisOS8.9-base-amd64-20240425.tar.xz
+https://cr-images-pub.oss-cn-hangzhou.aliyuncs.com/root/base/
 </code></pre>
-<h2 id="ubuntu22">Ubuntu22</h2>
-<p>https://developer.aliyun.com/mirror/ubuntu</p>
-<pre><code>buildah from --name builder ubuntu
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-buildah config --env LANGUAGE=enUS:en builder
+<h2 id="debootstrap">debootstrap</h2>
+<pre><code>sudo apt install debootstrap
+sudo debootstrap --help
+ls -lh /usr/share/debootstrap/scripts  都是链接
 
-buildah copy builder sources.list /etc/apt/
+debootstrap --arch $ARCH $RELEASE  $DIR $MIRROR
+debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
+debootstrap --include linux-image-amd64,locales,grub-efi-amd64,vim,btrfs-progs,sudo --arch amd64 sid /mnt/rootfs http://mirrors.163.com/debian/
 
-buildah run builder apt update
-buildah run builder apt install language-pack-en  
-buildah run builder apt install build-essential
-buildah run builder apt install vim less git wget curl
+sudo debootstrap --arch=mips buster /mnt/rootfs
+sudo debootstrap --variant=minbase --no-check-gpg --arch=amd64 
+sudo debootstrap --components main,universe,multiverse,restricted --variant minbase \
+ --include libc6,kysec-utils --exclude bash --no-check-gpg
 
-buildah commit builder ubuntu-devel
+$ cd /mnt/rootfs
+$ sudo tar -czf /tmp/debian-sid-rootfs.tar.xz  .
+$ sudo tar -xf rootfs.tar.xz -C &lt;exampledir&gt;
 </code></pre>
-<p>sources.list</p>
-<pre><code>====== Ubuntu22 x86
-deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+<h2 id="chroot-qemu">chroot (QEMU)</h2>
+<p>https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs#remove-support-files-from-rootfs
+https://www.ddupan.top/posts/chroot-to-a-different-arch-in-linux/</p>
+<pre><code>$ sudo apt install qemu-user-static
+$ sudo apt install binfmt-support
 
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-updates main restricted universe multiverse
-EOF
+sudo debootstrap --arch arm64 --foreign buster /mnt/buster-arm64 http://mirrors.163.com/debian/
+sudo cp /usr/bin/qemu-aarch64-static buster-arm64/usr/bin/
+sudo cp /etc/resolv.conf buster-arm64/etc/
 
-
-====== Ubuntu22 ARM
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-updates main restricted universe multiverse
-EOF
-</code></pre>
-<h2 id="anolis">Anolis</h2>
-<p>https://mirrors.openanolis.cn/anolis/8.9/isos/GA/x86_64/</p>
-<pre><code>buildah from --name builder anolis
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-rpm -qa | grep glibc-langpack
-buildah run builder yum install glibc-langpack-zh -y
-buildah run builder yum install glibc-langpack-en -y
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
-
-buildah commit builder anolis-devel
-</code></pre>
-<h2 id="openeuler">openEuler</h2>
-<p>https://repo.openeuler.org/openEuler-22.03-LTS-SP4/docker_img/x86_64/</p>
-<p>https://mirrors.tuna.tsinghua.edu.cn/openeuler/openEuler-22.03-LTS-SP4/</p>
-<pre><code>buildah from --name builder openeuler
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-openeuler需要安装
-buildah run builder glibc-locale-archive -y  
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
-
-buildah commit builder openeuler-devel
+$ sudo chroot /mnt/buster-arm64/
 </code></pre></div>
             </div>
         </div>

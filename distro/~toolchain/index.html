@@ -33,27 +33,27 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
+    <a href="../centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+    <a href="../ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                     
 <li>
-    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="../~nanolinux/" class="dropdown-item">NanoLinux</a>
 </li>
                                     
 <li>
-    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -89,27 +89,27 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">C,C++,LUA</a>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
 </li>
                                     
 <li>
-    <a href="../12-python/" class="dropdown-item">Python</a>
+    <a href="../../script/12-python/" class="dropdown-item">Python</a>
 </li>
                                     
 <li>
-    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -146,12 +146,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../02-scons/" class="nav-link">
+                                <a rel="prev" href="../~nanolinux/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../12-python/" class="nav-link">
+                                <a rel="next" href="../../howto/artifact/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -178,22 +178,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+            <li class="nav-item" data-bs-level="2"><a href="#build-system" class="nav-link">Build System</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#c" class="nav-link">C 语法</a>
+            <li class="nav-item" data-bs-level="2"><a href="#gcc-cmake" class="nav-link">编译工具 GCC 和 CMake</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">内存分配</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">源码 Lua</a>
+            <li class="nav-item" data-bs-level="2"><a href="#clang-llvm" class="nav-link">编译工具 Clang (LLVM)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -202,122 +197,163 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="install">Install</h2>
-<pre><code>sudo apt install build-essential cmake meson
-sudo apt install crossbuild-essential-arm64
-eclipse-cpp.tar.gz
+<h2 id="build-system">Build System</h2>
+<p>• Clang 5.0
+• Apple Clang 10.0
+• GCC 7.4
+• Visual Studio 2019 16.8</p>
+<pre><code>Toolchain 包括: gcc, libc库, linux内核头文件, binutils, 其他构建打包工具(m4,gmp,mpc)
+• 方式1：从0开始制作 make toolchain
+• 方式2：外部
 
-&gt;&gt; GUI
-sudo apt install qtcreator qtbase5-dev
-sudo apt install libwxgtk3.2-dev codelbocks
+[GCC]  https://wiki.ubuntu.com/ToolChain#GCC
+[Binutils] https://wiki.ubuntu.com/ToolChain#Binutils
+[Glibc] https://wiki.ubuntu.com/ToolChain#Glibc
+[kernel] https://wiki.ubuntu.com/ToolChain#kernel_headers_for_user_space_packages
 </code></pre>
-<h2 id="c">C 语法</h2>
-<p>typedef unsigned int ID;</p>
-<pre><code>struct Stu {
-    成员
-} 变量;
+<p><img alt="LICENSE" src="../../img/license.png" /></p>
+<h2 id="gcc-cmake">编译工具 GCC 和 CMake</h2>
+<pre><code>======= ubuntu 安装
+apt install build-essential
+apt install cmake ninja-build
 
-struct Stu {
-    int id;
-    char name[20];
-    float score;
-};
-struct Stu s1,s2;
-struct Stu s1 = {1, &quot;xiao&quot;, 9.9};
+======= RHEL 安装
+sudo dnf groupinstall 'Development Tools'
+sudo dnf install make
+sudo dnf install cmake ninja-build
 
-typedef struct student {
-    ...
-} Stu;
-Stu s1;
-</code></pre>
-<p><code>#define 标识符 常量</code>  没有分号</p>
-<pre><code>#define MAX_SIZE 20
+======== 使用方式 gcc hello.c -o hello
+#include &lt;stdio.h&gt;
 
-数组
-typedef struct {
-    T data[MAX_SIZE];
-    int length;
-} SqList;
-
-链表
-typedef struct LNode {
-    T data;
-    struct LNode *next;
-} LNode, *LinkList;
-
-LNode *p;
-LinkList p;
-</code></pre>
-<p>其他方式 struct</p>
-<pre><code>struct Stu {
-    int id;
-    char name[20];
-    float score;
-} s1, s2;
-
-struct {
-    int id;
-    char name[20];
-    float score;
-} s1, s2;
-</code></pre>
-<h2 id="_1">内存分配</h2>
-<p>C 指针</p>
-<pre><code>int a = 10;
-int *p = &amp;a;
-
-switch (a) {
-    case 常量: 语句;
-    default:  语句;
+int main() {
+  printf(&quot;hello world\n&quot;);
+  return 0;
 }
 
-int *p;
-p = (int*) malloc(sizeof(int));
+========= 使用方式 CMakeLists.txt
+mkdir build &amp;&amp; cd build
+cmake -G Ninja ..
 
-free(p);
-
-输入输出
-int n;
-scanf(&quot;%d&quot;, &amp;n);
-
-printf(&quot;hello\n&quot;)
+ninja 
+或cmake --build .
 </code></pre>
-<p>C++ 内存分配</p>
-<pre><code>int *p = new int;
-delete p;
-
-引用
-int n =10;
-int&amp; n2 = n;
-
-输入输出
-int n;
-cin &gt;&gt; n;
-count &lt;&lt; &quot;hello\n&quot;;
+<p>GCC Source</p>
+<pre><code>gcc_version=7.4.0
+% wget https://ftp.gnu.org/gnu/gcc/gcc-${gcc_version}/gcc-${gcc_version}.tar.bz2
+% wget https://ftp.gnu.org/gnu/gcc/gcc-${gcc_version}/gcc-${gcc_version}.tar.bz2.sig
+% wget https://ftp.gnu.org/gnu/gnu-keyring.gpg
+% signature_invalid=`gpg --verify --no-default-keyring --keyring ./gnu-keyring.gpg gcc-${gcc_version}.tar.bz2.sig`
+% if [ $signature_invalid ]; then echo &quot;Invalid signature&quot; ; exit 1 ; fi
+% tar -xvjf gcc-${gcc_version}.tar.bz2
+% cd gcc-${gcc_version}
+% ./contrib/download_prerequisites
+% cd ..
+% mkdir gcc-${gcc_version}-build
+% cd gcc-${gcc_version}-build
+% $PWD/../gcc-${gcc_version}/configure --prefix=$HOME/toolchains --enable-languages=c,c++
+% make -j$(nproc)
+% make install
 </code></pre>
-<h2 id="lua">源码 Lua</h2>
-<pre><code>yum install lua
-/usr/bin/lua
-/usr/bin/luac
-
-$ lua -v
-$ lua
-print(1+1)
+<p>GCC</p>
+<pre><code>mkdir build
+% cd build
+% CC=$HOME/toolchains/bin/gcc CXX=$HOME/toolchains/bin/g++ \
+  cmake .. -DCMAKE_CXX_LINK_FLAGS=&quot;-Wl,-rpath,$HOME/toolchains/lib64 -L$HOME/toolchains/lib64&quot;
 </code></pre>
-<p>https://www.lua.org/ftp/lua-5.4.7.tar.gz</p>
-<pre><code>$ cd src
-yum install @development
-yum install readline-devel ncurses-devel
-make -j8
+<p>CMake Source</p>
+<pre><code>sudo apt-get install libssl-dev
 
-或者 cd lua-5.4.7
-make
-make install 安装到 /usr/local
-make local   安装到 ./install
+# https://github.com/Kitware/CMake/releases/download/v3.19.0-rc3/
+tar -zxvf cmake-3.19.0-rc3.tar.gz
+cd cmake-3.19.0-rc3
+./bootstrap --prefix=/opt/cmake
+make all install
+</code></pre>
+<h2 id="clang-llvm">编译工具 Clang (LLVM)</h2>
+<p>LLVM是一个包括了很多模块的编译器框架。</p>
+<ul>
+<li>
+<p>clang是LLVM的前端: 用于编译C、C++和Objective-C等语言, 输出中间代码LLVM IR，再交给后端生成本机代码</p>
+</li>
+<li>
+<p>lldb 是一个开源的调试器</p>
+</li>
+<li>
+<p>clangd是一个基于Clang编译器的语言服务器: 用于提供C/C++语言的代码补全、语义分析和代码导航等功能</p>
+</li>
+</ul>
+<pre><code>======= ubuntu22 安装
+sudo apt install clang
 
-==== 静态编译 (alma报错, arch成功)
-$ vim src/Makefile
-MYLDFLAGS=-static
+root@ubuntu22:~# /usr/bin/clang --version
+root@ubuntu22:~# /usr/bin/clang-14 --version
+Ubuntu clang version 14.0.0-1ubuntu1.1
+Target: x86_64-pc-linux-gnu
+Thread model: posix
+InstalledDir: /usr/bin
+
+
+======== 官方仓库 (可以指定版本)
+wget https://apt.llvm.org/llvm.sh
+sudo ./llvm.sh 17   ## 格式 sudo ./llvm.sh &lt;版本号&gt;
+
+软件源
+deb http://apt.llvm.org/jammy/  llvm-toolchain-jammy-18 main
+deb-src http://apt.llvm.org/jammy/  llvm-toolchain-jammy-18 main
+
+会安装这几个软件
+apt install clang-18 lldb-18 lld-18 clangd-18
+
+root@ubuntu22:~# /usr/bin/clang-18 --version
+Ubuntu clang version 18.1.8 (++20240731024944+3b5b5c1ec4a3-1~exp1~20240731145000.144)
+Target: x86_64-pc-linux-gnu
+Thread model: posix
+InstalledDir: /usr/bin
+
+
+======== 使用方式 clang hello.c -o hello
+#include &lt;stdio.h&gt;
+
+int main() {
+  printf(&quot;hello world\n&quot;);
+  return 0;
+}
+</code></pre>
+<p>Source</p>
+<pre><code># https://lldb.llvm.org/resources/build.html
+# https://llvm.org/docs/GettingStarted.html#getting-started-with-llvm
+# https://llvm.org/docs/CMake.html
+
+yum install libedit-devel libxml2-devel ncurses-devel python-devel swig
+https://github.com/llvm/llvm-project.git
+https://mirrors.tuna.tsinghua.edu.cn/git/llvm-project.git
+
+============== 方法1，没有bin/clang
+cd llvm-project
+cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+cd build
+ninja
+或 ninja -C build check-llvm
+
+
+============ 方法2, 有bin/clang
+cd $HOME/build
+$ cmake -G Ninja -DLLVM_ENABLE_PROJECTS=&quot;clang;lldb&quot; [&lt;cmake options&gt;] path/to/llvm-project/llvm
+
+cmake -G Ninja -DLLVM_ENABLE_PROJECTS=&quot;clang;lldb&quot; \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DCMAKE_INSTALL_PREFIX=/install/path \
+   $HOME/llvm-project/llvm
+
+</code></pre>
+<p>Document</p>
+<pre><code>$ sudo apt-get install doxygen graphviz swig
+$ pip3 install -r /path/to/llvm-project/llvm/docs/requirements.txt
+
+$ ninja docs-lldb-html
+$ ninja docs-lldb-man
+$ ninja lldb-cpp-doc
 </code></pre></div>
             </div>
         </div>
