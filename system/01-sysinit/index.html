@@ -202,6 +202,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#alpine-image" class="nav-link">Alpine Image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -389,6 +394,61 @@ FedoraWorkstation (default, active)
   source-ports: 
   icmp-blocks: 
   rich rules: 
+</code></pre>
+<h2 id="alpine-image">Alpine Image</h2>
+<p>docker.io/alpine:latest</p>
+<pre><code>sudo podman run -it --rm alpine
+sudo podman run -it --rm --privileged -v`pwd`:/build  alpine 
+/usr/bin/vi  指向 /bin/busybox
+cat /etc/alpine-release
+cat /etc/os-release
+
+软件仓库
+$ less /etc/apk/repositories
+http://dl-cdn.alpinelinux.org/alpine/latest-stable/main
+http://dl-cdn.alpinelinux.org/alpine/latest-stable/community
+
+软件管理
+apk list
+apk update
+apk search &lt;name&gt;
+apk add &lt;name&gt;
+apk del &lt;name&gt;
+
+apk add neovim
+alias vi='nvim'
+</code></pre>
+<p>设置 network</p>
+<pre><code>https://www.cyberciti.biz/faq/how-to-configure-static-ip-address-on-alpine-linux/
+
+setup-interfaces eth0
+service networking restart
+ip a
+</code></pre>
+<p>设置 locale</p>
+<pre><code>apk add musl-locales
+locale -a
+
+主机名
+setup-hostname liveos
+</code></pre>
+<p>设置  date</p>
+<pre><code>https://wiki.alpinelinux.org/wiki/Alpine_setup_scripts#setup-alpine
+https://wiki.alpinelinux.org/wiki/Setting_the_timezone
+
+安装timezone
+apk add -U tzdata
+查看时区列表
+ls /usr/share/zoneinfo/
+
+方式1
+setup-timezone Asia/Shanghai
+方式2
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<p>参考</p>
+<pre><code>https://developer.aliyun.com/article/695874  
+https://www.cnblogs.com/johnnyzen/p/17805510.html  
 </code></pre></div>
             </div>
         </div>

@@ -178,7 +178,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#linuxamd64-linuxarm64" class="nav-link">linux/amd64; linux/arm64</a>
+            <li class="nav-item" data-bs-level="2"><a href="#docker-buildx" class="nav-link">Docker buildx</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -212,7 +212,11 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="linuxamd64-linuxarm64">linux/amd64;  linux/arm64</h2>
+<p>Container 运行操作系统的用户模式部分（不包括内核）</p>
+<p><img alt="LICENSE" src="../../img/container-diagram.svg" /></p>
+<p>Virtual Machine 运行的是完整的操作系统（包括内核），因此需要更多的系统资源（CPU、内存和存储）</p>
+<p><img alt="LICENSE" src="../../img/virtual-machine-diagram.svg" /></p>
+<h2 id="docker-buildx">Docker buildx</h2>
 <p>19.03+ 版本开始可以使用 docker buildx build 命令利用 BuildKit 构建镜像</p>
 <pre><code># build x64
 docker build -t ubuntu .

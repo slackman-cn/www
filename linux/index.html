@@ -188,6 +188,31 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#linux-kernel" class="nav-link">Linux Kernel</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#gnu-c-library" class="nav-link">GNU C Library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#gnu-compiler-collection" class="nav-link">GNU Compiler Collection</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#gnu-binary-utilities" class="nav-link">GNU Binary Utilities</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#makefile" class="nav-link">Makefile</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
@@ -236,6 +261,154 @@ In LFS, you’ll download and compile the kernel yourself.</p>
 LFS requires a solid understanding of Linux file systems, such as ext4. You’ll need to format partitions, create a root file system, and set up the necessary directories for your system.</p>
 </li>
 </ol>
+<h2 id="linux-kernel">Linux Kernel</h2>
+<p><a href="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz</a></p>
+<pre><code>// sudo apt build-dep linux-image-amd64
+
+sudo apt install bc binutils bison dwarves flex gcc git \
+     gnupg2 gzip libelf-dev libncurses5-dev libssl-dev \
+    make openssl pahole perl-base rsync tar xz-utils
+
+$ make defconfig
+$ make -j8
+编译结果 arch/x86/boot/bzImage
+</code></pre>
+<p><img alt="LICENSE" src="../img/kernel-glibc-version.png" /></p>
+<h2 id="gnu-c-library">GNU C Library</h2>
+<p><a href="https://www.gnu.org/software/libc/">https://www.gnu.org/software/libc/</a></p>
+<p>C运行库: 是linux系统中最底层的api（应用程序开发接口），几乎其它任何的运行库都会依赖于glibc</p>
+<pre><code>C语言标准仅仅定义了C标准库函数原型，并没有提供实现
+Linux  操作系统C运行时库（C Run Time Libray，CRT）是 glibc（GNU C Library）
+Windows操作系统C运行时库（C Run Time Libray，CRT）是 MSVCRT（Microsoft Visual C Run-time）
+
+几乎所有C程序都要调用glibc的库函数，所以glibc是Linux平台C程序运行的基础
+最基本、最常用的C标准库函数和系统函数在libc.so库文件中，几乎所有C程序的运行都依赖于libc.so
+有些做数学计算的C程序依赖于libm.so，多线程的C程序依赖于libpthread.so。
+libc有时时专指libc.so这个库文件，而说glibc时指的是glibc提供的所有库文件。
+
+glibc的发布版本主要由两部分组成，一部分是头文件，比如stdio.h、stdlib.h等，它们往往位于/usr/include
+</code></pre>
+<p>Source</p>
+<pre><code>wget https://ftp.gnu.org/gnu/glibc/glibc-2.28.tar.gz
+
+./configure --prefix=/usr \
+    --disable-profile \
+  --enable-add-ons \
+  --with-headers=/usr/include \
+  --with-binutils=/usr/bin
+make
+make install
+
+# 检查版本
+/usr/bin/ldd --version
+strings /lib64/libc.so.6 |grep GLIBC_
+</code></pre>
+<h2 id="gnu-compiler-collection">GNU Compiler Collection</h2>
+<p><a href="https://gcc.gnu.org/">https://gcc.gnu.org/</a></p>
+<p>C编译器: 是Linux系统上常用的编译工具</p>
+<pre><code># ubuntu/debian
+sudo apt install gcc
+sudo apt install build-essential
+
+# centos/fedora/redhat
+yum install gcc
+yum groupinstall development
+
+# alpine
+sudo apk install build-base
+
+# 检查版本
+/usr/bin/gcc --version
+</code></pre>
+<p>Source</p>
+<pre><code>1. 解压源码
+wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.xz
+
+2. 下载依赖
+cd  gcc-11.2.0
+./contrib/download_prerequisites
+
+3. 编译并安装
+mkdir ../build &amp;&amp; cd ../build
+export INSTALLDIR=/usr/local/gcc-11.2.0
+../gcc-11.2.0/configure      \
+    --prefix=${INSTALLDIR}   \
+    --enable-shared          \
+    --enable-threads=posix   \
+    --enable-__cxa_atexit    \
+    --enable-clocale=gnu     \
+    --enable-languages=c,c++ \
+    --disable-multilib
+
+4. 修改环境变量
+export PATH=/usr/local/gcc-11.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-11.2.0/lib64:$LD_LIBRARY_PATH
+
+export CC=/usr/local/gcc-11.2.0/bin/gcc
+export CXX=/usr/local/gcc-11.2.0/bin/g++
+</code></pre>
+<h2 id="gnu-binary-utilities">GNU Binary Utilities</h2>
+<p><a href="https://www.gnu.org/software/binutils/">https://www.gnu.org/software/binutils/</a></p>
+<p>Binutils: 是一系列二进制工具的集合,主要包括 ld连接器 as汇编器 strip从目标文件中移除符号信息</p>
+<pre><code># debian/ubuntu
+sudo apt-get install binutils
+
+# centos/redhat
+yum install binutils
+
+# alpine
+sudo apk install binutils
+
+# 检查版本
+/usr/bin/ld --version
+/usr/bin/as --version
+</code></pre>
+<p>Source</p>
+<pre><code>wget https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.gz
+
+./configure --prefix=/usr/local/binutils
+make
+make install
+</code></pre>
+<h2 id="makefile">Makefile</h2>
+<p>make是最常用的构建工具, 配置文件Makefile</p>
+<pre><code>GNU 软件的安装过程都是
+./configure
+make
+make install
+
+或者指定目录
+./configure --prefix=/usr
+make -4
+make install DESTDIR=/tmp/app
+</code></pre>
+<p>autotools生成makefile还是太麻烦，所以现在人们都开始倾向于用 CMake, SCons</p>
+<pre><code># 阶段1
+最早的时候, 发布代码包时，一般会附带相应的 Makefile 文件。
+然后就可以 make &amp;&amp; make install 来编译工程, 当时并不需要这个运行 configure 的步骤
+
+# 阶段2
+安装到不同的平台上使用, 需要对 Makefile 文件进行调整
+为了避免手工做这些调整，人们开始写 configure 脚本来自动做这些调整工作
+常见的就是用 –prefix 来指定安装路径，用configure –help来查看说明等等
+
+# 阶段3
+手写configure脚本工作量太巨大了，而且以后维护也比较麻烦
+Autoconf 和 Automake 是一套自动生成 configure 脚本和 Makefile 文件的工具
+用 Autoconf 自动生成的 configure 能完美的支持各种不同的平台上(手工写几乎是不可能的)
+
+在模版文件 configure.ac 和 Makefile.am 做好以后
+autoreconf --install
+./configure &amp;&amp; make
+</code></pre>
+<p>更新 config.guess 和 config.sub  </p>
+<p><a href="https://git.savannah.gnu.org/git/config.git">https://git.savannah.gnu.org/git/config.git</a></p>
+<pre><code>https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess
+https://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
+
+find . -type f -name &quot;config.guess&quot; -exec cp ~/config.guess  {} \;
+find . -type f -name &quot;config.sub&quot; -exec cp ~/config.sub  {} \;
+</code></pre>
 <h1 id="about-links">About Links</h1>
 <p><a href="https://mirrors.ustc.edu.cn/lfs/lfs-packages/">https://mirrors.ustc.edu.cn/lfs/lfs-packages/</a></p>
 <p><a href="https://batocera.org/">https://batocera.org/</a>  <a href="https://github.com/batocera-linux/">https://github.com/batocera-linux/</a></p>

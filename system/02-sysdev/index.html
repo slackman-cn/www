@@ -182,12 +182,41 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#editor-fonts" class="nav-link">Editor &amp; Fonts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="development">Development</h2></div>
+<h2 id="development">Development</h2>
+<pre><code>sudo apt install build-essential cmake meson
+sudo apt install crossbuild-essential-arm64
+
+eclipse-cpp.tar.gz
+sudo apt install qtcreator qtbase5-dev
+sudo apt install libwxgtk3.2-dev codelbocks
+
+&gt;&gt; user-wide
+sudo apt install python3-venv
+python3 -m venv myenv
+source myenv/bin/activate
+</code></pre>
+<h2 id="editor-fonts">Editor &amp; Fonts</h2>
+<p>sudo apt install mousepad vim</p>
+<pre><code>&gt;&gt; vi .vimrc
+if has('mouse')
+  set mouse-=a
+endif
+
+&gt;&gt; fc-list | grep JetBrains
+https://www.jetbrains.com/lp/mono/
+sudo unzip JetBrainsMono-2.304.zip -d /usr/local/share/fonts/JetBrains-Mono
+'Jetbrains Mono', 'Droid Sans Mono', 'monospace', monospace
+</code></pre></div>
             </div>
         </div>
 
