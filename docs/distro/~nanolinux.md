@@ -27,13 +27,33 @@ Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #
 
 ## NanoLinux source
 
-```
 wget -i wget-list
+```
+docker pull quay.io/slackman/openwrt-src
 
 sudo apt install gawk texinfo
 readlink -f /bin/sh
 $ sudo ln -sf bash /bin/sh
 $ sudo ln -sf dash /bin/sh
+
+git clone git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
+touch feeds.conf
+src-git packages git://192.168.1.1/git.openwrt.org/feed/packages.git
+
+======= Step1: 
+$ ./script/feeds/update  -a
+create dir {feeds}
+create dir {staging_dir/host/bin, tmp}
+clone  {feeds/packages}
+create {feeds/packages.index,  packages.targetindex}
+	system("ln -sf $name.tmp/.packageinfo ./feeds/$name.index");
+	system("ln -sf $name.tmp/.targetinfo ./feeds/$name.targetindex");
+
+
+======= Step2: 
+$ ./script/feeds/install -a
+create link {feeds/base -> /root/openwrt/package}
+
 ```
 
 ## NanoLinux disk
