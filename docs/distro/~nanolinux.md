@@ -25,6 +25,14 @@ Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #
 , RO-rootFS, swap_dev 0XA, Normal VGA
 ```
 
+## NanoLinux
+
+```
+
+
+```
+
+
 ## NanoLinux source
 
 wget -i wget-list
@@ -36,7 +44,7 @@ readlink -f /bin/sh
 $ sudo ln -sf bash /bin/sh
 $ sudo ln -sf dash /bin/sh
 
-git clone git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
+git clone -b v24.10.0 git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
 touch feeds.conf
 src-git packages git://192.168.1.1/git.openwrt.org/feed/packages.git
 
@@ -224,3 +232,11 @@ arch/x86/boot/genimage.sh
 ```
 
 
+
+## About Links
+
+<https://classpert.com/classpertx/courses/building-a-programming-language/cohort>
+
+<https://mirrors.aliyun.com/lfs/lfs-packages/11.2>
+
+<https://tldp.org/HOWTO/From-PowerUp-To-Bash-Prompt-HOWTO.html>

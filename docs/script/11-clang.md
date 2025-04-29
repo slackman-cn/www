@@ -1,5 +1,5 @@
 ---
-title: C,C++,LUA
+title: C,C++
 since: 202503
 ---
 
@@ -109,34 +109,4 @@ int& n2 = n;
 int n;
 cin >> n;
 count << "hello\n";
-```
-
-
-## 源码 Lua
-
-```
-yum install lua
-/usr/bin/lua
-/usr/bin/luac
-
-$ lua -v
-$ lua
-print(1+1)
-```
-
-https://www.lua.org/ftp/lua-5.4.7.tar.gz
-```
-$ cd src
-yum install @development
-yum install readline-devel ncurses-devel
-make -j8
-
-或者 cd lua-5.4.7
-make
-make install 安装到 /usr/local
-make local   安装到 ./install
-
-==== 静态编译 (alma报错, arch成功)
-$ vim src/Makefile
-MYLDFLAGS=-static
 ```
