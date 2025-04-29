@@ -183,6 +183,21 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-source" class="nav-link">NanoLinux source</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-disk" class="nav-link">NanoLinux disk</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-rootfs" class="nav-link">NanoLinux rootfs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#busybox-initrd" class="nav-link">Busybox &amp; initrd</a>
               <ul class="nav flex-column">
               </ul>
@@ -207,17 +222,122 @@ sudo apt install bc binutils bison dwarves flex gcc git \
     make openssl pahole perl-base rsync tar xz-utils
 
 $ make defconfig
+$ make menuconfig
 $ make -j8
+
 编译结果 arch/x86/boot/bzImage
+Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #1 SMP Mon Apr 28 15:56:47 CST 2025
+, RO-rootFS, swap_dev 0XA, Normal VGA
+</code></pre>
+<h2 id="nanolinux-source">NanoLinux source</h2>
+<p>wget -i wget-list</p>
+<pre><code>docker pull quay.io/slackman/openwrt-src
+
+sudo apt install gawk texinfo
+readlink -f /bin/sh
+$ sudo ln -sf bash /bin/sh
+$ sudo ln -sf dash /bin/sh
+
+git clone git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
+touch feeds.conf
+src-git packages git://192.168.1.1/git.openwrt.org/feed/packages.git
+
+======= Step1: 
+$ ./script/feeds/update  -a
+create dir {feeds}
+create dir {staging_dir/host/bin, tmp}
+clone  {feeds/packages}
+create {feeds/packages.index,  packages.targetindex}
+    system(&quot;ln -sf $name.tmp/.packageinfo ./feeds/$name.index&quot;);
+    system(&quot;ln -sf $name.tmp/.targetinfo ./feeds/$name.targetindex&quot;);
+
+
+======= Step2: 
+$ ./script/feeds/install -a
+create link {feeds/base -&gt; /root/openwrt/package}
+
+</code></pre>
+<h2 id="nanolinux-disk">NanoLinux disk</h2>
+<pre><code>sudo apt install qemu-utils
+qemu-img create disk.img 20G
+
+sudo fdisk -l disk.img
+sudo fdisk disk.img
+
+---- part1
+o
+n
+p
+/
++100M
+a
+---- part2
+n
+p
+/
+/
+w
+</code></pre>
+<h2 id="nanolinux-rootfs">NanoLinux rootfs</h2>
+<pre><code>mount -t proc /proc /mnt/rootfs/proc
+mount -t sysfs /sys /mnt/rootfs/sys
+mount -o bind /dev /mnt/rootfs/dev
+mount -o bind /dev/pts /mnt/rootfs/dev/pts
+
+$ chroot /mnt/rootfs
+
+umount  /mnt/rootfs/dev/pts
+umount  /mnt/rootfs/dev
+umount  /mnt/rootfs/proc
+umount  /mnt/rootfs/sys
+</code></pre>
+<p>filesystem</p>
+<pre><code>$ man interfaces
+$ man resolv.conf
+$ man hostname
+$ man hosts
+
+export LC_ALL=en_US.UTF-8
+apt-get install locales
+dpkg-reconfigure locales
+
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+echo Asia/Shanghai &gt; /etc/timezone
+
+dbus-uuidgen &gt; /etc/machine-id
+apt-get autoremove -y
+apt-get clean -y
+
+tar -cvpf /tmp/system.tar --directory=/ \
+  --exclude=proc --exclude=sys --exclude=dev --exclude=run \
+   --exclude=boot .
+
+-e &quot;var/cache/apt/archives/*&quot; \
+-e &quot;root/*&quot; \
+-e &quot;root/.*&quot; \
+-e &quot;tmp/*&quot; \
+-e &quot;tmp/.*&quot; \
+-e &quot;swapfile&quot;
 </code></pre>
 <h2 id="busybox-initrd">Busybox &amp; initrd</h2>
 <p><a href="https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2">https://www.busybox.net/downloads/busybox-1.36.1.tar.bz2</a></p>
-<pre><code>方式1：执行 make menuconfig 选择 Build Static Binary
+<pre><code>// sudo apt build-dep busybox
+
+sudo apt install build-essential libncurses5 libncurses5-dev
+
+方式1：执行 make menuconfig 选择 Build Static Binary
 方式2：执行 make defconfig 修改 .config文件
 CONFIG_STATIC=y
-
 $ make -j8
-编译结果 当前目录 busybox二进制文件
+
+编译结果 ./busybox
+ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=f4272eda9a1f20e170627b3f01499d5fa553e13e
+, for GNU/Linux 3.2.0, stripped
+
+安装使用
+mkdir /root/afs/bin
+./busybox --install /root/afs/bin
+ls -i bin
 </code></pre>
 <p>initrd</p>
 <pre><code>mkdir -p initrd/{bin,sys,dev,proc}
