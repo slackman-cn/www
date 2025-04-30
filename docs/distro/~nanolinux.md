@@ -25,11 +25,76 @@ Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #
 , RO-rootFS, swap_dev 0XA, Normal VGA
 ```
 
-## NanoLinux
+## NanoLinux Toolchain
+
+FROM docker.io/alpine:3.11
+```
+======= 软件仓库
+$ less /etc/apk/repositories
+https://dl-cdn.alpinelinux.org/alpine/v3.21/main
+https://dl-cdn.alpinelinux.org/alpine/v3.21/community
+
+https://mirrors.ustc.edu.cn/alpine/v3.21/main
+https://mirrors.ustc.edu.cn/alpine/v3.21/community
+
+======= 软件
+apk list  ; all package
+apk stats ; installed package
+apk update
+apk search <name>
+apk add <name>
+apk del <name>
+
+apk add neovim
+alias vi='nvim'
+
+====== 设置 locale
+apk add musl-locales
+locale -a
+
+主机名
+setup-hostname liveos
+
+====== 设置 Date
+apk add -U tzdata
+ls /usr/share/zoneinfo/
+
+方式1
+setup-timezone Asia/Shanghai
+方式2
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ```
 
+## NanoLinux rootfs
 
+<https://buildroot.org/downloads/buildroot-2025.02.tar.gz>
+
+<https://mirrors.hust.edu.cn/docs/buildroot/>
+```
+sudo apt-get install build-essential ncurses-base ncurses-bin libncurses5-dev dialog
+
+$ make menuconfig
+$ make
+下载源码 dl  ;; 也可以执行命令 make source
+编译结果 output
+
+Target options
+        -> Target Architecture = ARM (little endian)
+        -> Target Binary Format = ELF
+        -> Target Architecture Variant = cortex-A7
+        -> Target ABI = EABIhf
+        -> Floating point strategy = NEON/VFPv4
+        -> ARM instruction set = ARM
+
+Toolchain
+   -> Toolchain type = External toolchain
+   -> Toolchain = Custom toolchain //选择用户的交叉编译器
+
+System configuration
+   -> System hostname = Embedfire_imx6ull //平台名字
+   -> System banner = Welcome to embedfire i.mx6ull //欢迎语
+   -> Init system = BusyBox //使用 busybox
 ```
 
 

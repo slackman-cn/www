@@ -204,6 +204,40 @@ CMD ["/bin/bash"]
 ```
 
 
+## FROM Alpine
+
+```
+FROM docker.io/alpine:3.11
+
+LABEL \
+    org.opencontainers.image.title="OpenWrt External ToolChain" \
+    org.opencontainers.image.vendor="Alpine build system" \
+    org.opencontainers.image.licenses="Apache" \
+    org.opencontainers.image.created="2025-04-09" \
+    maintainer="localhost"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai \
+    LANG=en_US.UTF8 \
+    LC_ALL=en_US.UTF8 \
+    LANGUAGE=enUS:en
+
+ADD repositories /etc/apk/repositories
+RUN apk update && apk add  musl-locales tzdata \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    && echo $TZ > /etc/timezone \
+    && apk --no-cache add build-base cmake clang clang-dev make gcc g++ libc-dev linux-headers
+
+RUN apk add argp-standalone asciidoc bash bc binutils bzip2 cdrkit coreutils \
+  diffutils elfutils-dev findutils flex musl-fts-dev g++ gawk gcc gettext git \
+  grep gzip intltool libxslt linux-headers make musl-libintl musl-obstack-dev \
+  ncurses-dev openssl-dev patch perl python3-dev rsync tar \
+  unzip util-linux wget zlib-dev
+
+CMD ["/bin/ash"]
+```
+
+
 # About Links
 
 https://www.cnblogs.com/dazhoushuoceshi/p/7066041.html

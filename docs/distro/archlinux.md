@@ -75,7 +75,6 @@ ln -s /usr/bin/helix  /usr/bin/vi
 
 ## Desktop
 
-
 ```
 pacman -S xorg  # Install 330M  包含了 xorg-server, 等于--needed安装包数量
 pacman -S --needed qemu-desktop
