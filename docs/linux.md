@@ -219,11 +219,42 @@ find . -type f -name "config.sub" -exec cp ~/config.sub  {} \;
 ```
 
 
+## initrd / initramfs
+
+<https://geek-logic.com/debian-11-on-loongson/>
+
+<https://www.bytezonex.com/archives/hIO_Vpg9.html>
+
+<https://blog.csdn.net/kwdecsdn/article/details/129151631>
+
+```
+initrd 模拟成一个块设备
+initramfs 直接使用内存文件系统, 比 initrd 更加高效和灵活，并且更加节省内存。
+
+initrd 是一个镜像文件，包含了启动过程中必需的驱动程序和启动脚本
+ramfs 和 tmpfs：内存文件系统
+ramfs 完全运行在内存中的磁盘，它非常快速，但存储在其中的数据会随着系统重启而消失
+tmpfs 扩展 ramfs 。它不仅可以利用内存作为存储空间，还可以使用交换分区来存储数据
+```
+
+```
+首先要介绍kernel启动init的两种方案。
+第一种是，ramdisk，就是把一块内存（ram）当做磁盘（disk）去挂载，然后找到ram里的init进行执行。
+第二种是，ramfs，直接在ram上挂载文件系统，执行文件系统中的init。
+initrd（init ramdisk）就是ramdisk的实现，initramfs就是ramfs的实现。
+
+Note：
+tmpfs，是ramfs的增强版方案。
+rootfs，是ramfs/tmpfs的一个特殊实例。
+所以initramfs也可以是tmpfs/rootfs的实现
+```
 
 # About Links
 
 <https://mirrors.ustc.edu.cn/lfs/lfs-packages/>
 
-<https://batocera.org/>  <https://github.com/batocera-linux/>
+<https://batocera.org/>  
+
+<https://github.com/batocera-linux/>
 
 <https://www.siberoloji.com/linux-from-scratch-lfs-for-beginners-a-comprehensive-guide-to-building-your-own-linux-distribution/>
