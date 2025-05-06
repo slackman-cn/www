@@ -196,18 +196,32 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#java-ide" class="nav-link">Java IDE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
 <h2 id="development">Development</h2>
-<pre><code>sudo apt install build-essential cmake meson
+<p>https://ftp.mozilla.org/pub/firefox/releases/137.0.2/linux-x86_64/en-GB/firefox-137.0.2.tar.xz</p>
+<p>https://cdn1.waterfox.net/waterfox/releases/6.5.7/Linux_x86_64/waterfox-6.5.7.tar.bz2</p>
+<pre><code>sudo apt install language-pack-en  
+sudo apt install language-pack-zh-hans
+&gt;&gt; locale -a
+&gt;&gt; cat /etc/default/locale
+
+
+sudo apt install build-essential cmake ninja-build
 sudo apt install crossbuild-essential-arm64
 
 eclipse-cpp.tar.gz
-sudo apt install qtcreator qtbase5-dev
+sudo apt install qtbase5-dev
 sudo apt install libwxgtk3.2-dev codelbocks
+sudo apt install --no-install-recommends qtcreator
 
 &gt;&gt; user-wide
 sudo apt install python3-venv
@@ -238,7 +252,6 @@ https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FantasqueSansMo
 https://rubjo.github.io/victor-mono/VictorMonoAll.zip
 $HOME/.local/share/fonts/FantasqueSansMono
 $HOME/.local/share/fonts/VictorMono
-
 </code></pre>
 <h2 id="editorconfig">EditorConfig</h2>
 <p>VSCode 需要插件，IDEA不需要</p>
@@ -249,6 +262,44 @@ root = true
 indent_style = space
 indent_size = 4
 EOF
+</code></pre>
+<h2 id="java-ide">Java IDE</h2>
+<p>https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml</p>
+<pre><code>cnki@192:~$ tail -n2 .bashrc 
+export JAVA_HOME=/opt/jdk-17
+export PATH=$JAVA_HOME/bin:$PATH
+
+// 更新时间戳
+cnki@192:~/Applications$ tar -xmf gigaideCE-242.21829.142.2.tar.gz
+~/.config/GIGAIDE
+~/.cache/GIGAIDE
+~/.local/share/GIGAIDE
+
+Create Desktop Entry
+Appearance =&gt; Use Custom Font 
+Editor =&gt; CodeStyle =&gt; Import Scheme (intellij-java-google-style.xml)
+Plugin TestMe已安装，方法名context menu
+</code></pre>
+<p>https://mvn.coderead.cn/</p>
+<pre><code>    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.test.skip&gt;true&lt;/maven.test.skip&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+            &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+            &lt;version&gt;1.5.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+            &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+            &lt;version&gt;5.10.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
 </code></pre></div>
             </div>
         </div>
