@@ -8,6 +8,12 @@ since: 202503
 
 Ubuntu Desktop (中文 + 最小安装)
 
+```
+sudo systemctl disable snapd.socket
+sudo systemctl disable snapd.seeded.service
+sudo systemctl disable snapd.service
+```
+
 Fedora Workstation 
 
 ```

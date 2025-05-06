@@ -4,7 +4,9 @@ since: 202412
 ---
 
 
-## Ubuntu Desktop (中文 + 最小安装)
+## Ubuntu Desktop 
+
+(中文 + 最小安装)
 
 https://www.brsmedia.in/how-to-disable-snap-on-ubuntu-22-04/
 ```
