@@ -46,7 +46,6 @@ https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FantasqueSansMo
 https://rubjo.github.io/victor-mono/VictorMonoAll.zip
 $HOME/.local/share/fonts/FantasqueSansMono
 $HOME/.local/share/fonts/VictorMono
-
 ```
 
 
@@ -64,3 +63,45 @@ indent_size = 4
 EOF
 ```
 
+## Java IDE
+
+https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml
+```
+cnki@192:~$ tail -n2 .bashrc 
+export JAVA_HOME=/opt/jdk-17
+export PATH=$JAVA_HOME/bin:$PATH
+
+// 更新时间戳
+cnki@192:~/Applications$ tar -xmf gigaideCE-242.21829.142.2.tar.gz
+~/.config/GIGAIDE
+~/.cache/GIGAIDE
+~/.local/share/GIGAIDE
+
+Create Desktop Entry
+Appearance => Use Custom Font 
+Editor => CodeStyle => Import Scheme (intellij-java-google-style.xml)
+Plugin TestMe已安装，方法名context menu
+```
+
+https://mvn.coderead.cn/
+```
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.2</version>
+        </dependency>
+    </dependencies>
+```
