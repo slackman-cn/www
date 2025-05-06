@@ -8,6 +8,8 @@
 185.199.109.133 assets-cdn.github.com
 185.199.110.133 assets-cdn.github.com
 185.199.111.133 assets-cdn.github.com
+44.218.189.72   quay.io
+76.76.21.21     slackman.cn  www.slackman.cn
 
 # SSH Client
 # ssh-keygen | ssh-keygen -t ed25519

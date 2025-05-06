@@ -5,13 +5,23 @@ since: 202503
 
 ## Development
 
+https://ftp.mozilla.org/pub/firefox/releases/137.0.2/linux-x86_64/en-GB/firefox-137.0.2.tar.xz
+
+https://cdn1.waterfox.net/waterfox/releases/6.5.7/Linux_x86_64/waterfox-6.5.7.tar.bz2
 ```
-sudo apt install build-essential cmake meson
+sudo apt install language-pack-en  
+sudo apt install language-pack-zh-hans
+>> locale -a
+>> cat /etc/default/locale
+
+
+sudo apt install build-essential cmake ninja-build
 sudo apt install crossbuild-essential-arm64
 
 eclipse-cpp.tar.gz
-sudo apt install qtcreator qtbase5-dev
+sudo apt install qtbase5-dev
 sudo apt install libwxgtk3.2-dev codelbocks
+sudo apt install --no-install-recommends qtcreator
 
 >> user-wide
 sudo apt install python3-venv
