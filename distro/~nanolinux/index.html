@@ -101,7 +101,7 @@
 </li>
                                     
 <li>
-    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
@@ -111,34 +111,38 @@
 <li>
     <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
+                                    
+<li>
+    <a href="../../script/14-lua/" class="dropdown-item">Lua</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-sysinit/" class="dropdown-item">系统设置</a>
+    <a href="../../setup/01-base/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-sysdev/" class="dropdown-item">系统编译环境</a>
+    <a href="../../setup/02-base-devel/" class="dropdown-item">系统开发环境</a>
 </li>
                                     
 <li>
-    <a href="../../system/03-dockerfile/" class="dropdown-item">Dockerfile</a>
+    <a href="../../setup/03-dockerfile/" class="dropdown-item">Dockerfile</a>
 </li>
                                     
 <li>
-    <a href="../../system/04-buildah/" class="dropdown-item">Buildah</a>
+    <a href="../../setup/04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="../../system/05-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../setup/05-bootcd/" class="dropdown-item">BootCD</a>
 </li>
                                     
 <li>
-    <a href="../../system/06-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../setup/06-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -183,6 +187,16 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-toolchain" class="nav-link">NanoLinux Toolchain</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-rootfs" class="nav-link">NanoLinux rootfs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#nanolinux-source" class="nav-link">NanoLinux source</a>
               <ul class="nav flex-column">
               </ul>
@@ -193,7 +207,7 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-rootfs" class="nav-link">NanoLinux rootfs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#nanolinux-rootfs_1" class="nav-link">NanoLinux rootfs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -204,6 +218,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="2"><a href="#shell-iso" class="nav-link">Shell &amp; ISO</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -229,6 +248,71 @@ $ make -j8
 Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #1 SMP Mon Apr 28 15:56:47 CST 2025
 , RO-rootFS, swap_dev 0XA, Normal VGA
 </code></pre>
+<h2 id="nanolinux-toolchain">NanoLinux Toolchain</h2>
+<p>FROM docker.io/alpine:3.11</p>
+<pre><code>======= 软件仓库
+$ less /etc/apk/repositories
+https://dl-cdn.alpinelinux.org/alpine/v3.21/main
+https://dl-cdn.alpinelinux.org/alpine/v3.21/community
+
+https://mirrors.ustc.edu.cn/alpine/v3.21/main
+https://mirrors.ustc.edu.cn/alpine/v3.21/community
+
+======= 软件
+apk list  ; all package
+apk stats ; installed package
+apk update
+apk search &lt;name&gt;
+apk add &lt;name&gt;
+apk del &lt;name&gt;
+
+apk add neovim
+alias vi='nvim'
+
+====== 设置 locale
+apk add musl-locales
+locale -a
+
+主机名
+setup-hostname liveos
+
+====== 设置 Date
+apk add -U tzdata
+ls /usr/share/zoneinfo/
+
+方式1
+setup-timezone Asia/Shanghai
+方式2
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+</code></pre>
+<h2 id="nanolinux-rootfs">NanoLinux rootfs</h2>
+<p><a href="https://buildroot.org/downloads/buildroot-2025.02.tar.gz">https://buildroot.org/downloads/buildroot-2025.02.tar.gz</a></p>
+<p><a href="https://mirrors.hust.edu.cn/docs/buildroot/">https://mirrors.hust.edu.cn/docs/buildroot/</a></p>
+<pre><code>sudo apt-get install build-essential ncurses-base ncurses-bin libncurses5-dev dialog
+
+$ make menuconfig
+$ make
+下载源码 dl  ;; 也可以执行命令 make source
+编译结果 output
+
+Target options
+        -&gt; Target Architecture = ARM (little endian)
+        -&gt; Target Binary Format = ELF
+        -&gt; Target Architecture Variant = cortex-A7
+        -&gt; Target ABI = EABIhf
+        -&gt; Floating point strategy = NEON/VFPv4
+        -&gt; ARM instruction set = ARM
+
+Toolchain
+   -&gt; Toolchain type = External toolchain
+   -&gt; Toolchain = Custom toolchain //选择用户的交叉编译器
+
+System configuration
+   -&gt; System hostname = Embedfire_imx6ull //平台名字
+   -&gt; System banner = Welcome to embedfire i.mx6ull //欢迎语
+   -&gt; Init system = BusyBox //使用 busybox
+</code></pre>
 <h2 id="nanolinux-source">NanoLinux source</h2>
 <p>wget -i wget-list</p>
 <pre><code>docker pull quay.io/slackman/openwrt-src
@@ -238,7 +322,7 @@ readlink -f /bin/sh
 $ sudo ln -sf bash /bin/sh
 $ sudo ln -sf dash /bin/sh
 
-git clone git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
+git clone -b v24.10.0 git://192.168.1.1/git.openwrt.org/openwrt/openwrt.git --depth=1
 touch feeds.conf
 src-git packages git://192.168.1.1/git.openwrt.org/feed/packages.git
 
@@ -278,7 +362,7 @@ p
 /
 w
 </code></pre>
-<h2 id="nanolinux-rootfs">NanoLinux rootfs</h2>
+<h2 id="nanolinux-rootfs_1">NanoLinux rootfs</h2>
 <pre><code>mount -t proc /proc /mnt/rootfs/proc
 mount -t sysfs /sys /mnt/rootfs/sys
 mount -o bind /dev /mnt/rootfs/dev
@@ -400,7 +484,11 @@ make isoimage FDARGS=&quot;initrd=/init.cpio&quot; FDINITRD=~/pub/init.cpio
 
 实际执行脚本
 arch/x86/boot/genimage.sh
-</code></pre></div>
+</code></pre>
+<h1 id="about-links">About Links</h1>
+<p><a href="https://classpert.com/classpertx/courses/building-a-programming-language/cohort">https://classpert.com/classpertx/courses/building-a-programming-language/cohort</a></p>
+<p><a href="https://mirrors.aliyun.com/lfs/lfs-packages/11.2">https://mirrors.aliyun.com/lfs/lfs-packages/11.2</a></p>
+<p><a href="https://tldp.org/HOWTO/From-PowerUp-To-Bash-Prompt-HOWTO.html">https://tldp.org/HOWTO/From-PowerUp-To-Bash-Prompt-HOWTO.html</a></p></div>
             </div>
         </div>
 

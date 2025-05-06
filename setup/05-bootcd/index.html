@@ -101,7 +101,7 @@
 </li>
                                     
 <li>
-    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
@@ -111,18 +111,22 @@
 <li>
     <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
+                                    
+<li>
+    <a href="../../script/14-lua/" class="dropdown-item">Lua</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-sysinit/" class="dropdown-item">系统设置</a>
+    <a href="../01-base/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../02-sysdev/" class="dropdown-item">系统编译环境</a>
+    <a href="../02-base-devel/" class="dropdown-item">系统开发环境</a>
 </li>
                                     
 <li>
@@ -130,11 +134,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Buildah</a>
+    <a href="../04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="../05-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="./" class="dropdown-item active" aria-current="page">BootCD</a>
 </li>
                                     
 <li>
@@ -146,12 +150,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../03-dockerfile/" class="nav-link">
+                                <a rel="prev" href="../04-buildah/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../05-bootcd/" class="nav-link">
+                                <a rel="next" href="../06-diskimage/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -178,23 +182,20 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">封装系统环境</a>
+            <li class="nav-item" data-bs-level="1"><a href="#bootable-cd-iso" class="nav-link">Bootable CD iso</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#example" class="nav-link">Example</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#ubuntu22" class="nav-link">Ubuntu22</a>
+            <li class="nav-item" data-bs-level="2"><a href="#grub2" class="nav-link">Grub2</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#anolis" class="nav-link">Anolis</a>
+            <li class="nav-item" data-bs-level="2"><a href="#isolinux" class="nav-link">isolinux</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#openeuler" class="nav-link">openEuler</a>
-              <ul class="nav flex-column">
               </ul>
             </li>
         </ul>
@@ -202,93 +203,100 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="_1">封装系统环境</h2>
-<p>ubuntu =&gt; ubuntu-devel</p>
-<pre><code>https://docker.aityp.com/image/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04
-swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/ubuntu:22.04-linuxarm64
+<h1 id="bootable-cd-iso">Bootable CD iso</h1>
+<p>https://github.com/syzdek/efibootiso</p>
+<pre><code>mkdir -p efibootiso
+cd efibootiso
+mkdir -p EFI/BOOT
+mkdir -p boot/grub/x86_64-efi
 
-buildah containers
-buildah images
+curl -o boot/vmlinuz \
+   https://mirrors.kernel.org/slackware/slackware64-current/kernels/huge.s/bzImage
+curl -o boot/initrd.img \
+   https://mirrors.kernel.org/slackware/slackware64-current/isolinux/initrd.img
 
-buildah from anolis  // anolis-working-container
-buildah from --name builder anolis
-删除容器(不需要关闭)
-buildah rm  $containername
-使用修改后的容器创建镜像
-buildah commit builder anolis-devel
-
-podman run -it --rm --privileged ubuntu-devel
-podman run -td --name build --privileged -v `pwd`:/build anolis
-podman exec -it build bash
+EFI/BOOT/{BOOTx64.EFI BOOTIA32.EFI}
+bootx64.efi ---------UEFI的必需引导文件
 </code></pre>
-<h2 id="ubuntu22">Ubuntu22</h2>
-<p>https://developer.aliyun.com/mirror/ubuntu</p>
-<pre><code>buildah from --name builder ubuntu
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-buildah config --env LANGUAGE=enUS:en builder
-
-buildah copy builder sources.list /etc/apt/
-
-buildah run builder apt update
-buildah run builder apt install language-pack-en  
-buildah run builder apt install build-essential
-buildah run builder apt install vim less git wget curl
-
-buildah commit builder ubuntu-devel
+<h2 id="example">Example</h2>
+<pre><code>sudo xorriso -as mkisofs \
+    --modification-date=2024122615551800\
+    --protective-msdos-label \
+    -volid &quot;ALPINE_TEAISO&quot; \
+    -appid &quot;Alpine Linux Live/Rescue Media&quot; \
+    -publisher &quot;Alpine Linux &lt;https://alpinelinux.org&gt;&quot; \
+    -preparer &quot;Prepared by TeaISO v2&quot; \
+    -r -graft-points -no-pad \
+    --sort-weight 0 / \
+    --sort-weight 1 /boot \
+    --grub2-mbr /data/isowork/boot/grub/i386-pc/boot_hybrid.img \
+    -iso_mbr_part_type 0x83 \
+    -isohybrid-gpt-basdat \
+    -partition_offset 16 \
+    -b boot/grub/i386-pc/eltorito.img \
+    -c boot.catalog \
+    -no-emul-boot -boot-load-size 4 -boot-info-table --grub2-boot-info \
+    -eltorito-alt-boot \
+    -append_partition 2 0xef /data/isowork/efi.img \
+    -append_partition 3 0x83 /data/writable.img \
+    -e --interval:appended_partition_2:all:: \
+    -no-emul-boot \
+    --mbr-force-bootable \
+    -apm-block-size 512 \
+    -partition_cyl_align off \
+    -full-iso9660-filenames \
+    -iso-level 3 -rock -joliet \
+    -o example.iso \
+    /data/isowork/
 </code></pre>
-<p>sources.list</p>
-<pre><code>====== Ubuntu22 x86
-deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
-deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+<h2 id="grub2">Grub2</h2>
+<p>makearchiso, teaiso, liveslack</p>
+<p>https://samwhelp.github.io/note-about-archlinux/read/core/iso/build-iso/start-build-arch-iso.html</p>
+<p>https://fedoraproject.org/wiki/LiveOS_image<br />
+https://www.gnu.org/software/grub/manual/legacy/Making-a-GRUB-bootable-CD_002dROM.html<br />
+https://docs.fedoraproject.org/en-US/quick-docs/grub2-bootloader/  </p>
+<p>https://github.com/nanoant/efi.git<br />
+https://mvallim.github.io/live-custom-ubuntu-from-scratch/<br />
+https://www.cnblogs.com/searchstar/p/18437677  </p>
+<h2 id="isolinux">isolinux</h2>
+<p>https://mvallim.github.io/live-custom-ubuntu-from-scratch/</p>
+<pre><code>mkdir -p image/{casper,isolinux,install}
+cp /boot/vmlinuz-**-**-generic image/casper/vmlinuz
+cp /boot/initrd.img-**-**-generic image/casper/initrd
 
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu/ jammy-updates main restricted universe multiverse
-EOF
-
-
-====== Ubuntu22 ARM
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://ports.ubuntu.com/ubuntu-ports/ jammy-updates main restricted universe multiverse
-
-cat &lt;&lt; EOF &gt; sources.list
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-security main restricted universe multiverse
-deb http://192.168.1.1:8081/repository/ubuntu-ports/ jammy-updates main restricted universe multiverse
-EOF
+sudo apt install isolinux
+sudo apt install syslinux
+cp /usr/lib/ISOLINUX/isolinux.bin image/isolinux/ 
+cp /usr/lib/syslinux/modules/bios/* image/isolinux/
 </code></pre>
-<h2 id="anolis">Anolis</h2>
-<p>https://mirrors.openanolis.cn/anolis/8.9/isos/GA/x86_64/</p>
-<pre><code>buildah from --name builder anolis
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-rpm -qa | grep glibc-langpack
-buildah run builder yum install glibc-langpack-zh -y
-buildah run builder yum install glibc-langpack-en -y
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
+<p>isolinux/isolinux.cfg</p>
+<pre><code>UI vesamenu.c32
 
-buildah commit builder anolis-devel
-</code></pre>
-<h2 id="openeuler">openEuler</h2>
-<p>https://repo.openeuler.org/openEuler-22.03-LTS-SP4/docker_img/x86_64/</p>
-<p>https://mirrors.tuna.tsinghua.edu.cn/openeuler/openEuler-22.03-LTS-SP4/</p>
-<pre><code>buildah from --name builder openeuler
-buildah config --env LANG=en_US.UTF8 builder
-buildah config --env LC_ALL=en_US.UTF8 builder
-openeuler需要安装
-buildah run builder glibc-locale-archive -y  
-buildah run builder yum install vim less git wget curl -y
-buildah run builder yum groupinstall &quot;Development Tools&quot; -y
-buildah run builder yum install rpmdevtools -y
+MENU TITLE Boot Menu
+DEFAULT linux
+TIMEOUT 600
+MENU RESOLUTION 640 480
+MENU COLOR border       30;44   #40ffffff #a0000000 std
+MENU COLOR title        1;36;44 #9033ccff #a0000000 std
+MENU COLOR sel          7;37;40 #e0ffffff #20ffffff all
+MENU COLOR unsel        37;44   #50ffffff #a0000000 std
+MENU COLOR help         37;40   #c0ffffff #a0000000 std
+MENU COLOR timeout_msg  37;40   #80ffffff #00000000 std
+MENU COLOR timeout      1;37;40 #c0ffffff #00000000 std
+MENU COLOR msg07        37;40   #90ffffff #a0000000 std
+MENU COLOR tabmsg       31;40   #30ffffff #00000000 std
 
-buildah commit builder openeuler-devel
+LABEL linux
+ MENU LABEL Try Ubuntu FS
+ MENU DEFAULT
+ KERNEL /casper/vmlinuz
+ APPEND initrd=/casper/initrd boot=casper
+
+LABEL linux
+ MENU LABEL Try Ubuntu FS (nomodeset)
+ MENU DEFAULT
+ KERNEL /casper/vmlinuz
+ APPEND initrd=/casper/initrd boot=casper nomodeset
 </code></pre></div>
             </div>
         </div>

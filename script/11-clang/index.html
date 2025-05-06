@@ -101,7 +101,7 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">C,C++,LUA</a>
+    <a href="./" class="dropdown-item active" aria-current="page">C,C++</a>
 </li>
                                     
 <li>
@@ -111,34 +111,38 @@
 <li>
     <a href="../13-ruby/" class="dropdown-item">Ruby</a>
 </li>
+                                    
+<li>
+    <a href="../14-lua/" class="dropdown-item">Lua</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../system/01-sysinit/" class="dropdown-item">系统设置</a>
+    <a href="../../setup/01-base/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="../../system/02-sysdev/" class="dropdown-item">系统编译环境</a>
+    <a href="../../setup/02-base-devel/" class="dropdown-item">系统开发环境</a>
 </li>
                                     
 <li>
-    <a href="../../system/03-dockerfile/" class="dropdown-item">Dockerfile</a>
+    <a href="../../setup/03-dockerfile/" class="dropdown-item">Dockerfile</a>
 </li>
                                     
 <li>
-    <a href="../../system/04-buildah/" class="dropdown-item">Buildah</a>
+    <a href="../../setup/04-buildah/" class="dropdown-item">Buildah</a>
 </li>
                                     
 <li>
-    <a href="../../system/05-bootcd/" class="dropdown-item">BootCD</a>
+    <a href="../../setup/05-bootcd/" class="dropdown-item">BootCD</a>
 </li>
                                     
 <li>
-    <a href="../../system/06-diskimage/" class="dropdown-item">DiskImage</a>
+    <a href="../../setup/06-diskimage/" class="dropdown-item">DiskImage</a>
 </li>
                                 </ul>
                             </li>
@@ -189,11 +193,6 @@
             </li>
             
             <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">内存分配</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">源码 Lua</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -294,30 +293,6 @@ int&amp; n2 = n;
 int n;
 cin &gt;&gt; n;
 count &lt;&lt; &quot;hello\n&quot;;
-</code></pre>
-<h2 id="lua">源码 Lua</h2>
-<pre><code>yum install lua
-/usr/bin/lua
-/usr/bin/luac
-
-$ lua -v
-$ lua
-print(1+1)
-</code></pre>
-<p>https://www.lua.org/ftp/lua-5.4.7.tar.gz</p>
-<pre><code>$ cd src
-yum install @development
-yum install readline-devel ncurses-devel
-make -j8
-
-或者 cd lua-5.4.7
-make
-make install 安装到 /usr/local
-make local   安装到 ./install
-
-==== 静态编译 (alma报错, arch成功)
-$ vim src/Makefile
-MYLDFLAGS=-static
 </code></pre></div>
             </div>
         </div>

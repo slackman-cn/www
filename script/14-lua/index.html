@@ -33,27 +33,27 @@
                                 <a href="../../linux/" class="nav-link">Linux</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
 </li>
                                     
 <li>
-    <a href="../centos/" class="dropdown-item">CentOS</a>
+    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Ubuntu</a>
+    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
 </li>
                                     
 <li>
-    <a href="../~nanolinux/" class="dropdown-item">NanoLinux</a>
+    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
 </li>
                                     
 <li>
-    <a href="../~toolchain/" class="dropdown-item">Toolchain</a>
+    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
 </li>
                                 </ul>
                             </li>
@@ -89,31 +89,31 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../script/01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
 </li>
                                     
 <li>
-    <a href="../../script/02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
 </li>
                                     
 <li>
-    <a href="../../script/11-clang/" class="dropdown-item">C,C++</a>
+    <a href="../11-clang/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
-    <a href="../../script/12-python/" class="dropdown-item">Python</a>
+    <a href="../12-python/" class="dropdown-item">Python</a>
 </li>
                                     
 <li>
-    <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
 </li>
                                     
 <li>
-    <a href="../../script/14-lua/" class="dropdown-item">Lua</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Lua</a>
 </li>
                                 </ul>
                             </li>
@@ -150,12 +150,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../centos/" class="nav-link">
+                                <a rel="prev" href="../13-ruby/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../~nanolinux/" class="nav-link">
+                                <a rel="next" href="../../setup/01-base/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -182,27 +182,32 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#ubuntu-desktop" class="nav-link">Ubuntu Desktop</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#ubuntu-server" class="nav-link">Ubuntu Server</a>
+            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">Lua 语法</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#rootfs" class="nav-link">rootfs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">执行系统命令</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#debootstrap" class="nav-link">debootstrap</a>
+            <li class="nav-item" data-bs-level="2"><a href="#function" class="nav-link">自定义模块 function</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#chroot-qemu" class="nav-link">chroot (QEMU)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#object" class="nav-link">自定义模块 object</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -211,117 +216,150 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="ubuntu-desktop">Ubuntu Desktop</h2>
-<p>(中文 + 最小安装)</p>
-<p>https://www.brsmedia.in/how-to-disable-snap-on-ubuntu-22-04/</p>
-<pre><code>sudo systemctl set-default graphical.target  
-sudo systemctl set-default multi-user.target  
+<h2 id="install">Install</h2>
+<pre><code>$ yum install lua
+$ sudo apt install lua5.3
+/usr/bin/lua
+/usr/bin/luac
 
-sudo systemctl disable snapd.socket
-sudo systemctl disable snapd.seeded.service
-sudo systemctl disable snapd.service
+$ lua -v
+$ lua
+print(1+1)
 
-Firefox 会使用 snap仓库
-https://ftp.mozilla.org/pub/firefox/releases/137.0.2/linux-x86_64/en-GB/firefox-137.0.2.tar.xz
-ln -s /opt/firefox/firefox /usr/bin/firefox
-
-离线安装 VSCode, 不能root运行; 切换到user, 执行startx, 初始设置，打开命令行执行code
-
-apt-get install --no-install-recommends &lt;xxx&gt;
-apt-cache show ubuntu-desktop | grep &quot;Depends&quot;
-apt-cache show ubuntu-desktop | grep &quot;Recommends&quot;
+$ ldd /usr/local/bin/lua
+        linux-vdso.so.1 (0x00007fff2eb34000)
+        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f83d3087000)
+        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f83d2e5e000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f83d31b9000)
 </code></pre>
-<h2 id="ubuntu-server">Ubuntu Server</h2>
-<pre><code>非常多, 都会安装snap firefox
-sudo apt install ubuntu-gnome-desktop
-sudo apt install task-lxqt-desktop
-sudo apt install lxqt
-sudo apt install lubuntu-desktop
+<p><a href="https://www.lua.org/ftp/lua-5.4.7.tar.gz">https://www.lua.org/ftp/lua-5.4.7.tar.gz</a></p>
+<pre><code>yum install @development
+yum install readline-devel ncurses-devel
+sudo apt install build-essential cpp make binutils
 
-//sudo dpkg-reconfigure sddm
+$ make linux
+$ make test
+$ make install  
+// make install local
+// make install INSTALL_TOP=/opt/lua
+make
+make install        安装到 /usr/local
+make install local  安装到 ./install
 
-最小安装 (有设置，有壁纸，有文件管理器) 
-sudo apt install --no-install-recommends ubuntu-desktop-minimal // 没有网络管理器，联网报错
-sudo apt install ubuntu-desktop-minimal     // 网络正常，正常安装页面
+编译结果  /usr/local/{bin,include,lib,man}
+TO_BIN= lua luac
+TO_INC= lua.h luaconf.h lualib.h lauxlib.h lua.hpp
+TO_LIB= liblua.a
+TO_MAN= lua.1 luac.1
 
-最小安装 (有设置，没有壁纸)
-sudo apt install gnome-session gnome-terminal 
-
-
--------------------- On Ubuntu -------------------- 
-//sudo apt install lxqt sddm
-sudo apt --no-install-recommends install lxqt
-sudo apt install sddm
- apt info lxqt-system-theme
-sudo apt install papirus-icon-theme // 解决 icon 不显示问题
-&gt;&gt; lxqt-about
-&gt;&gt; lxqt-config
-&gt;&gt; lxqt-config-appearance  // 方法2，解决 icon 不显示问题
-sudo apt purge lxqt sddm
-sudo apt autoremove
-
--------------------- On Fedora -------------------- 
-dnf install @lxqt
-dnf remove @lxqt
+==== 静态编译 (alma报错, arch成功)
+$ vim src/Makefile
+MYLDFLAGS=-static
 </code></pre>
-<p>i3 基于x11 (包含很多软件)</p>
-<pre><code>sudo apt install i3
-dpkg -l | grep x11-xserver-utils
+<h2 id="lua">Lua 语法</h2>
+<pre><code>区分大小写
 
-初始设置
-mkdir -p ~/.config/i3
-cp /etc/i3/config ~/.config/i3/
-
-sudo apt install xserver-xorg xinit
-startx
-
-======= i3 命令
-Alt + Enter     打开命令行
-Alt + Shift + Q 关闭
 </code></pre>
-<p>Hypyland 基于 xwayland  (安装很多开发环境gcc,cmake,golang,qt,gtk, github仓库)</p>
-<pre><code>不能root运行
-git clone -b 24.04 --depth=1  https://github.com/JaKooLit/Ubuntu-Hyprland.git ~/Ubuntu-Hyprland-24.04
-./install.sh
+<h2 id="_1">执行系统命令</h2>
+<pre><code>Lua有两种执行系统命令的方法：os.execute, io.popen
+
+os.execute 返回的是命令执行的状态，一共返回3个值。
+第一个值是true或nil, true表示命令成功执行完，否则返回nil。
+第二个值是exit时，表示正常终止，第三个值表示退出的状态码。
+第二个值是signal时，表示信号终止，第三个值表示终止的信号。
+
+&gt; os.execute(&quot;pwd&quot;)
+true exit 0
+&gt; os.execute(&quot;pwdx&quot;)
+nil exit 127
+
+io.popen 启动一个新进程执行命令，并返回一个文件句柄，可以使用该文件句柄读取返回的数据。
+例如,或通过这个方法获得文件列表
+local f = io.popen(&quot;ls&quot;)
+print(f:read(&quot;*a&quot;))
 </code></pre>
-<h2 id="rootfs">rootfs</h2>
-<pre><code>ubuntu-base-22.04-base-amd64.tar.gz
-https://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/
-https://mirrors.ustc.edu.cn/ubuntu-cdimage/ubuntu-base/releases/
+<h2 id="function">自定义模块 function</h2>
+<pre><code>LOG = require('log')
+print(LOG)
+LOG()
 
-AnolisOS8.9-base-amd64-20240425.tar.xz
-https://cr-images-pub.oss-cn-hangzhou.aliyuncs.com/root/base/
+------- 导出函数 log.lua
+local function log(self)
+    print('hello log')
+end
+
+return log
 </code></pre>
-<h2 id="debootstrap">debootstrap</h2>
-<pre><code>sudo apt install debootstrap
-sudo debootstrap --help
-ls -lh /usr/share/debootstrap/scripts  都是链接
+<h2 id="object">自定义模块 object</h2>
+<pre><code>logging = require('logging')
+logging.msg()
 
-debootstrap --arch $ARCH $RELEASE  $DIR $MIRROR
-debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
-debootstrap --include linux-image-amd64,locales,grub-efi-amd64,vim,btrfs-progs,sudo --arch amd64 sid /mnt/rootfs http://mirrors.163.com/debian/
+local logger = logging.file(&quot;test%s.log&quot;, &quot;%Y-%m-%d&quot;)
 
-sudo debootstrap --arch=mips buster /mnt/rootfs
-sudo debootstrap --variant=minbase --no-check-gpg --arch=amd64 
-sudo debootstrap --components main,universe,multiverse,restricted --variant minbase \
- --include libc6,kysec-utils --exclude bash --no-check-gpg
 
-$ cd /mnt/rootfs
-$ sudo tar -czf /tmp/debian-sid-rootfs.tar.xz  .
-$ sudo tar -xf rootfs.tar.xz -C &lt;exampledir&gt;
+5.2 版本之后，require 不再定义全局变量，需要保存其返回值。
+$ require &quot;luasql.mysql&quot;
+需要写成:
+$ luasql = require &quot;luasql.mysql&quot;
+
+------- 导出对象 logging.lua
+local logging =  {}
+logging._VERSION = &quot;1.0&quot;
+
+function logging.msg()
+    print('hello logging: ', logging._VERSION)
+end
+
+if _VERSION &lt; 'Lua 5.2' then
+    _G.logging = logging
+end
+
+return logging
 </code></pre>
-<h2 id="chroot-qemu">chroot (QEMU)</h2>
-<p>https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs#remove-support-files-from-rootfs
-https://www.ddupan.top/posts/chroot-to-a-different-arch-in-linux/</p>
-<pre><code>$ sudo apt install qemu-user-static
-$ sudo apt install binfmt-support
+<p>加载路径</p>
+<pre><code>export LUA_PATH=$PWD/scripts/
+export LUA_PATH='/opt/lua;;'    # 原来的默认路径，里面没用文件
 
-sudo debootstrap --arch arm64 --foreign buster /mnt/buster-arm64 http://mirrors.163.com/debian/
-sudo cp /usr/bin/qemu-aarch64-static buster-arm64/usr/bin/
-sudo cp /etc/resolv.conf buster-arm64/etc/
 
-$ sudo chroot /mnt/buster-arm64/
-</code></pre></div>
+lua: ./hello.lua:5: module 'logging' not found:
+        no field package.preload['logging']
+        no file '/usr/local/share/lua/5.4/logging.lua'
+        no file '/usr/local/share/lua/5.4/logging/init.lua'
+        no file '/usr/local/lib/lua/5.4/logging.lua'
+        no file '/usr/local/lib/lua/5.4/logging/init.lua'
+        no file './logging.lua'
+        no file './logging/init.lua'
+        no file '/usr/local/lib/lua/5.4/logging.so'
+        no file '/usr/local/lib/lua/5.4/loadall.so'
+        no file './logging.so'
+stack traceback:
+        [C]: in function 'require'
+        ./hello.lua:5: in main chunk
+        [C]: in ?
+
+root@a09a0cb548d3:~# export LUA_PATH=/opt/lua
+root@a09a0cb548d3:~# ./hello.lua
+hello
+lua: ./hello.lua:5: module 'logging' not found:
+        no field package.preload['logging']
+        no file '/opt/lua'
+        no file '/usr/local/lib/lua/5.4/logging.so'
+        no file '/usr/local/lib/lua/5.4/loadall.so'
+        no file './logging.so'
+stack traceback:
+        [C]: in function 'require'
+        ./hello.lua:5: in main chunk
+        [C]: in ?
+</code></pre>
+<h1 id="about-links">About Links</h1>
+<p><a href="https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/">https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/</a></p>
+<p><strong>LOG</strong></p>
+<p><a href="https://codeberg.org/imo/log.lua">https://codeberg.org/imo/log.lua</a></p>
+<p><a href="https://github.com/lunarmodules/lualogging.git">https://github.com/lunarmodules/lualogging.git</a></p>
+<p><strong>Exec</strong></p>
+<p><a href="https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/">https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/</a></p>
+<p><a href="https://luabyexample.techplexlabs.com/execing-processes/">https://luabyexample.techplexlabs.com/execing-processes/</a></p>
+<p><a href="https://github.com/GUI/lua-shell-games.git">https://github.com/GUI/lua-shell-games.git</a></p></div>
             </div>
         </div>
 

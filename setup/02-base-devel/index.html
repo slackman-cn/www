@@ -101,7 +101,7 @@
 </li>
                                     
 <li>
-    <a href="../../script/11-clang/" class="dropdown-item">C,C++,LUA</a>
+    <a href="../../script/11-clang/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
@@ -111,18 +111,22 @@
 <li>
     <a href="../../script/13-ruby/" class="dropdown-item">Ruby</a>
 </li>
+                                    
+<li>
+    <a href="../../script/14-lua/" class="dropdown-item">Lua</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">System</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-sysinit/" class="dropdown-item">系统设置</a>
+    <a href="../01-base/" class="dropdown-item">系统设置</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">系统编译环境</a>
+    <a href="./" class="dropdown-item active" aria-current="page">系统开发环境</a>
 </li>
                                     
 <li>
@@ -146,7 +150,7 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../01-sysinit/" class="nav-link">
+                                <a rel="prev" href="../01-base/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -187,6 +191,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#editorconfig" class="nav-link">EditorConfig</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -213,9 +222,33 @@ if has('mouse')
 endif
 
 &gt;&gt; fc-list | grep JetBrains
+&gt;&gt; fc-cache -v
+
 https://www.jetbrains.com/lp/mono/
 sudo unzip JetBrainsMono-2.304.zip -d /usr/local/share/fonts/JetBrains-Mono
 'Jetbrains Mono', 'Droid Sans Mono', 'monospace', monospace
+
+# jetbrains nerd font. Necessary for waybar
+https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz
+mkdir -p ~/.local/share/fonts/JetBrainsMonoNerd
+tar -xJkf JetBrainsMono.tar.xz -C ~/.local/share/fonts/JetBrainsMonoNerd
+
+# Fantasque Mono Nerd Font
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FantasqueSansMono.zip
+https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+$HOME/.local/share/fonts/FantasqueSansMono
+$HOME/.local/share/fonts/VictorMono
+
+</code></pre>
+<h2 id="editorconfig">EditorConfig</h2>
+<p>VSCode 需要插件，IDEA不需要</p>
+<p>https://editorconfig.org/</p>
+<pre><code>cat &lt;&lt; EOF &gt; .editorconfig
+root = true
+[*]
+indent_style = space
+indent_size = 4
+EOF
 </code></pre></div>
             </div>
         </div>
