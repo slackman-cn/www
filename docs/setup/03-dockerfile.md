@@ -72,7 +72,7 @@ jobs:
 ```
 
 
-## Anolis
+## Anolis rootfs
 
 ```
 FROM scratch
@@ -90,9 +90,51 @@ ENV TZ=Asia/Shanghai
 CMD ["/bin/bash"]
 ```
 
-## Ubuntu
+## Ubuntu rootfs
 
 http://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/
+
+```
+FROM scratch
+LABEL \
+    org.opencontainers.image.title="Ubuntu 22.04 LTS (Jammy Jellyfish)" \
+    org.opencontainers.image.release="jammy" \
+    org.opencontainers.image.architecture="amd64" \
+    org.opencontainers.image.variant="default" \
+    org.opencontainers.image.created="20250320" \
+    maintainer="localhost"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Asia/Shanghai \
+    LANG=en_US.UTF8 \
+    LC_ALL=en_US.UTF8 \
+    LANGUAGE=enUS:en
+
+ADD ubuntu-base-22.04-base-amd64.tar.gz /
+ADD sources.list /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y --no-install-recommends tzdata language-pack-en \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    && echo $TZ > /etc/timezone \
+    && dpkg-reconfigure -f noninteractive tzdata
+
+RUN apt-get update && apt-get install -y \
+    build-essential less wget curl file \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+CMD ["/bin/bash"]
+```
+
+sources.list
+```
+deb http://192.168.1.99:8081/repository/ubuntu/ jammy main restricted universe multiverse
+deb http://192.168.1.99:8081/repository/ubuntu/ jammy-security main restricted universe multiverse
+deb http://192.168.1.99:8081/repository/ubuntu/ jammy-updates main restricted universe multiverse
+```
+
+
+linux/amd64
 ```
 FROM scratch
 LABEL \
@@ -203,6 +245,39 @@ RUN apt-get install -y language-pack-en \
 CMD ["/bin/bash"]
 ```
 
+## FROM Fedora
+
+```
+FROM quay.io/fedora/fedora:41
+LABEL \
+    org.opencontainers.image.title="Fedora OS 41" \
+    org.opencontainers.image.release="fc41" \
+    org.opencontainers.image.architecture="amd64" \
+    org.opencontainers.image.variant="default" \
+    org.opencontainers.image.created="20250320" \
+    maintainer="localhost"
+
+ENV TZ=Asia/Shanghai \
+    LANG=en_US.UTF8 \
+    LC_ALL=en_US.UTF8 \
+    LANGUAGE=enUS:en
+
+# base
+ADD http://mirrors.aliyun.com/repo/fedora.repo /etc/yum.repos.d/aliyun.repo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    && echo $TZ > /etc/timezone \
+    && find /etc/yum.repos.d -name "fedora*" | sed -e 'p;s/repo$/repo.disable/' | xargs -n2 mv \
+    && yum install -y glibc-langpack-zh glibc-langpack-en
+
+
+# base-devel
+RUN dnf install @development-tools cmake ninja-build clang -y \
+    && yum install less wget curl file -y \
+    && yum clean all && rm -rf /var/cache/yum/*
+
+CMD ["/bin/bash"]
+```
+
 
 ## FROM Alpine
 
@@ -223,10 +298,14 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANGUAGE=enUS:en
 
 ADD repositories /etc/apk/repositories
+#RUN apk update && apk add  musl-locales tzdata \
+#    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+#    && echo $TZ > /etc/timezone \
+#    && apk --no-cache add build-base cmake clang clang-dev make gcc g++ libc-dev linux-headers
 RUN apk update && apk add  musl-locales tzdata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
     && echo $TZ > /etc/timezone \
-    && apk --no-cache add build-base cmake clang clang-dev make gcc g++ libc-dev linux-headers
+    && apk add build-base
 
 RUN apk add argp-standalone asciidoc bash bc binutils bzip2 cdrkit coreutils \
   diffutils elfutils-dev findutils flex musl-fts-dev g++ gawk gcc gettext git \
@@ -236,6 +315,13 @@ RUN apk add argp-standalone asciidoc bash bc binutils bzip2 cdrkit coreutils \
 
 CMD ["/bin/ash"]
 ```
+
+repositories
+```
+https://mirrors.ustc.edu.cn/alpine/v3.21/main
+https://mirrors.ustc.edu.cn/alpine/v3.21/community
+```
+
 
 
 # About Links

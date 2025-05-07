@@ -292,3 +292,11 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 https://developer.aliyun.com/article/695874  
 https://www.cnblogs.com/johnnyzen/p/17805510.html  
 ```
+
+
+## Rsync
+
+```
+rsync --progress --delete -lprtvvz  rsync://rsync.mirrors.ustc.edu.cn/alpine/v3.22/main/x86_64 .
+rsync --progress --delete -lprtvvz  rsync://rsync.mirrors.ustc.edu.cn/slackware/slackware64-current .
+```
