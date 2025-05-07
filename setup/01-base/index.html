@@ -211,6 +211,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#rsync" class="nav-link">Rsync</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -457,6 +462,10 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 <p>参考</p>
 <pre><code>https://developer.aliyun.com/article/695874  
 https://www.cnblogs.com/johnnyzen/p/17805510.html  
+</code></pre>
+<h2 id="rsync">Rsync</h2>
+<pre><code>rsync --progress --delete -lprtvvz  rsync://rsync.mirrors.ustc.edu.cn/alpine/v3.22/main/x86_64 .
+rsync --progress --delete -lprtvvz  rsync://rsync.mirrors.ustc.edu.cn/slackware/slackware64-current .
 </code></pre></div>
             </div>
         </div>
