@@ -25,6 +25,67 @@ Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #
 , RO-rootFS, swap_dev 0XA, Normal VGA
 ```
 
+## toolchain
+
+https://crosstool-ng.github.io/docs/toolchain-construction/
+
+https://chschneider.eu/linux/tfs/
+
+## makepkg
+
+slackware && openwrt/toolchain
+```
+slackware64-current/source/a/pkgtools/scripts
+slackware64-current/source/d/binutils
+
+> Applications
+> ApplicationImages
+> Frameworks
+> Library {shell, desktop, openssh}  pkglist;pkgmake
+> Images
+> User { config; local; }
+
+引导Kernel
+运行Kernel
+
+
+proc
+sys
+dev/pts
+
+mount -t sysfs sysfs /sys
+mount -t proc proc /proc
+mount -p devtmpfs udev /dev
+
+mount -t proc /proc /mnt/rootfs/proc
+mount -t sysfs /sys /mnt/rootfs/sys
+mount -o bind /dev /mnt/rootfs/dev
+mount -o bind /dev/pts /mnt/rootfs/dev/pts
+
+etc
+var
+opt
+tmp
+
+------- Applications
+busybox
+google-chrome
+vim
+nano-editor
+qtcreator
+
+------- Frameworks  
+(/usr/local/go;  /usr/local/node)
+kernel
+java
+ruby
+node
+make -> gcc toolchain
+toolchain (gnu)
+python
+lua
+```
+
 ## NanoLinux Toolchain
 
 FROM docker.io/alpine:3.11

@@ -12,6 +12,10 @@ Ubuntu Desktop (中文 + 最小安装)
 sudo systemctl disable snapd.socket
 sudo systemctl disable snapd.seeded.service
 sudo systemctl disable snapd.service
+
+
+sudo apt install gnome-backgrounds
+/usr/share/backgrounds/gnome/adwaita-d.jpg
 ```
 
 Fedora Workstation 

@@ -1,0 +1,30 @@
+RUBY_BUILD="v20250409"
+RUBY_TAG="3.3.8"
+
+# Install Ruby
+apt-get install --yes \
+   autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+git clone https://github.com/rbenv/ruby-build.git /build/ruby-build  --depth 1 -b "${RUBY_BUILD}"
+
+PREFIX=/usr/local/ruby-build ./ruby-build/install.sh
+ruby-build --list
+ruby-build ${RUBY_TAG} /usr/local/ruby
+
+$ ruby --version
+ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux]
+
+$ bundle --version
+Bundler version 2.5.22
+
+$ rake --version
+rake, version 13.1.0
+
+
+# Deploy
+$ bundle init
+$ bundle add sinatra
+$ bundle add rackup puma
+
+$ bundle install
+$ rackup  // 默认端口9292
+$ rackup config.ru --port=8080

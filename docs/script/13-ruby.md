@@ -25,6 +25,104 @@ gem sources --remove https://rubygems.org/
 gem sources -a https://mirrors.aliyun.com/rubygems/
 ```
 
+source
+```
+RUBY_BUILD="v20250409"
+RUBY_TAG="3.3.8"
+
+# Install Ruby
+apt-get install --yes \
+   autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+git clone https://github.com/rbenv/ruby-build.git /build/ruby-build  --depth 1 -b "${RUBY_BUILD}"
+
+PREFIX=/usr/local/ruby-build ./ruby-build/install.sh
+ruby-build --list
+ruby-build ${RUBY_TAG} /usr/local/ruby
+
+$ ruby --version
+ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux]
+
+$ bundle --version
+Bundler version 2.5.22
+
+$ rake --version
+rake, version 13.1.0
+
+$ gem list | wc -l
+86
+```
+
+## HelloWorld
+
+```
+class Person
+  # 静态变量
+  @@cnt = 1
+
+  # 属性，实例变量
+  attr_accessor :name, :age
+
+  # 初始化方法
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  # 定义方法
+  def greet
+    "My name is #{@name} and I am #{@age} years old."
+  end
+end
+
+person = Person.new("Alice", 30)
+puts person.greet
+```
+
+## HelloWorld WEB (sinatra)
+
+rails 非常复杂，不适合小项目
+```
+$ gem install sinatra
+$ gem install rackup puma
+$ ruby app.rb
+$ curl localhost:4567
+$ 静态文件从 ./public 目录提供服务
+$ 文件 ./public/css/style.css 作为 http://example.com/css/style.css
+
+======= touch app.rb
+require 'sinatra'
+
+get '/' do
+  'Hello world!'
+end
+```
+
+生产环境
+```
+$ bundle install
+$ rackup  // 默认端口9292
+$ rackup config.ru --port=8080
+
+docker.image('ruby:2.6').withRun('-v $(pwd):/app -w /app') { c ->
+    sh 'bundle install'
+    sh 'rake test'
+}
+
+========= 创建 Gemfile
+$ bundle init
+$ bundle add sinatra
+$ bundle add rackup puma
+
+========= 创建 config.ru
+require 'rubygems'
+require 'bundler'
+Bundler.require
+
+require './app'
+run Sinatra::Application
+
+```
+
 
 ## Ruby 语法
 
@@ -240,3 +338,10 @@ ensure
   puts "finally" # 无论是否发生异常
 end
 ```
+
+
+## About Links
+
+https://sinatra.ruby-lang.com.cn/intro.html
+
+https://qiita.com/Alt70155/items/3965b4a9889698579df4
