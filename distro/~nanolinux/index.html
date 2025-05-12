@@ -187,6 +187,16 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#toolchain" class="nav-link">toolchain</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#makepkg" class="nav-link">makepkg</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#nanolinux-toolchain" class="nav-link">NanoLinux Toolchain</a>
               <ul class="nav flex-column">
               </ul>
@@ -247,6 +257,61 @@ $ make -j8
 编译结果 arch/x86/boot/bzImage
 Linux kernel x86 boot executable bzImage, version 5.15.165 (root@4b44b9573558) #1 SMP Mon Apr 28 15:56:47 CST 2025
 , RO-rootFS, swap_dev 0XA, Normal VGA
+</code></pre>
+<h2 id="toolchain">toolchain</h2>
+<p>https://crosstool-ng.github.io/docs/toolchain-construction/</p>
+<p>https://chschneider.eu/linux/tfs/</p>
+<h2 id="makepkg">makepkg</h2>
+<p>slackware &amp;&amp; openwrt/toolchain</p>
+<pre><code>slackware64-current/source/a/pkgtools/scripts
+slackware64-current/source/d/binutils
+
+&gt; Applications
+&gt; ApplicationImages
+&gt; Frameworks
+&gt; Library {shell, desktop, openssh}  pkglist;pkgmake
+&gt; Images
+&gt; User { config; local; }
+
+引导Kernel
+运行Kernel
+
+
+proc
+sys
+dev/pts
+
+mount -t sysfs sysfs /sys
+mount -t proc proc /proc
+mount -p devtmpfs udev /dev
+
+mount -t proc /proc /mnt/rootfs/proc
+mount -t sysfs /sys /mnt/rootfs/sys
+mount -o bind /dev /mnt/rootfs/dev
+mount -o bind /dev/pts /mnt/rootfs/dev/pts
+
+etc
+var
+opt
+tmp
+
+------- Applications
+busybox
+google-chrome
+vim
+nano-editor
+qtcreator
+
+------- Frameworks  
+(/usr/local/go;  /usr/local/node)
+kernel
+java
+ruby
+node
+make -&gt; gcc toolchain
+toolchain (gnu)
+python
+lua
 </code></pre>
 <h2 id="nanolinux-toolchain">NanoLinux Toolchain</h2>
 <p>FROM docker.io/alpine:3.11</p>

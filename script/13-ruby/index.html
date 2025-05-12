@@ -187,6 +187,16 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#helloworld" class="nav-link">HelloWorld</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#helloworld-web-sinatra" class="nav-link">HelloWorld WEB (sinatra)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#ruby" class="nav-link">Ruby 语法</a>
               <ul class="nav flex-column">
               </ul>
@@ -208,6 +218,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">异常</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -234,6 +249,94 @@ https://rubygems.org/
 ===== 国内源
 gem sources --remove https://rubygems.org/
 gem sources -a https://mirrors.aliyun.com/rubygems/
+</code></pre>
+<p>source</p>
+<pre><code>RUBY_BUILD=&quot;v20250409&quot;
+RUBY_TAG=&quot;3.3.8&quot;
+
+# Install Ruby
+apt-get install --yes \
+   autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+git clone https://github.com/rbenv/ruby-build.git /build/ruby-build  --depth 1 -b &quot;${RUBY_BUILD}&quot;
+
+PREFIX=/usr/local/ruby-build ./ruby-build/install.sh
+ruby-build --list
+ruby-build ${RUBY_TAG} /usr/local/ruby
+
+$ ruby --version
+ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux]
+
+$ bundle --version
+Bundler version 2.5.22
+
+$ rake --version
+rake, version 13.1.0
+
+$ gem list | wc -l
+86
+</code></pre>
+<h2 id="helloworld">HelloWorld</h2>
+<pre><code>class Person
+  # 静态变量
+  @@cnt = 1
+
+  # 属性，实例变量
+  attr_accessor :name, :age
+
+  # 初始化方法
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  # 定义方法
+  def greet
+    &quot;My name is #{@name} and I am #{@age} years old.&quot;
+  end
+end
+
+person = Person.new(&quot;Alice&quot;, 30)
+puts person.greet
+</code></pre>
+<h2 id="helloworld-web-sinatra">HelloWorld WEB (sinatra)</h2>
+<p>rails 非常复杂，不适合小项目</p>
+<pre><code>$ gem install sinatra
+$ gem install rackup puma
+$ ruby app.rb
+$ curl localhost:4567
+$ 静态文件从 ./public 目录提供服务
+$ 文件 ./public/css/style.css 作为 http://example.com/css/style.css
+
+======= touch app.rb
+require 'sinatra'
+
+get '/' do
+  'Hello world!'
+end
+</code></pre>
+<p>生产环境</p>
+<pre><code>$ bundle install
+$ rackup  // 默认端口9292
+$ rackup config.ru --port=8080
+
+docker.image('ruby:2.6').withRun('-v $(pwd):/app -w /app') { c -&gt;
+    sh 'bundle install'
+    sh 'rake test'
+}
+
+========= 创建 Gemfile
+$ bundle init
+$ bundle add sinatra
+$ bundle add rackup puma
+
+========= 创建 config.ru
+require 'rubygems'
+require 'bundler'
+Bundler.require
+
+require './app'
+run Sinatra::Application
+
 </code></pre>
 <h2 id="ruby">Ruby 语法</h2>
 <pre><code>print &quot;Hello world!\n&quot;
@@ -433,7 +536,10 @@ rescue =&gt; ex
 ensure
   puts &quot;finally&quot; # 无论是否发生异常
 end
-</code></pre></div>
+</code></pre>
+<h2 id="about-links">About Links</h2>
+<p>https://sinatra.ruby-lang.com.cn/intro.html</p>
+<p>https://qiita.com/Alt70155/items/3965b4a9889698579df4</p></div>
             </div>
         </div>
 
