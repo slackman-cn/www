@@ -1,5 +1,5 @@
 ---
-title: NanoLinux
+title: TinyLinux
 since: 202505
 ---
 
