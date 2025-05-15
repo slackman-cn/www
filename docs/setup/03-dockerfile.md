@@ -11,6 +11,23 @@ Virtual Machine 运行的是完整的操作系统（包括内核），因此需�
 
 ![LICENSE](../img/virtual-machine-diagram.svg)
 
+
+## docker.io 和 docker-ce
+
+Docker.io 是由Debian团队维护的Docker版本，
+
+Docker CE（Docker Community Edition）是Docker官方维护的版本, 需要添加仓库，添加GPG密钥
+```
+apt-get install --no-install-recommends --yes --force-yes apparmor docker.io wget
+
+systemctl start apparmor
+systemctl stop docker.service
+systemctl stop docker.socket
+systemctl start docker
+
+docker pull busybox:latest
+```
+
 ## Docker buildx
 
 

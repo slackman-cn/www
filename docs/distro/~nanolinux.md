@@ -6,6 +6,14 @@ since: 202505
 FROM:  NanoPi R5S,  GNU nano editor, iPod nano 
 
 
+## TMPFS
+
+```
+mkdir /root/build
+mount -t tmpfs tmpfs /root/build -o size=6G,nr_inodes=10000000
+```
+
+
 ## Kernel
 
 <https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz>
