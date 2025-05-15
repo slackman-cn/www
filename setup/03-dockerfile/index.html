@@ -186,6 +186,11 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-bs-level="2"><a href="#dockerio-docker-ce" class="nav-link">docker.io 和 docker-ce</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#docker-buildx" class="nav-link">Docker buildx</a>
               <ul class="nav flex-column">
               </ul>
@@ -234,6 +239,18 @@
 <p><img alt="LICENSE" src="../../img/container-diagram.svg" /></p>
 <p>Virtual Machine 运行的是完整的操作系统（包括内核），因此需要更多的系统资源（CPU、内存和存储）</p>
 <p><img alt="LICENSE" src="../../img/virtual-machine-diagram.svg" /></p>
+<h2 id="dockerio-docker-ce">docker.io 和 docker-ce</h2>
+<p>Docker.io 是由Debian团队维护的Docker版本，</p>
+<p>Docker CE（Docker Community Edition）是Docker官方维护的版本, 需要添加仓库，添加GPG密钥</p>
+<pre><code>apt-get install --no-install-recommends --yes --force-yes apparmor docker.io wget
+
+systemctl start apparmor
+systemctl stop docker.service
+systemctl stop docker.socket
+systemctl start docker
+
+docker pull busybox:latest
+</code></pre>
 <h2 id="docker-buildx">Docker buildx</h2>
 <p>19.03+ 版本开始可以使用 docker buildx build 命令利用 BuildKit 构建镜像</p>
 <pre><code># build x64

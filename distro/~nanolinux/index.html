@@ -186,6 +186,11 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-bs-level="2"><a href="#tmpfs" class="nav-link">TMPFS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#kernel" class="nav-link">Kernel</a>
               <ul class="nav flex-column">
               </ul>
@@ -236,6 +241,10 @@
                     <div class="col-md-9" role="main">
 
 <p>FROM:  NanoPi R5S,  GNU nano editor, iPod nano </p>
+<h2 id="tmpfs">TMPFS</h2>
+<pre><code>mkdir /root/build
+mount -t tmpfs tmpfs /root/build -o size=6G,nr_inodes=10000000
+</code></pre>
 <h2 id="kernel">Kernel</h2>
 <p><a href="https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz">https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.165.tar.xz</a></p>
 <pre><code>// sudo apt build-dep linux-image-amd64
