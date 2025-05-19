@@ -124,7 +124,7 @@ $ sudo tar -xf rootfs.tar.xz -C <exampledir>
 ```
 
 
-## chroot (QEMU)
+chroot (QEMU)
 
 https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs#remove-support-files-from-rootfs
 https://www.ddupan.top/posts/chroot-to-a-different-arch-in-linux/
@@ -137,4 +137,88 @@ sudo cp /usr/bin/qemu-aarch64-static buster-arm64/usr/bin/
 sudo cp /etc/resolv.conf buster-arm64/etc/
 
 $ sudo chroot /mnt/buster-arm64/
+```
+
+
+## Live CD
+
+```
+sudo apt install live-build  版本号1.20230502
+sudo apt install debootstrap
+
+sudo mkdir /mnt/live  && cd 
+sudo lb config
+sudo lb build
+
+sudo  lb config --distribution bookworm \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --mirror-binary https://mirrors.163.com/debian \
+  --mirror-binary-security https://mirrors.163.com/debian-security \
+  --mirror-bootstrap https://mirrors.163.com/debian \
+  --mirror-chroot https://mirrors.163.com/debian \
+  --mirror-chroot-security https://mirrors.163.com/debian-security \
+  --mirror-debian-installer https://mirrors.163.com/debian
+
+最终生成 live-image-amd64.hybrid.iso  (总共284 packages)
+默认用户”user“密码”live“
+默认 main https://deb.debian.org/debian  
+完整系统 
+deb http://mirrors/ustc.edu.cn/debian bookworm  main contrib non-free non-free-firmware
+deb http://mirrors/ustc.edu.cn/debian bookworm-updates  main contrib non-free non-free-firmware
+
+选择ISO混合镜像
+lb config --binary-images iso-hybrid --architecture amd64 --distribution sid --boot-loaders syslinux
+```
+
+Debian-XFCE
+```
+cd /mnt/live-xfce
+sudo lb config --distribution bookworm \
+  --debian-installer live \
+  --debian-installer-gui true \
+  --iso-application "DebianXfce" \
+  --iso-publisher "DebianXfce Project" \
+  --iso-volume "DebianXfce Live" \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --security false \
+  --mirror-binary https://mirrors.163.com/debian \
+  --mirror-bootstrap https://mirrors.163.com/debian \
+  --mirror-chroot https://mirrors.163.com/debian \
+  --mirror-debian-installer https://mirrors.163.com/debian
+
+$ dpkg -l | wc -l
+288
+
+重命名
+DebianXfce-live-12.7-amd64-20230502.iso
+
+(fcitx不显示zh选项，应该是fcitx5-chinese-addons， 而且系统是英文)
+
+----- conf/package-lists/application.list.chroot    (1.63 GB  安装包823)
+(没有build-essential, 没有xfce-terminal[uterm代替], 没有dock,  没有mousepad editor)
+xfce4
+firefox-esr
+vim
+git
+wget
+rsync
+fcitx5
+
+---- conf/package-lists/application.list.chroot  (2.06 GB  安装包1363)
+(没有build-essential, 有一套libreoffice, 有xfce-terminal, 有dock, 有mousepad)
+task-xfce-desktop  (软件数量太夸张了，尽量不要用这个)
+firefox-esr
+vim
+git
+wget
+rsync
+fcitx5
+
+--mirror-binary：定义 Live 系统用户使用的软件源镜像，配置在最终的二进制映像中。
+--mirror-binary-security：定义 Live 系统用户使用的安全更新软件源镜像，配置在最终的二进制映像中。
+
+--mirror-bootstrap：定义构建过程中 bootstrap 阶段使用的软件源镜像。
+--mirror-chroot：定义构建过程中 chroot 阶段使用的软件源镜像。
+--mirror-chroot-security：定义构建过程中 chroot 阶段使用的安全更新软件源镜像。
+--mirror-debian-installer：定义构建过程中用于获取 Debian Installer 的软件源镜像。
 ```

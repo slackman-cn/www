@@ -44,6 +44,27 @@ mkdir /root/afs/bin
 ./busybox --install /root/afs/bin
 ls -i bin
 ```
+
+## Busybox distrobuilder
+
+编译环境 Debian12
+```
+sudo /lxc-ci/bin/build-distro /lxc-ci/images/busybox.yaml \
+            ${INCUS_ARCHITECTURE} ${TYPE} 1200 ${WORKSPACE} \
+            -o image.architecture=${ARCH} -o image.release=${release
+  
+都报错 networking/tc.c:236:27: error: ‘TCA_CBQ_MAX’ undeclared          
+            
+distrobuilder --cache-dir /root/build/cache/ --timeout 1800 build-dir busybox.yaml rootfs \
+  -o image.architecture="amd64" -o image.release="1.36.1"
+  
+  
+distrobuilder --cache-dir /root/build/cache/ pack-incus image.yaml rootfs --vm -o image.serial=20120233 -o image.architecture="amd64" -o image.release="1.36.1"
+
+
+ -o image.release=jammy -o image.architecture=amd64 -o image.variant=default
+```
+
  
 ## initrd
 

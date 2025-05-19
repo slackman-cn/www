@@ -36,6 +36,26 @@ $ mkfs.ext4 /dev/sda2
 cfdisk  /dev/sda  两个分区 sda1 EFI, sda2 linux filesystem
 ```
 
+## blackarch-linux-2023.05.01
+
+```
+root:x:0:0::/root:/bin/bash
+Password : blackarch
+
+liveuser:x:1000:984::/home/liveuser:/bin/zsh
+Password : blackarch
+
+$ systemctl status systemd-networkd.service
+$ systemctl enable --now NetworkManager.service
+
+$ vim /etc/ssh/sshd_config
+$ systemctl start sshd
+
+$ pacman -Q | wc -l
+1527
+6374
+```
+
 ## archlinux-2025.05.01
 
 Step1: RootFS

@@ -249,6 +249,35 @@ rootfs，是ramfs/tmpfs的一个特殊实例。
 所以initramfs也可以是tmpfs/rootfs的实现
 ```
 
+## Xorg
+
+直接使用 xorg + lightdm  就可以启动 x11-apps
+```
+Fluxbox is based on the BSD license, while Openbox is licensed under the GPL.
+Fluxbox is simpler and faster than Openbox. 
+It has a more traditional window manager layout with smaller windows that are easier to manage.
+
+$ sudo apt install xorg
+$ sudo apt install fluxbox
+
+$ sudo apt install lightdm // sddm, gdm3
+$ systemctl get-default
+dpkg-reconfigure lightdm
+systemctl set-default graphical.target  
+systemctl set-default multi-user.target  
+```
+
+fluxbox source
+```
+# apt-get update; apt-get build-dep --yes fluxbox; apt-get install --yes git autoconf stow fluxbox ; 
+mkdir -p /usr/local/stow/fluxbox ; 
+git clone https://github.com/fluxbox/fluxbox.git; 
+cd fluxbox; autoupdate; ./autogen.sh; 
+./configure --prefix=/usr/local/stow/fluxbox ; 
+make -j$(nproc); make install ; 
+STOW_DIR=/usr/local/stow /usr/bin/stow fluxbox
+```
+
 # About Links
 
 <https://mirrors.ustc.edu.cn/lfs/lfs-packages/>
