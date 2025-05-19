@@ -267,15 +267,108 @@ systemctl set-default graphical.target
 systemctl set-default multi-user.target  
 ```
 
-fluxbox source
+fluxbox source (installed xorg & lightdm)
 ```
-# apt-get update; apt-get build-dep --yes fluxbox; apt-get install --yes git autoconf stow fluxbox ; 
+$ apt build-dep fluxbox
+$ tar -xf fluxbox-1.3.7.tar.gz
+$ vi util/fluxbox-remote.cc  // text_prop.value != 0
+$ ./configure
+$ make
+$ make install
+$ reboot 
+
+默认启动 mlterm  手动执行startfluxbox
+修改默认 /usr/share/xsessions/lightdm-xsession.desktop
+Exec=/usr/local/bin/startfluxbox
+
+======== apt install stow
 mkdir -p /usr/local/stow/fluxbox ; 
 git clone https://github.com/fluxbox/fluxbox.git; 
 cd fluxbox; autoupdate; ./autogen.sh; 
 ./configure --prefix=/usr/local/stow/fluxbox ; 
 make -j$(nproc); make install ; 
 STOW_DIR=/usr/local/stow /usr/bin/stow fluxbox
+```
+
+fluxbox 自定义
+```
+~/.fluxbox/init
+session.menuFile:       ~/.fluxbox/menu
+session.keyFile: ~/.fluxbox/keys
+session.styleFile: /usr/local/share/fluxbox/styles/bloe
+session.configVersion:  13
+
+## 背景图 background
+apt install feh
+feh --bg-fill adwaita-d.jpg
+
+## 背景图 background
+fbsetbg adwaita-d.jpg
+
+## 背景图 background 和 lightdm一致
+# /usr/share/lightdm/lightdm-gtk-greeter.conf.d
+# background=/usr/share/images/desktop-base/login-background.svg
+# /usr/share/desktop-base/active-theme/wallpaper/contents/images/1920x1080.svg
+fbsetbg /usr/share/images/desktop-base/desktop-background
+
+## 修改 menu
+[begin] (Fluxbox-1.3.7)
+[encoding] {UTF-8}
+      [exec] (Terminal) {mlterm}
+      [exec] (thunar) {thunar} 
+
+
+## 推荐 terminal
+https://www.tecmint.com/linux-terminal-emulators/
+apt install qterminal
+apt install lxterminal
+apt install xfce4-terminal
+
+## 推荐 
+https://bbs.archlinux.org/viewtopic.php?id=77729
+apt install thunar // 文件管理器Files
+apt install neovim-qt
+apt install mousepad
+```
+
+## Fluxbox menu example
+
+```
+[begin] (Fluxbox-1.3.7)
+[encoding] {UTF-8}
+      [exec] (Terminal) {mlterm}
+      [exec] (Files) {thunar}
+[submenu] (Browsers)
+      [exec]   (lynx) {xterm -e lynx fluxbox.org}
+[end]
+[submenu] (Editors)
+      [exec]   (mousepad) {mousepad}
+      [exec]   (nano) {xfce4-terminal -e nano}
+      [exec]   (vim) {qterminal -e vim}
+      [exec]   (nvim) {nvim-qt}
+[end]
+[submenu] (X-utils)
+      [exec]   (xclock) {xclock}
+      [exec]   (xcalc) {xcalc}
+      [exec]   (xfontsel) {xfontsel}
+      [exec]   (xman) {xman}
+      [exec]   (xload) {xload}
+      [exec]   (xbiff) {xbiff}
+      [exec]   (editres) {editres}
+      [exec]   (viewres) {viewres}
+      [exec]   (xmag) {xmag}
+      [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
+[end]
+[submenu] (System Tools)
+      [exec]   (Audio) {xterm -e alsamixer}
+      [reconfig] (Reload config)
+      [restart] (Restart)
+      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
+      [separator]
+      [exit] (Exit)
+[end]
+[endencoding]
+[end]
 ```
 
 # About Links
