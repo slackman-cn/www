@@ -249,7 +249,7 @@ rootfs，是ramfs/tmpfs的一个特殊实例。
 所以initramfs也可以是tmpfs/rootfs的实现
 ```
 
-## Xorg
+## Display manager (xorg) & Window Manager (fluxbox)
 
 直接使用 xorg + lightdm  就可以启动 x11-apps
 ```
@@ -317,6 +317,10 @@ fbsetbg /usr/share/images/desktop-base/desktop-background
       [exec] (Terminal) {mlterm}
       [exec] (thunar) {thunar} 
 
+## 开始菜单，任务栏;  开机启动在exec fluxbox之前
+apt install lxpanel
+vi ~/.fluxbox/startup
+lxpanel &
 
 ## 推荐 terminal
 https://www.tecmint.com/linux-terminal-emulators/
@@ -331,12 +335,33 @@ apt install neovim-qt
 apt install mousepad
 ```
 
-## Fluxbox menu example
+## 开始菜单+任务栏, 不是必须的
 
+```
+## dock栏
+sudo apt install plank
+
+## 状态栏
+apt install polybar
+
+## 运行命令 app launcher
+apt install rofi
+rofi -show drun
+
+## 隐藏 fluxbox toolbar
+https://askubuntu.com/questions/993260/fluxbox-remove-toolbar
+$ vim ~/.fluxbox/init
+session.screen0.toolbar.visible:        false
+```
+
+## Fluxbox example
+
+> dock: nvim-qt, terminal, mousepad
 ```
 [begin] (Fluxbox-1.3.7)
 [encoding] {UTF-8}
       [exec] (Terminal) {mlterm}
+      [exec] (Run) {rofi -show drun}
       [exec] (Files) {thunar}
 [submenu] (Browsers)
       [exec]   (lynx) {xterm -e lynx fluxbox.org}
