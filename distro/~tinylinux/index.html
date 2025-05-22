@@ -196,6 +196,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#busybox-distrobuilder" class="nav-link">Busybox distrobuilder</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#initrd" class="nav-link">initrd</a>
               <ul class="nav flex-column">
               </ul>
@@ -245,6 +250,23 @@ ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, Bui
 mkdir /root/afs/bin
 ./busybox --install /root/afs/bin
 ls -i bin
+</code></pre>
+<h2 id="busybox-distrobuilder">Busybox distrobuilder</h2>
+<p>编译环境 Debian12</p>
+<pre><code>sudo /lxc-ci/bin/build-distro /lxc-ci/images/busybox.yaml \
+            ${INCUS_ARCHITECTURE} ${TYPE} 1200 ${WORKSPACE} \
+            -o image.architecture=${ARCH} -o image.release=${release
+
+都报错 networking/tc.c:236:27: error: ‘TCA_CBQ_MAX’ undeclared          
+
+distrobuilder --cache-dir /root/build/cache/ --timeout 1800 build-dir busybox.yaml rootfs \
+  -o image.architecture=&quot;amd64&quot; -o image.release=&quot;1.36.1&quot;
+
+
+distrobuilder --cache-dir /root/build/cache/ pack-incus image.yaml rootfs --vm -o image.serial=20120233 -o image.architecture=&quot;amd64&quot; -o image.release=&quot;1.36.1&quot;
+
+
+ -o image.release=jammy -o image.architecture=amd64 -o image.variant=default
 </code></pre>
 <h2 id="initrd">initrd</h2>
 <pre><code>mkdir -p initrd/{bin,sys,dev,proc}

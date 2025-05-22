@@ -196,6 +196,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#blackarch-linux-20230501" class="nav-link">blackarch-linux-2023.05.01</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#archlinux-20250501" class="nav-link">archlinux-2025.05.01</a>
               <ul class="nav flex-column">
               </ul>
@@ -241,6 +246,23 @@ $ mkfs.ext4 /dev/sda2
 
 ====== 其他分区工具 
 cfdisk  /dev/sda  两个分区 sda1 EFI, sda2 linux filesystem
+</code></pre>
+<h2 id="blackarch-linux-20230501">blackarch-linux-2023.05.01</h2>
+<pre><code>root:x:0:0::/root:/bin/bash
+Password : blackarch
+
+liveuser:x:1000:984::/home/liveuser:/bin/zsh
+Password : blackarch
+
+$ systemctl status systemd-networkd.service
+$ systemctl enable --now NetworkManager.service
+
+$ vim /etc/ssh/sshd_config
+$ systemctl start sshd
+
+$ pacman -Q | wc -l
+1527
+6374
 </code></pre>
 <h2 id="archlinux-20250501">archlinux-2025.05.01</h2>
 <p>Step1: RootFS</p>

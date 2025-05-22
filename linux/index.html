@@ -226,6 +226,21 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#display-manager-xorg-window-manager-fluxbox" class="nav-link">Display manager (xorg) &amp; Window Manager (fluxbox)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">开始菜单+任务栏, 不是必须的</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#fluxbox-example" class="nav-link">Fluxbox example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
@@ -443,6 +458,142 @@ Note：
 tmpfs，是ramfs的增强版方案。
 rootfs，是ramfs/tmpfs的一个特殊实例。
 所以initramfs也可以是tmpfs/rootfs的实现
+</code></pre>
+<h2 id="display-manager-xorg-window-manager-fluxbox">Display manager (xorg) &amp; Window Manager (fluxbox)</h2>
+<p>直接使用 xorg + lightdm  就可以启动 x11-apps</p>
+<pre><code>Fluxbox is based on the BSD license, while Openbox is licensed under the GPL.
+Fluxbox is simpler and faster than Openbox. 
+It has a more traditional window manager layout with smaller windows that are easier to manage.
+
+$ sudo apt install xorg
+$ sudo apt install fluxbox
+
+$ sudo apt install lightdm // sddm, gdm3
+$ systemctl get-default
+dpkg-reconfigure lightdm
+systemctl set-default graphical.target  
+systemctl set-default multi-user.target  
+</code></pre>
+<p>fluxbox source (installed xorg &amp; lightdm)</p>
+<pre><code>$ apt build-dep fluxbox
+$ tar -xf fluxbox-1.3.7.tar.gz
+$ vi util/fluxbox-remote.cc  // text_prop.value != 0
+$ ./configure
+$ make
+$ make install
+$ reboot 
+
+默认启动 mlterm  手动执行startfluxbox
+修改默认 /usr/share/xsessions/lightdm-xsession.desktop
+Exec=/usr/local/bin/startfluxbox
+
+======== apt install stow
+mkdir -p /usr/local/stow/fluxbox ; 
+git clone https://github.com/fluxbox/fluxbox.git; 
+cd fluxbox; autoupdate; ./autogen.sh; 
+./configure --prefix=/usr/local/stow/fluxbox ; 
+make -j$(nproc); make install ; 
+STOW_DIR=/usr/local/stow /usr/bin/stow fluxbox
+</code></pre>
+<p>fluxbox 自定义</p>
+<pre><code>~/.fluxbox/init
+session.menuFile:       ~/.fluxbox/menu
+session.keyFile: ~/.fluxbox/keys
+session.styleFile: /usr/local/share/fluxbox/styles/bloe
+session.configVersion:  13
+
+## 背景图 background
+apt install feh
+feh --bg-fill adwaita-d.jpg
+
+## 背景图 background
+fbsetbg adwaita-d.jpg
+
+## 背景图 background 和 lightdm一致
+# /usr/share/lightdm/lightdm-gtk-greeter.conf.d
+# background=/usr/share/images/desktop-base/login-background.svg
+# /usr/share/desktop-base/active-theme/wallpaper/contents/images/1920x1080.svg
+fbsetbg /usr/share/images/desktop-base/desktop-background
+
+## 修改 menu
+[begin] (Fluxbox-1.3.7)
+[encoding] {UTF-8}
+      [exec] (Terminal) {mlterm}
+      [exec] (thunar) {thunar} 
+
+## 开始菜单，任务栏;  开机启动在exec fluxbox之前
+apt install lxpanel
+vi ~/.fluxbox/startup
+lxpanel &amp;
+
+## 推荐 terminal
+https://www.tecmint.com/linux-terminal-emulators/
+apt install qterminal
+apt install lxterminal
+apt install xfce4-terminal
+
+## 推荐 
+https://bbs.archlinux.org/viewtopic.php?id=77729
+apt install thunar // 文件管理器Files
+apt install neovim-qt
+apt install mousepad
+</code></pre>
+<h2 id="_1">开始菜单+任务栏, 不是必须的</h2>
+<pre><code>## dock栏
+sudo apt install plank
+
+## 状态栏
+apt install polybar
+
+## 运行命令 app launcher
+apt install rofi
+rofi -show drun
+
+## 隐藏 fluxbox toolbar
+https://askubuntu.com/questions/993260/fluxbox-remove-toolbar
+$ vim ~/.fluxbox/init
+session.screen0.toolbar.visible:        false
+</code></pre>
+<h2 id="fluxbox-example">Fluxbox example</h2>
+<blockquote>
+<p>dock: nvim-qt, terminal, mousepad</p>
+</blockquote>
+<pre><code>[begin] (Fluxbox-1.3.7)
+[encoding] {UTF-8}
+      [exec] (Terminal) {mlterm}
+      [exec] (Run) {rofi -show drun}
+      [exec] (Files) {thunar}
+[submenu] (Browsers)
+      [exec]   (lynx) {xterm -e lynx fluxbox.org}
+[end]
+[submenu] (Editors)
+      [exec]   (mousepad) {mousepad}
+      [exec]   (nano) {xfce4-terminal -e nano}
+      [exec]   (vim) {qterminal -e vim}
+      [exec]   (nvim) {nvim-qt}
+[end]
+[submenu] (X-utils)
+      [exec]   (xclock) {xclock}
+      [exec]   (xcalc) {xcalc}
+      [exec]   (xfontsel) {xfontsel}
+      [exec]   (xman) {xman}
+      [exec]   (xload) {xload}
+      [exec]   (xbiff) {xbiff}
+      [exec]   (editres) {editres}
+      [exec]   (viewres) {viewres}
+      [exec]   (xmag) {xmag}
+      [exec] (Reload .Xdefaults) {xrdb -load $HOME/.Xdefaults}
+[end]
+[submenu] (System Tools)
+      [exec]   (Audio) {xterm -e alsamixer}
+      [reconfig] (Reload config)
+      [restart] (Restart)
+      [exec] (About) {(fluxbox -v; fluxbox -info | sed 1d) | xmessage -file - -center}
+      [separator]
+      [exit] (Exit)
+[end]
+[endencoding]
+[end]
 </code></pre>
 <h1 id="about-links">About Links</h1>
 <p><a href="https://mirrors.ustc.edu.cn/lfs/lfs-packages/">https://mirrors.ustc.edu.cn/lfs/lfs-packages/</a></p>

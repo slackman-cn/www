@@ -201,12 +201,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#debootstrap" class="nav-link">debootstrap</a>
+            <li class="nav-item" data-bs-level="2"><a href="#rootfs-debootstrap" class="nav-link">rootfs (debootstrap)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#chroot-qemu" class="nav-link">chroot (QEMU)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#live-cd" class="nav-link">Live CD</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -296,13 +296,17 @@ https://mirrors.ustc.edu.cn/ubuntu-cdimage/ubuntu-base/releases/
 AnolisOS8.9-base-amd64-20240425.tar.xz
 https://cr-images-pub.oss-cn-hangzhou.aliyuncs.com/root/base/
 </code></pre>
-<h2 id="debootstrap">debootstrap</h2>
+<h2 id="rootfs-debootstrap">rootfs (debootstrap)</h2>
 <pre><code>sudo apt install debootstrap
 sudo debootstrap --help
 ls -lh /usr/share/debootstrap/scripts  都是链接
 
 debootstrap --arch $ARCH $RELEASE  $DIR $MIRROR
-debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
+$ debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
+$ chroot rootfs-minbase
+$ dpkg -l | wc -l
+163
+
 debootstrap --include linux-image-amd64,locales,grub-efi-amd64,vim,btrfs-progs,sudo --arch amd64 sid /mnt/rootfs http://mirrors.163.com/debian/
 
 sudo debootstrap --arch=mips buster /mnt/rootfs
@@ -314,7 +318,7 @@ $ cd /mnt/rootfs
 $ sudo tar -czf /tmp/debian-sid-rootfs.tar.xz  .
 $ sudo tar -xf rootfs.tar.xz -C &lt;exampledir&gt;
 </code></pre>
-<h2 id="chroot-qemu">chroot (QEMU)</h2>
+<p>chroot (QEMU)</p>
 <p>https://akhileshmoghe.github.io/_post/linux/debian_minimal_rootfs#remove-support-files-from-rootfs
 https://www.ddupan.top/posts/chroot-to-a-different-arch-in-linux/</p>
 <pre><code>$ sudo apt install qemu-user-static
@@ -325,6 +329,84 @@ sudo cp /usr/bin/qemu-aarch64-static buster-arm64/usr/bin/
 sudo cp /etc/resolv.conf buster-arm64/etc/
 
 $ sudo chroot /mnt/buster-arm64/
+</code></pre>
+<h2 id="live-cd">Live CD</h2>
+<pre><code>sudo apt install live-build  版本号1.20230502
+sudo apt install debootstrap
+
+sudo mkdir /mnt/live  &amp;&amp; cd 
+sudo lb config
+sudo lb build
+
+sudo  lb config --distribution bookworm \
+  --archive-areas &quot;main contrib non-free non-free-firmware&quot; \
+  --mirror-binary https://mirrors.163.com/debian \
+  --mirror-binary-security https://mirrors.163.com/debian-security \
+  --mirror-bootstrap https://mirrors.163.com/debian \
+  --mirror-chroot https://mirrors.163.com/debian \
+  --mirror-chroot-security https://mirrors.163.com/debian-security \
+  --mirror-debian-installer https://mirrors.163.com/debian
+
+最终生成 live-image-amd64.hybrid.iso  (总共284 packages)
+默认用户”user“密码”live“
+默认 main https://deb.debian.org/debian  
+完整系统 
+deb http://mirrors/ustc.edu.cn/debian bookworm  main contrib non-free non-free-firmware
+deb http://mirrors/ustc.edu.cn/debian bookworm-updates  main contrib non-free non-free-firmware
+
+选择ISO混合镜像
+lb config --binary-images iso-hybrid --architecture amd64 --distribution sid --boot-loaders syslinux
+</code></pre>
+<p>Debian-XFCE</p>
+<pre><code>cd /mnt/live-xfce
+sudo lb config --distribution bookworm \
+  --debian-installer live \
+  --debian-installer-gui true \
+  --iso-application &quot;DebianXfce&quot; \
+  --iso-publisher &quot;DebianXfce Project&quot; \
+  --iso-volume &quot;DebianXfce Live&quot; \
+  --archive-areas &quot;main contrib non-free non-free-firmware&quot; \
+  --security false \
+  --mirror-binary https://mirrors.163.com/debian \
+  --mirror-bootstrap https://mirrors.163.com/debian \
+  --mirror-chroot https://mirrors.163.com/debian \
+  --mirror-debian-installer https://mirrors.163.com/debian
+
+$ dpkg -l | wc -l
+288
+
+重命名
+DebianXfce-live-12.7-amd64-20230502.iso
+
+(fcitx不显示zh选项，应该是fcitx5-chinese-addons， 而且系统是英文)
+
+----- conf/package-lists/application.list.chroot    (1.63 GB  安装包823)
+(没有build-essential, 没有xfce-terminal[uterm代替], 没有dock,  没有mousepad editor)
+xfce4
+firefox-esr
+vim
+git
+wget
+rsync
+fcitx5
+
+---- conf/package-lists/application.list.chroot  (2.06 GB  安装包1363)
+(没有build-essential, 有一套libreoffice, 有xfce-terminal, 有dock, 有mousepad)
+task-xfce-desktop  (软件数量太夸张了，尽量不要用这个)
+firefox-esr
+vim
+git
+wget
+rsync
+fcitx5
+
+--mirror-binary：定义 Live 系统用户使用的软件源镜像，配置在最终的二进制映像中。
+--mirror-binary-security：定义 Live 系统用户使用的安全更新软件源镜像，配置在最终的二进制映像中。
+
+--mirror-bootstrap：定义构建过程中 bootstrap 阶段使用的软件源镜像。
+--mirror-chroot：定义构建过程中 chroot 阶段使用的软件源镜像。
+--mirror-chroot-security：定义构建过程中 chroot 阶段使用的安全更新软件源镜像。
+--mirror-debian-installer：定义构建过程中用于获取 Debian Installer 的软件源镜像。
 </code></pre></div>
             </div>
         </div>
