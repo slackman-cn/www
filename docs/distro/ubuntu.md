@@ -102,7 +102,7 @@ https://cr-images-pub.oss-cn-hangzhou.aliyuncs.com/root/base/
 ```
 
 
-## debootstrap
+## rootfs (debootstrap)
 
 ```
 sudo apt install debootstrap
@@ -110,7 +110,11 @@ sudo debootstrap --help
 ls -lh /usr/share/debootstrap/scripts  都是链接
 
 debootstrap --arch $ARCH $RELEASE  $DIR $MIRROR
-debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
+$ debootstrap --arch amd64 buster /mnt/rootfs-minbase http://mirrors.163.com/debian/
+$ chroot rootfs-minbase
+$ dpkg -l | wc -l
+163
+
 debootstrap --include linux-image-amd64,locales,grub-efi-amd64,vim,btrfs-progs,sudo --arch amd64 sid /mnt/rootfs http://mirrors.163.com/debian/
 
 sudo debootstrap --arch=mips buster /mnt/rootfs
