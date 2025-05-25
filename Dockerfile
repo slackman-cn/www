@@ -1,3 +1,9 @@
+# http://cdimage.ubuntu.com/ubuntu-base/releases/22.04/release/
+# https://typecho.org/download
+# unzip typecho.zip -d typecho
+# podman run --name typecho -p 80:80 --restart=always -d localhost/typecho
+# podman exec -it typecho bash
+# mv index.html index.html.orig && chown -R www-data:www-data .
 FROM scratch
 LABEL \
     org.opencontainers.image.title="Ubuntu 22.04 LTS (Jammy Jellyfish)" \
@@ -22,12 +28,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends tzdata language
     && dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get install -y \
+    apache2 apache2-utils \
     php php-mysql php-fpm php-gd php-json php-xml php-mbstring php-curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
 EXPOSE 80/tcp
 WORKDIR /var/www/html
-COPY default /etc/nginx/sites-available/default
+ADD typecho .
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
