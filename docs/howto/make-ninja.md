@@ -1,5 +1,5 @@
 ---
-title: 构建工具 ninja,meson
+title: 构建工具 ninja
 since: 202503
 ---
 

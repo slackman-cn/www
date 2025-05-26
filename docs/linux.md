@@ -249,7 +249,9 @@ rootfs，是ramfs/tmpfs的一个特殊实例。
 所以initramfs也可以是tmpfs/rootfs的实现
 ```
 
-## Display manager (xorg) & Window Manager (fluxbox)
+## xorg / fluxbox
+
+Display manager (xorg) & Window Manager (fluxbox)
 
 直接使用 xorg + lightdm  就可以启动 x11-apps
 ```

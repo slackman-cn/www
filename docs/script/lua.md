@@ -1,5 +1,5 @@
 ---
-title: Lua
+title: Lua Script
 since: 202503
 ---
 
