@@ -163,7 +163,7 @@ if __name__ == '__main__':
 ```
 
 
-# 100示例
+## 100示例
 
 加法
 ```
@@ -230,4 +230,151 @@ for n in range(3,41):
 dp = [0,1,1]
 for i in range(10):
     dp.append(dp[-1] + dp[-2])
+```
+
+## 日志 logging 内置模块
+
+https://docs.python.org/3/library/logging.html
+
+```
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.info('hello %s', 123)
+
+/// 方式2
+logger = logging.getLogger()
+logger = logging.getLogger(__name__)
+logger.basicConfig(filename='myapp.log', level=logging.INFO)
+
+logger.debug('This is a debug message')
+logger.info('This is an info message')
+logger.warning('This is a warning message')
+logger.error('This is an error message')
+```
+
+项目可以用配置文件
+```
+import logging
+import logging.config
+
+logging.config.fileConfig("logging.conf")
+
+logger.info('hello %s', 123)
+```
+
+配置文件 logging.conf
+```
+[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler,fileHandler
+
+[formatters]
+keys=simpleFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler,fileHandler
+
+[handler_consoleHandler]
+level=INFO
+class=logging.StreamHandler
+args=(sys.stdout,)
+formatter=simpleFormatter
+
+[handler_fileHandler]
+level=INFO
+class=logging.FileHandler
+args=('logs/app.log', 'w', 'utf-8')
+formatter=simpleFormatter
+
+[formatter_simpleFormatter]
+class=logging.Formatter
+format=%(asctime)s %(levelname)-7s [%(filename)s:%(lineno)d] %(message)s
+datefmt=%Y-%m-%dT%H:%M:%S
+```
+
+## 日志 logging 封装
+
+应该包含 {time, level, msg, source?}  过于复杂的配置不如直接写代码，自己封装
+
+一个*解元组，两个*解字典
+```
+import log
+
+log.info("1/20 binutils", "hello")
+log.info("1/20 binutils", "hello {} {}", 'sss', 123)
+```
+
+定义 log.py
+```
+import logging
+import logging.config
+
+# 配置参考 https://bbs.huaweicloud.com/blogs/416879
+# %(asctime)s %(levelname)-7s [%(filename)s:%(lineno)d] %(message)s
+init_config = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG'
+        }
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console'],
+    }
+}
+
+# 默认配置
+default_config = {
+    'version': 1,
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(levelname)s [%(tag)s] %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': 'app.log',
+            'mode': 'a',
+            'encoding': 'utf-8',
+        }
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console', 'file']
+    }
+}
+# 应用日志配置; 保证全局加载一次
+logging.config.dictConfig(default_config)
+
+# If no name is specified, return the root logger
+logger = logging.getLogger()
+
+
+def info(tag, msg, *args):
+    logger.info(str.format(msg, *args), extra={"tag": tag})
+
+
+def warn(msg, *args, **kwargs):
+    logger.warning(msg, *args, **kwargs)
+
+
+def error(msg, *args, **kwargs):
+    logger.error(msg, *args, **kwargs)
 ```

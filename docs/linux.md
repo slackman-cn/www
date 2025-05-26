@@ -337,8 +337,10 @@ apt install neovim-qt
 apt install mousepad
 ```
 
-## 开始菜单+任务栏, 不是必须的
 
+## Example
+
+开始菜单+任务栏, 不是必须的
 ```
 ## dock栏
 sudo apt install plank
@@ -355,8 +357,6 @@ https://askubuntu.com/questions/993260/fluxbox-remove-toolbar
 $ vim ~/.fluxbox/init
 session.screen0.toolbar.visible:        false
 ```
-
-## Fluxbox example
 
 > dock: nvim-qt, terminal, mousepad
 ```
