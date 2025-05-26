@@ -1,5 +1,5 @@
 ---
-title: Python Script
+title: Python
 since: 202503
 ---
 
