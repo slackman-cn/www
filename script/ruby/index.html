@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~tinylinux/" class="dropdown-item">TinyLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../howto/artifact/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/docs/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/git/" class="dropdown-item">代码库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../howto/ustb/" class="dropdown-item">USTB</a>
+</li>
+            
+<li>
+    <a href="../../howto/ustb/vt/" class="dropdown-item">VT</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
+</li>
+                                    
+<li>
+    <a href="../groovy/" class="dropdown-item">Groovy Script</a>
+</li>
+                                    
+<li>
+    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
+</li>
+                                    
+<li>
+    <a href="../java/" class="dropdown-item">JAVA</a>
+</li>
+                                    
+<li>
+    <a href="../lua/" class="dropdown-item">Lua Script</a>
+</li>
+                                    
+<li>
+    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python Script</a>
+</li>
+                                    
+<li>
+    <a href="../ruby%2Blib/" class="dropdown-item">Ruby Lib</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Ruby</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../setup/01-base/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/02-base-devel/" class="dropdown-item">系统开发环境</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/03-dockerfile/" class="dropdown-item">Dockerfile</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/04-buildah/" class="dropdown-item">Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/06-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../ruby%2Blib/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../setup/01-base/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#helloworld" class="nav-link">HelloWorld</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#helloworld-web-sinatra" class="nav-link">HelloWorld WEB (sinatra)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#ruby" class="nav-link">Ruby 语法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">选择循环</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">函数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">面向对象</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">异常</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#about-links" class="nav-link">About Links</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="install">Install</h2>
+<pre><code>sudo apt install ruby ruby-dev ruby-bundler
+
+root@ubuntu22:~# ruby --version
+ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
+
+root@ubuntu22:~# bundler --version
+Bundler version 2.3.5
+
+===== 默认源
+root@ubuntu22:~/ruby# gem sources
+*** CURRENT SOURCES ***
+
+https://rubygems.org/
+
+===== 国内源
+gem sources --remove https://rubygems.org/
+gem sources -a https://mirrors.aliyun.com/rubygems/
+</code></pre>
+<p>source</p>
+<pre><code>RUBY_BUILD=&quot;v20250409&quot;
+RUBY_TAG=&quot;3.3.8&quot;
+
+# Install Ruby
+apt-get install --yes \
+   autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+git clone https://github.com/rbenv/ruby-build.git /build/ruby-build  --depth 1 -b &quot;${RUBY_BUILD}&quot;
+
+PREFIX=/usr/local/ruby-build ./ruby-build/install.sh
+ruby-build --list
+ruby-build ${RUBY_TAG} /usr/local/ruby
+
+$ ruby --version
+ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux]
+
+$ bundle --version
+Bundler version 2.5.22
+
+$ rake --version
+rake, version 13.1.0
+
+$ gem list | wc -l
+86
+</code></pre>
+<h2 id="helloworld">HelloWorld</h2>
+<pre><code>class Person
+  # 静态变量
+  @@cnt = 1
+
+  # 属性，实例变量
+  attr_accessor :name, :age
+
+  # 初始化方法
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+
+  # 定义方法
+  def greet
+    &quot;My name is #{@name} and I am #{@age} years old.&quot;
+  end
+end
+
+person = Person.new(&quot;Alice&quot;, 30)
+puts person.greet
+</code></pre>
+<h2 id="helloworld-web-sinatra">HelloWorld WEB (sinatra)</h2>
+<p>rails 非常复杂，不适合小项目</p>
+<pre><code>$ gem install sinatra
+$ gem install rackup puma
+$ ruby app.rb
+$ curl localhost:4567
+$ 静态文件从 ./public 目录提供服务
+$ 文件 ./public/css/style.css 作为 http://example.com/css/style.css
+
+======= touch app.rb
+require 'sinatra'
+
+get '/' do
+  'Hello world!'
+end
+</code></pre>
+<p>生产环境</p>
+<pre><code>$ bundle install
+$ rackup  // 默认端口9292
+$ rackup config.ru --port=8080
+
+docker.image('ruby:2.6').withRun('-v $(pwd):/app -w /app') { c -&gt;
+    sh 'bundle install'
+    sh 'rake test'
+}
+
+========= 创建 Gemfile
+$ bundle init
+$ bundle add sinatra
+$ bundle add rackup puma
+
+========= 创建 config.ru
+require 'rubygems'
+require 'bundler'
+Bundler.require
+
+require './app'
+run Sinatra::Application
+
+</code></pre>
+<h2 id="ruby">Ruby 语法</h2>
+<pre><code>print &quot;Hello world!\n&quot;
+# 输出 p(”hee&quot;)
+print(&quot;hello&quot;)
+print(&quot;\n&quot;)
+puts &quot;hello&quot;
+
+# 数值对象，字符串对象，时间对象，文件对象，数组对象
+# Numeric, String, Array, File
+# 局部变量 aa, _aa   常量(readonly) TEST=1  RUBY_VERSION
+# 全局变量 $x  实例变量@xx  类变量@@shape
+arr = [&quot;a&quot;, 2, nil]
+arr.each do |item|
+  p(item)
+end
+puts(RUBY_VERSION)
+puts(RUBY_PLATFORM)
+a=1
+b=2;c=3
+v=(a&gt;b) ? a : b
+puts(v)
+# Range.new(1,10)  范围运算符1..10
+# 指数**  三元?:
+# 值相等 === ,  属于类 p(String === &quot;asdf&quot;)
+</code></pre>
+<h2 id="_1">选择循环</h2>
+<pre><code># if xx then [] end 可以省略then, if xx then {} elsif then {} else {} end
+# unless yy then {}  end  条件为假执行
+if true
+  puts(&quot;bb&quot;)
+end
+
+case v
+  when 1 then
+    puts(&quot;1&quot;)
+  when 2 then
+    puts(&quot;2&quot;)
+  else
+    puts(&quot;none&quot;)
+end
+
+
+# 循环 times方法, for语句, while, util, loop
+# 用{}代替 do end
+3.times do |i|
+  puts(&quot;No. #{i}&quot;)
+end
+10.times { }
+for i in 1..10 do
+  #
+end
+
+arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+for name in arr do
+  #
+end
+arr.each do |name| puts name end
+
+loop do
+  # 死循环
+  break # next等价continue, redo重复刚才处理
+end
+while true  do
+  # 条件为真
+end
+
+until false do
+  # 调价为假
+end
+</code></pre>
+<h2 id="_2">函数</h2>
+<pre><code># 运算符也是方法，有些可以重载
+# 实例方法
+p &quot;10,2,3&quot;.split(&quot;,&quot;)
+p [12,3].index(1)
+p 100.to_s  # 转字符串
+# 类方法
+Array.new
+File.open(&quot;hello.rb&quot;, &quot;r&quot;)
+Time.now
+# 函数方法
+sleep(2)
+print(&quot;hello world&quot;)
+
+def hello(name)
+  puts &quot;Hello, #{name}&quot;
+end
+
+def add(a,b)
+  return a + b # 可以省略return
+end
+
+def fool(*args)
+  # 个数不确定
+  # 至少一个参数 def add(a, *args)
+end
+</code></pre>
+<h2 id="_3">面向对象</h2>
+<pre><code>arr=Array.new
+p arr
+p arr.class
+arr = [1,2]
+str = &quot;hello world&quot;
+p arr.class
+p str.class
+p str.instance_of?(String)
+
+# 实例变量@xx， 类变量@@yy所有实例共享
+class HelloWorld
+  @@count = 0
+  def initialize(myname=&quot;Ruby&quot;)
+    @name=myname
+    @@count+=1
+  end
+
+  def hello
+    puts &quot;Hello #{@name}  / #{@@count}&quot;
+  end
+end
+
+hx = HelloWorld.new(&quot;Tomas&quot;)
+hx2 = HelloWorld.new
+hx.hello
+
+# 类方法
+# class HelloStatic
+#   class &lt;&lt; self
+#     def hello(name)
+#       puts &quot;Hello static #{name}&quot;
+#     end
+#   end
+# end
+
+# 类方法2, 类常量
+class HelloStatic
+  VERSION=&quot;v1.0&quot;
+end
+def HelloStatic.hello(name)
+  puts &quot;Hello static #{name}&quot;
+end
+HelloStatic.hello(&quot;Ruby&quot;)
+puts HelloStatic::VERSION
+
+
+# 访问级别 public(默认), private, protected
+class AccTest
+  def hello
+
+  end
+  public :hello
+
+  def name
+
+  end
+  private :name
+end
+acc = AccTest.new
+acc.hello
+
+
+# 继承
+class ArrayTest &lt; Array
+  def[](i)
+    super(0)
+  end
+end
+arr = ArrayTest.new([1,2,3])
+puts arr[0]
+puts arr[1]
+puts arr[2]
+
+
+# 模块， 命名空间
+module Std
+  STD_VERSION = &quot;v17&quot;  # 模块常量
+  def hello
+
+  end
+  module_function :hello  # 模块方法
+end
+Std::hello
+puts Std::STD_VERSION
+
+include Std
+puts STD_VERSION
+</code></pre>
+<h2 id="_4">异常</h2>
+<pre><code>begin
+  # File.open(&quot;aaa.txt&quot;)  # IOError
+  # 抛出异常, RuntimeError
+  raise
+  raise(&quot;xyzwer&quot;)
+rescue =&gt; ex
+  # 错误处理, StandardError及其子类(RuntimeError)
+  puts ex.message
+ensure
+  puts &quot;finally&quot; # 无论是否发生异常
+end
+</code></pre>
+<h2 id="about-links">About Links</h2>
+<p>https://sinatra.ruby-lang.com.cn/intro.html</p>
+<p>https://qiita.com/Alt70155/items/3965b4a9889698579df4</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

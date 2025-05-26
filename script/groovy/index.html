@@ -77,6 +77,14 @@
     <a href="../../howto/git/" class="dropdown-item">代码库</a>
 </li>
                                     
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Ustb</a>
     <ul class="dropdown-menu">
@@ -97,27 +105,39 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
-    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Groovy Script</a>
 </li>
                                     
 <li>
-    <a href="../11-clang/" class="dropdown-item">C,C++</a>
+    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Python</a>
+    <a href="../java/" class="dropdown-item">JAVA</a>
 </li>
                                     
 <li>
-    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../lua/" class="dropdown-item">Lua Script</a>
 </li>
                                     
 <li>
-    <a href="../14-lua/" class="dropdown-item">Lua</a>
+    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python Script</a>
+</li>
+                                    
+<li>
+    <a href="../ruby%2Blib/" class="dropdown-item">Ruby Lib</a>
+</li>
+                                    
+<li>
+    <a href="../ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -154,12 +174,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../11-clang/" class="nav-link">
+                                <a rel="prev" href="../cxx/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../13-ruby/" class="nav-link">
+                                <a rel="next" href="../java%2Blib/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -190,234 +210,12 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#python" class="nav-link">Python 语法</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">字典, 列表, 循环</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">函数, 面向对象</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">模块, 异常</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">单元测试</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#100" class="nav-link">100示例</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="install">Install</h2>
-<pre><code>pacman -S python-pip
-yum install python3-pip
-sudo apt install python3-venv
-
-$ python3 --version
-$ python3 -m venv vbuild
-
-pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
-</code></pre>
-<h2 id="python">Python 语法</h2>
-<p>func</p>
-<pre><code>def print_hi(name):
-    print(f'Hi, {name}') 
-    print('hello, ' + name)
-
-if __name__ == '__main__':
-    print_hi('PyCharm')
-</code></pre>
-<p>vars</p>
-<pre><code>len('asdfa')
-int('123'), float, bool, str(1234)
-ii = None
-type(ii)
-3 / 2  结果1.5
-3 //2  结果1  向下取整
-
-if True:
-  pass
-elif a == 10 or a == 11:   # and,or,not
-  pass
-else:
-  pass
-</code></pre>
-<h2 id="_1">字典, 列表, 循环</h2>
-<pre><code>mylist = [1,2,3]
-mylist.append(4)
-len(list)
-
-mydict = {}
-mydict = {'name': 'xiao', 'age': 12}
-mydict['name'] = 'xiao2'
-len(mydict)   # 键值对
-'name' in mydict
-del mydict['name']
-
-mytuple = ('aa', 'bb')  # 不可变
-
-===== 循环
-for v in mylist:
-  pass
-for k,v in mydict.items():  # 键值对
-  pass
-for in in range(1,10):    # 不包括10  (1,10,2)步长2
-  pass
-
-mydict.keys()
-mydict.values()
-mydict.items()  
-</code></pre>
-<h2 id="_2">函数, 面向对象</h2>
-<pre><code>class ATM:
-   def __init__(self, id, name):
-      self.id = id
-      self.name = name
-
-   def show(self):
-       print(self.id, self.name)
-
-a1 = ATM('01', 'xiao')
-a1.show()
-print(a1.name)
-
-
-class SubATM(ATM):   # 继承
-   def show(self):
-      pass
-
-</code></pre>
-<h2 id="_3">模块, 异常</h2>
-<pre><code>https://docs.python.org/zh-cn/3/library/math.html
-import math
-math.sin(1)
-
-标准库 https://docs.python.org/zh-cn/3/libray/index.html
-import xxx
-xxx.函数
-xxx.变量
-
-from xxx import 变量,函数
-from xxx import *
-</code></pre>
-<p>IO模块, 异常</p>
-<pre><code>with open('./aaa.txt', 'r', encoding='utf-8') as f:
-   txt = f.read()  # 全部内容  read(10)只读取10字节
-   row = f.readline()  # while判断 row != ''
-   lines = f.readlines()
-   for row in lines:
-      pass
-
-with open('./output.txt', 'w', encoding='utf-8') as f:
-  #  模式w 清空, 模式a 追加,  模式r+ 读写追加
-  f.write('hello\n')
-
-try:
-  xxx()
-except ValueError:
-  print(xxxx)
-except:
-  print('all error')
-else:
-  print('no error')
-finally:
-  print('程序结束')
-</code></pre>
-<h2 id="_4">单元测试</h2>
-<pre><code>assert len('he') == 2  # 报错停止程序
-$ python -m unittest
-
-import unittest
-from 文件名 import 函数名
-from 文件名 import 类名
-
-
-class MyTestCase(unittest.TestCase):
-    def setUp(self):
-     self.xxx = 创建类
-
-    def test_something(self):         # 函数必须test_xxx
-        self.assertEqual(True, False)  
-        self.assertTrue(xxx)
-
-
-if __name__ == '__main__':
-    unittest.main()
-</code></pre>
-<h1 id="100">100示例</h1>
-<p>加法</p>
-<pre><code>n1 = 10
-n2 = input(&quot;number 2: &quot;)
-sum = n1 + float(n2)
-print(&quot;加法: &quot;, sum)
-</code></pre>
-<p>阶乘</p>
-<pre><code>count = 1
-for i in range(1, 6):
-    # count = count * i
-    count *= i
-print(&quot;阶乘5: &quot;, count)
-</code></pre>
-<p>算法1: 不重复三位数</p>
-<pre><code>nums = [1,2,3,4]
-
-for i in nums:
-    for j in nums:
-        for k in nums:
-            if (i != j and i != k and j != k):
-                print(i,j,k)
-</code></pre>
-<p>算法2: 判断闰年</p>
-<pre><code>def check(n):
-    if n % 4 ==0 and n %100 !=0:
-        return True
-    if n % 400 == 0:
-        return True
-    return False
-
-检查 print('2004', check(2004))
-http://www.runnian.cc/runnianrunyue.aspx
-</code></pre>
-<p>算法3: Fib数列</p>
-<pre><code>def fib(n):
-    if n == 1 or n == 2 :
-        return 1
-    return fib(n-1) + fib(n-2)
-
-检查 0,1,1,2,3,5,8,13 ...
-https://oi-wiki.org/math/combinatorics/fibonacci/
-
-==== 方式1
-a = 1
-b = 1
-for n in range(3,41):
-    tmp = a+b
-    a = b
-    b = tmp
-    print(f'fib({n}) = {b}')
-
-==== 方式2
-dp = [0,1,1]
-for i in range(10):
-    dp.append(dp[-1] + dp[-2])
-</code></pre></div>
+<h2 id="install">Install</h2></div>
             </div>
         </div>
 

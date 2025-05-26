@@ -77,6 +77,14 @@
     <a href="../../howto/git/" class="dropdown-item">代码库</a>
 </li>
                                     
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Ustb</a>
     <ul class="dropdown-menu">
@@ -97,27 +105,39 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">构建工具 ninja,meson</a>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
-    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../groovy/" class="dropdown-item">Groovy Script</a>
 </li>
                                     
 <li>
-    <a href="../11-clang/" class="dropdown-item">C,C++</a>
+    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
 </li>
                                     
 <li>
-    <a href="../12-python/" class="dropdown-item">Python</a>
+    <a href="../java/" class="dropdown-item">JAVA</a>
 </li>
                                     
 <li>
-    <a href="../13-ruby/" class="dropdown-item">Ruby</a>
+    <a href="../lua/" class="dropdown-item">Lua Script</a>
 </li>
                                     
 <li>
-    <a href="../14-lua/" class="dropdown-item">Lua</a>
+    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python Script</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Ruby Lib</a>
+</li>
+                                    
+<li>
+    <a href="../ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -154,12 +174,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../../howto/ustb/vt/" class="nav-link">
+                                <a rel="prev" href="../python/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../02-scons/" class="nav-link">
+                                <a rel="next" href="../ruby/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -186,22 +206,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#start" class="nav-link">Start</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
             <li class="nav-item" data-bs-level="2"><a href="#library" class="nav-link">Library</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -210,66 +215,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="install">Install</h2>
-<p>https://mirrors.tuna.tsinghua.edu.cn/help/pypi/</p>
-<pre><code>sudo apt install build-essential
-sudo apt install python3-venv
-
-python3 -m venv vbuild
-$ pip list
-Package    Version
----------- -------
-pip        22.0.2
-setuptools 59.6.0
-</code></pre>
-<p>https://github.com/ninja-build/ninja.git</p>
-<pre><code>sudo apt install ninja-build
-/usr/bin/ninja --version
-
-pip install ninja
-</code></pre>
-<pre><code>sudo apt install meson (require ninja-build)
-/usr/bin/meson --version
-
-pip install meson ninja
-</code></pre>
-<h2 id="start">Start</h2>
-<pre><code>mkdir hello &amp;&amp; cd hello
-meson init
-
-方式1
-meson build
-cd build &amp;&amp; ninja &amp;&amp; sudo ninja install
-
-方式2
-meson setup b2
-meson compile -C b2
-</code></pre>
-<p>其他选项</p>
-<pre><code>/home/hello
-meson setup build --prefix=$PWD/highgo -Dcassert=true '-DPG_TEST_EXTRA=kerberos ldap' -Dbuildtype=debug
-ninja 
-ninja install
-创建目录 /home/hello/dist/bin/hello
-
-
-cd build 
-ninja test  或者 meson test
-</code></pre>
-<h2 id="library">Library</h2>
-<pre><code>├── meson.build
-└── src
-    ├── gmath.c
-    └── gmath.h
-
-
-# meson.build
-static_library('gmath', 'src/gmath.c'
-  install: true)
-</code></pre>
-<h1 id="about-links">About Links</h1>
-<p><a href="https://www.cnblogs.com/RioTian/p/17984286">https://www.cnblogs.com/RioTian/p/17984286</a></p>
-<p><a href="https://kernel-zhang.github.io/posts/MesonTutorial/">https://kernel-zhang.github.io/posts/MesonTutorial/</a></p></div>
+<h2 id="library">Library</h2></div>
             </div>
         </div>
 

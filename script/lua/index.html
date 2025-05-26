@@ -77,6 +77,14 @@
     <a href="../../howto/git/" class="dropdown-item">代码库</a>
 </li>
                                     
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
   <li class="dropdown-submenu">
     <a href="#" class="dropdown-item">Ustb</a>
     <ul class="dropdown-menu">
@@ -97,27 +105,39 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../01-ninja/" class="dropdown-item">构建工具 ninja,meson</a>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
 </li>
                                     
 <li>
-    <a href="../02-scons/" class="dropdown-item">构建工具 scons</a>
+    <a href="../groovy/" class="dropdown-item">Groovy Script</a>
 </li>
                                     
 <li>
-    <a href="../11-clang/" class="dropdown-item">C,C++</a>
+    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
 </li>
                                     
 <li>
-    <a href="../12-python/" class="dropdown-item">Python</a>
+    <a href="../java/" class="dropdown-item">JAVA</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Ruby</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Lua Script</a>
 </li>
                                     
 <li>
-    <a href="../14-lua/" class="dropdown-item">Lua</a>
+    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python Script</a>
+</li>
+                                    
+<li>
+    <a href="../ruby%2Blib/" class="dropdown-item">Ruby Lib</a>
+</li>
+                                    
+<li>
+    <a href="../ruby/" class="dropdown-item">Ruby</a>
 </li>
                                 </ul>
                             </li>
@@ -154,12 +174,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../12-python/" class="nav-link">
+                                <a rel="prev" href="../java/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../14-lua/" class="nav-link">
+                                <a rel="next" href="../python%2Blib/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -191,42 +211,27 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#helloworld" class="nav-link">HelloWorld</a>
+            <li class="nav-item" data-bs-level="2"><a href="#lua" class="nav-link">Lua 语法</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#helloworld-web-sinatra" class="nav-link">HelloWorld WEB (sinatra)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">执行系统命令</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#ruby" class="nav-link">Ruby 语法</a>
+            <li class="nav-item" data-bs-level="2"><a href="#function" class="nav-link">自定义模块 function</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">选择循环</a>
+            <li class="nav-item" data-bs-level="2"><a href="#object" class="nav-link">自定义模块 object</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">函数</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">面向对象</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">异常</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-bs-level="2"><a href="#about-links" class="nav-link">About Links</a>
+            <li class="nav-item" data-bs-level="1"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -236,314 +241,149 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="install">Install</h2>
-<pre><code>sudo apt install ruby ruby-dev ruby-bundler
+<pre><code>$ yum install lua
+$ sudo apt install lua5.3
+/usr/bin/lua
+/usr/bin/luac
 
-root@ubuntu22:~# ruby --version
-ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux-gnu]
+$ lua -v
+$ lua
+print(1+1)
 
-root@ubuntu22:~# bundler --version
-Bundler version 2.3.5
-
-===== 默认源
-root@ubuntu22:~/ruby# gem sources
-*** CURRENT SOURCES ***
-
-https://rubygems.org/
-
-===== 国内源
-gem sources --remove https://rubygems.org/
-gem sources -a https://mirrors.aliyun.com/rubygems/
+$ ldd /usr/local/bin/lua
+        linux-vdso.so.1 (0x00007fff2eb34000)
+        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f83d3087000)
+        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f83d2e5e000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f83d31b9000)
 </code></pre>
-<p>source</p>
-<pre><code>RUBY_BUILD=&quot;v20250409&quot;
-RUBY_TAG=&quot;3.3.8&quot;
+<p><a href="https://www.lua.org/ftp/lua-5.4.7.tar.gz">https://www.lua.org/ftp/lua-5.4.7.tar.gz</a></p>
+<pre><code>yum install @development
+yum install readline-devel ncurses-devel
+sudo apt install build-essential cpp make binutils
 
-# Install Ruby
-apt-get install --yes \
-   autoconf patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
-git clone https://github.com/rbenv/ruby-build.git /build/ruby-build  --depth 1 -b &quot;${RUBY_BUILD}&quot;
+$ make linux
+$ make test
+$ make install  
+// make install local
+// make install INSTALL_TOP=/opt/lua
+make
+make install        安装到 /usr/local
+make install local  安装到 ./install
 
-PREFIX=/usr/local/ruby-build ./ruby-build/install.sh
-ruby-build --list
-ruby-build ${RUBY_TAG} /usr/local/ruby
+编译结果  /usr/local/{bin,include,lib,man}
+TO_BIN= lua luac
+TO_INC= lua.h luaconf.h lualib.h lauxlib.h lua.hpp
+TO_LIB= liblua.a
+TO_MAN= lua.1 luac.1
 
-$ ruby --version
-ruby 3.3.8 (2025-04-09 revision b200bad6cd) [x86_64-linux]
-
-$ bundle --version
-Bundler version 2.5.22
-
-$ rake --version
-rake, version 13.1.0
-
-$ gem list | wc -l
-86
+==== 静态编译 (alma报错, arch成功)
+$ vim src/Makefile
+MYLDFLAGS=-static
 </code></pre>
-<h2 id="helloworld">HelloWorld</h2>
-<pre><code>class Person
-  # 静态变量
-  @@cnt = 1
-
-  # 属性，实例变量
-  attr_accessor :name, :age
-
-  # 初始化方法
-  def initialize(name, age)
-    @name = name
-    @age = age
-  end
-
-  # 定义方法
-  def greet
-    &quot;My name is #{@name} and I am #{@age} years old.&quot;
-  end
-end
-
-person = Person.new(&quot;Alice&quot;, 30)
-puts person.greet
-</code></pre>
-<h2 id="helloworld-web-sinatra">HelloWorld WEB (sinatra)</h2>
-<p>rails 非常复杂，不适合小项目</p>
-<pre><code>$ gem install sinatra
-$ gem install rackup puma
-$ ruby app.rb
-$ curl localhost:4567
-$ 静态文件从 ./public 目录提供服务
-$ 文件 ./public/css/style.css 作为 http://example.com/css/style.css
-
-======= touch app.rb
-require 'sinatra'
-
-get '/' do
-  'Hello world!'
-end
-</code></pre>
-<p>生产环境</p>
-<pre><code>$ bundle install
-$ rackup  // 默认端口9292
-$ rackup config.ru --port=8080
-
-docker.image('ruby:2.6').withRun('-v $(pwd):/app -w /app') { c -&gt;
-    sh 'bundle install'
-    sh 'rake test'
-}
-
-========= 创建 Gemfile
-$ bundle init
-$ bundle add sinatra
-$ bundle add rackup puma
-
-========= 创建 config.ru
-require 'rubygems'
-require 'bundler'
-Bundler.require
-
-require './app'
-run Sinatra::Application
+<h2 id="lua">Lua 语法</h2>
+<pre><code>区分大小写
 
 </code></pre>
-<h2 id="ruby">Ruby 语法</h2>
-<pre><code>print &quot;Hello world!\n&quot;
-# 输出 p(”hee&quot;)
-print(&quot;hello&quot;)
-print(&quot;\n&quot;)
-puts &quot;hello&quot;
+<h2 id="_1">执行系统命令</h2>
+<pre><code>Lua有两种执行系统命令的方法：os.execute, io.popen
 
-# 数值对象，字符串对象，时间对象，文件对象，数组对象
-# Numeric, String, Array, File
-# 局部变量 aa, _aa   常量(readonly) TEST=1  RUBY_VERSION
-# 全局变量 $x  实例变量@xx  类变量@@shape
-arr = [&quot;a&quot;, 2, nil]
-arr.each do |item|
-  p(item)
-end
-puts(RUBY_VERSION)
-puts(RUBY_PLATFORM)
-a=1
-b=2;c=3
-v=(a&gt;b) ? a : b
-puts(v)
-# Range.new(1,10)  范围运算符1..10
-# 指数**  三元?:
-# 值相等 === ,  属于类 p(String === &quot;asdf&quot;)
+os.execute 返回的是命令执行的状态，一共返回3个值。
+第一个值是true或nil, true表示命令成功执行完，否则返回nil。
+第二个值是exit时，表示正常终止，第三个值表示退出的状态码。
+第二个值是signal时，表示信号终止，第三个值表示终止的信号。
+
+&gt; os.execute(&quot;pwd&quot;)
+true exit 0
+&gt; os.execute(&quot;pwdx&quot;)
+nil exit 127
+
+io.popen 启动一个新进程执行命令，并返回一个文件句柄，可以使用该文件句柄读取返回的数据。
+例如,或通过这个方法获得文件列表
+local f = io.popen(&quot;ls&quot;)
+print(f:read(&quot;*a&quot;))
 </code></pre>
-<h2 id="_1">选择循环</h2>
-<pre><code># if xx then [] end 可以省略then, if xx then {} elsif then {} else {} end
-# unless yy then {}  end  条件为假执行
-if true
-  puts(&quot;bb&quot;)
+<h2 id="function">自定义模块 function</h2>
+<pre><code>LOG = require('log')
+print(LOG)
+LOG()
+
+------- 导出函数 log.lua
+local function log(self)
+    print('hello log')
 end
 
-case v
-  when 1 then
-    puts(&quot;1&quot;)
-  when 2 then
-    puts(&quot;2&quot;)
-  else
-    puts(&quot;none&quot;)
-end
-
-
-# 循环 times方法, for语句, while, util, loop
-# 用{}代替 do end
-3.times do |i|
-  puts(&quot;No. #{i}&quot;)
-end
-10.times { }
-for i in 1..10 do
-  #
-end
-
-arr = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
-for name in arr do
-  #
-end
-arr.each do |name| puts name end
-
-loop do
-  # 死循环
-  break # next等价continue, redo重复刚才处理
-end
-while true  do
-  # 条件为真
-end
-
-until false do
-  # 调价为假
-end
+return log
 </code></pre>
-<h2 id="_2">函数</h2>
-<pre><code># 运算符也是方法，有些可以重载
-# 实例方法
-p &quot;10,2,3&quot;.split(&quot;,&quot;)
-p [12,3].index(1)
-p 100.to_s  # 转字符串
-# 类方法
-Array.new
-File.open(&quot;hello.rb&quot;, &quot;r&quot;)
-Time.now
-# 函数方法
-sleep(2)
-print(&quot;hello world&quot;)
+<h2 id="object">自定义模块 object</h2>
+<pre><code>logging = require('logging')
+logging.msg()
 
-def hello(name)
-  puts &quot;Hello, #{name}&quot;
+local logger = logging.file(&quot;test%s.log&quot;, &quot;%Y-%m-%d&quot;)
+
+
+5.2 版本之后，require 不再定义全局变量，需要保存其返回值。
+$ require &quot;luasql.mysql&quot;
+需要写成:
+$ luasql = require &quot;luasql.mysql&quot;
+
+------- 导出对象 logging.lua
+local logging =  {}
+logging._VERSION = &quot;1.0&quot;
+
+function logging.msg()
+    print('hello logging: ', logging._VERSION)
 end
 
-def add(a,b)
-  return a + b # 可以省略return
+if _VERSION &lt; 'Lua 5.2' then
+    _G.logging = logging
 end
 
-def fool(*args)
-  # 个数不确定
-  # 至少一个参数 def add(a, *args)
-end
+return logging
 </code></pre>
-<h2 id="_3">面向对象</h2>
-<pre><code>arr=Array.new
-p arr
-p arr.class
-arr = [1,2]
-str = &quot;hello world&quot;
-p arr.class
-p str.class
-p str.instance_of?(String)
-
-# 实例变量@xx， 类变量@@yy所有实例共享
-class HelloWorld
-  @@count = 0
-  def initialize(myname=&quot;Ruby&quot;)
-    @name=myname
-    @@count+=1
-  end
-
-  def hello
-    puts &quot;Hello #{@name}  / #{@@count}&quot;
-  end
-end
-
-hx = HelloWorld.new(&quot;Tomas&quot;)
-hx2 = HelloWorld.new
-hx.hello
-
-# 类方法
-# class HelloStatic
-#   class &lt;&lt; self
-#     def hello(name)
-#       puts &quot;Hello static #{name}&quot;
-#     end
-#   end
-# end
-
-# 类方法2, 类常量
-class HelloStatic
-  VERSION=&quot;v1.0&quot;
-end
-def HelloStatic.hello(name)
-  puts &quot;Hello static #{name}&quot;
-end
-HelloStatic.hello(&quot;Ruby&quot;)
-puts HelloStatic::VERSION
+<p>加载路径</p>
+<pre><code>export LUA_PATH=$PWD/scripts/
+export LUA_PATH='/opt/lua;;'    # 原来的默认路径，里面没用文件
 
 
-# 访问级别 public(默认), private, protected
-class AccTest
-  def hello
+lua: ./hello.lua:5: module 'logging' not found:
+        no field package.preload['logging']
+        no file '/usr/local/share/lua/5.4/logging.lua'
+        no file '/usr/local/share/lua/5.4/logging/init.lua'
+        no file '/usr/local/lib/lua/5.4/logging.lua'
+        no file '/usr/local/lib/lua/5.4/logging/init.lua'
+        no file './logging.lua'
+        no file './logging/init.lua'
+        no file '/usr/local/lib/lua/5.4/logging.so'
+        no file '/usr/local/lib/lua/5.4/loadall.so'
+        no file './logging.so'
+stack traceback:
+        [C]: in function 'require'
+        ./hello.lua:5: in main chunk
+        [C]: in ?
 
-  end
-  public :hello
-
-  def name
-
-  end
-  private :name
-end
-acc = AccTest.new
-acc.hello
-
-
-# 继承
-class ArrayTest &lt; Array
-  def[](i)
-    super(0)
-  end
-end
-arr = ArrayTest.new([1,2,3])
-puts arr[0]
-puts arr[1]
-puts arr[2]
-
-
-# 模块， 命名空间
-module Std
-  STD_VERSION = &quot;v17&quot;  # 模块常量
-  def hello
-
-  end
-  module_function :hello  # 模块方法
-end
-Std::hello
-puts Std::STD_VERSION
-
-include Std
-puts STD_VERSION
+root@a09a0cb548d3:~# export LUA_PATH=/opt/lua
+root@a09a0cb548d3:~# ./hello.lua
+hello
+lua: ./hello.lua:5: module 'logging' not found:
+        no field package.preload['logging']
+        no file '/opt/lua'
+        no file '/usr/local/lib/lua/5.4/logging.so'
+        no file '/usr/local/lib/lua/5.4/loadall.so'
+        no file './logging.so'
+stack traceback:
+        [C]: in function 'require'
+        ./hello.lua:5: in main chunk
+        [C]: in ?
 </code></pre>
-<h2 id="_4">异常</h2>
-<pre><code>begin
-  # File.open(&quot;aaa.txt&quot;)  # IOError
-  # 抛出异常, RuntimeError
-  raise
-  raise(&quot;xyzwer&quot;)
-rescue =&gt; ex
-  # 错误处理, StandardError及其子类(RuntimeError)
-  puts ex.message
-ensure
-  puts &quot;finally&quot; # 无论是否发生异常
-end
-</code></pre>
-<h2 id="about-links">About Links</h2>
-<p>https://sinatra.ruby-lang.com.cn/intro.html</p>
-<p>https://qiita.com/Alt70155/items/3965b4a9889698579df4</p></div>
+<h1 id="about-links">About Links</h1>
+<p><a href="https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/">https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/</a></p>
+<p><strong>LOG</strong></p>
+<p><a href="https://codeberg.org/imo/log.lua">https://codeberg.org/imo/log.lua</a></p>
+<p><a href="https://github.com/lunarmodules/lualogging.git">https://github.com/lunarmodules/lualogging.git</a></p>
+<p><strong>Exec</strong></p>
+<p><a href="https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/">https://forkful.ai/zh/lua/files-and-io/creating-a-temporary-file/</a></p>
+<p><a href="https://luabyexample.techplexlabs.com/execing-processes/">https://luabyexample.techplexlabs.com/execing-processes/</a></p>
+<p><a href="https://github.com/GUI/lua-shell-games.git">https://github.com/GUI/lua-shell-games.git</a></p></div>
             </div>
         </div>
 
