@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~tinylinux/" class="dropdown-item">TinyLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../howto/artifact/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/docs/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/git/" class="dropdown-item">代码库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../howto/ustb/" class="dropdown-item">USTB</a>
+</li>
+            
+<li>
+    <a href="../../howto/ustb/vt/" class="dropdown-item">VT</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
+</li>
+                                    
+<li>
+    <a href="../groovy/" class="dropdown-item">Groovy Script</a>
+</li>
+                                    
+<li>
+    <a href="../java/" class="dropdown-item">JAVA</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">JAVA Lib</a>
+</li>
+                                    
+<li>
+    <a href="../java_native_access/" class="dropdown-item">JAVA Native Access</a>
+</li>
+                                    
+<li>
+    <a href="../lua/" class="dropdown-item">Lua</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../python_lib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                    
+<li>
+    <a href="../ruby_lib/" class="dropdown-item">Ruby Lib</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../setup/01-base/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/02-base-devel/" class="dropdown-item">系统开发环境</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/03-dockerfile/" class="dropdown-item">Dockerfile</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/04-buildah/" class="dropdown-item">Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/06-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../java/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../java_native_access/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#library" class="nav-link">Library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#ide" class="nav-link">IDE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#maven-project" class="nav-link">Maven Project</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#maven-docker-build" class="nav-link">Maven Docker Build</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#gradle-project" class="nav-link">Gradle Project</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#console-app" class="nav-link">Console APP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#desktop-app" class="nav-link">Desktop APP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="library">Library</h2>
+<p>https://mvn.coderead.cn/</p>
+<p>[常用工具类] https://www.bilibili.com/video/BV1Lv411P7Ua/</p>
+<p>[中间件] https://www.bilibili.com/video/BV1j64y187LK/</p>
+<p>[面试题] https://www.bilibili.com/video/BV1Sg41157T5/</p>
+<h2 id="ide">IDE</h2>
+<pre><code>cnki@192:~$ tail -n2 .bashrc 
+export JAVA_HOME=/opt/jdk-17
+export PATH=$JAVA_HOME/bin:$PATH
+
+更新时间戳
+cnki@192:~/Applications$ tar -xmf gigaideCE-242.21829.142.2.tar.gz
+~/.config/GIGAIDE
+~/.cache/GIGAIDE
+~/.local/share/GIGAIDE
+
+Create Desktop Entry
+Appearance =&gt; Use Custom Font 
+Editor =&gt; CodeStyle =&gt; Import Scheme (intellij-java-google-style.xml)
+Plugin TestMe已安装，方法名context menu
+
+JVM: kotlin, groovy souce build
+CLI APP: shadowjar/piocli
+GUI APP: swing/openJFX/swt
+WEB APP:
+</code></pre>
+<h2 id="maven-project">Maven Project</h2>
+<pre><code>    &lt;properties&gt;
+        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;maven.test.skip&gt;true&lt;/maven.test.skip&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+            &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+            &lt;version&gt;1.5.6&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+            &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+            &lt;version&gt;5.10.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre>
+<p>Runnable Jar</p>
+<pre><code>    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.1&lt;/version&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.2.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;finalName&gt;getmac&lt;/finalName&gt;
+                    &lt;archive&gt;
+                        &lt;manifest&gt;
+                            &lt;mainClass&gt;com.example.App3&lt;/mainClass&gt;
+                        &lt;/manifest&gt;
+                    &lt;/archive&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+</code></pre>
+<h2 id="maven-docker-build">Maven Docker Build</h2>
+<p>https://github.com/kaiwinter/docker-java8-maven/blob/master/Dockerfile</p>
+<pre><code>docker volume create m2
+docker inspect m2
+sudo cp settings.xml  /var/lib/docker/volumes/m2/_data
+
+docker run -it --rm -v m2:/root/.m2 -v &quot;$PWD/target:/app/target&quot; myapp bash
+</code></pre>
+<p>Dockerfile-ubuntu16</p>
+<pre><code>COPY sources.ubuntu16.list /etc/apt/sources.list
+RUN apt-get update \
+    &amp;&amp; apt-get install -y binutils fakeroot \
+    &amp;&amp; apt-get clean
+
+# install maven
+ADD apache-maven-3.8.4-bin.tar.gz /opt
+RUN ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/local/bin
+
+# install openjdk
+ADD openjdk-11*_bin.tar.gz /usr/jvm
+ENV JAVA_HOME /usr/jvm/jdk-11
+ENV PATH $JAVA_HOME/bin:$PATH
+
+CMD [&quot;bash&quot;]
+</code></pre>
+<p>Dockerfile-openjdk</p>
+<pre><code>FROM openjdk
+MAINTAINER gg
+
+# install maven
+ADD doc/apache-maven-3.8.4-bin.tar.gz /opt
+RUN ln -s /opt/apache-maven-3.8.4/bin/mvn /usr/local/bin
+
+# Project
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+#COPY file.ico .
+#RUN mvn clean compile javafx:jlink jpackage:jpackage
+
+CMD [&quot;bash&quot;]
+</code></pre>
+<p>Dockerfile-debian11</p>
+<pre><code># COPY stretch-backports.list /etc/apt/sources.list.d/stretch-backports.list
+RUN apt-get update \
+    &amp;&amp; apt-get install -y libavformat58 libgl1-mesa-dev \
+    libx11-dev pkg-config x11proto-core-dev git \
+    libgtk2.0-dev libgtk-3-dev \ 
+    cmake bison flex gperf ruby \
+    libxxf86vm-dev default-jdk \
+    &amp;&amp; apt-get clean
+
+# Project
+WORKDIR /opt
+ADD jfx-jfx17.zip /opt
+
+CMD [&quot;bash&quot;]
+</code></pre>
+<p>Dockerfile-debian9</p>
+<pre><code>#RUN apt-get update \
+#    &amp;&amp; apt-get install -y apt-transport-https ca-certificates
+
+
+# change mirror
+#COPY stretch-backports.list /etc/apt/sources.list.d/stretch-backports.list
+COPY sources.list /etc/apt/sources.list
+
+RUN apt-get update
+RUN apt-get install -y cmake bison flex gperf ruby
+RUN apt-get install -y libavformat57 libgl1-mesa-dev libx11-dev pkg-config x11proto-core-dev git libgtk2.0-dev libgtk-3-dev 
+#RUN apt-get install -y build-essential
+#RUN apt-get install -y cmake 
+RUN apt-get install -y openjdk-11-jdk
+
+# Project
+WORKDIR /opt
+ADD jfx-jfx17.zip /opt
+
+CMD [&quot;bash&quot;]
+</code></pre>
+<h2 id="gradle-project">Gradle Project</h2>
+<p>https://services.gradle.org/</p>
+<p>https://mirrors.huaweicloud.com/home</p>
+<pre><code>========== 镜像（全局）~/.gradle/init.gradle**
+allprojects{
+    repositories {
+        maven {
+            url 'https://repo.huaweicloud.com/repository/maven/'
+        }
+    }
+    buildscript {
+        repositories {
+            maven {
+                url 'https://repo.huaweicloud.com/repository/maven/'
+            }
+        }
+    }
+}
+
+========== 镜像（项目）
+repositories {
+    maven(&quot;https://maven.aliyun.com/repository/public/&quot;)
+    mavenCentral()
+}
+
+repositories {
+    maven {
+        allowInsecureProtocol true
+        url &quot;http://10.120.130.165:8081/repository/maven-public/&quot;
+    }
+    mavenCentral()
+}
+
+--- kts
+maven {
+    isAllowInsecureProtocol = true
+    url = uri(&quot;http://192.168.22.31:8081/repository/maven-public/&quot;)
+}
+
+========== IDEA中文乱码问题
+Help -&gt; Edit Custom VM Options…
+输入 ：-Dfile.encoding=UTF-8
+
+========== 依赖
+本地 jar
+implementation files(&quot;lib/webx-hfs-1.0.0.jar&quot;)
+
+项目
+implementation project(&quot;:hfs-lib&quot;)
+
+排除依赖
+implementation('net.cnki.webx:webx-hfs:1.1.0') {
+    exclude group: &quot;net.java.dev.jna&quot;
+}
+
+========== 设置环境变量
+tasks.test {
+    useJUnitPlatform()
+    systemProperty(&quot;jna.debug_load&quot;, &quot;true&quot;)
+    systemProperty(&quot;jna.library.path&quot;, &quot;D:\\webx&quot;)
+}
+
+</code></pre>
+<p>插件 java-library</p>
+<p>https://discuss.gradle.org/t/when-should-we-use-java-plugin-and-when-java-library-plugin/25377</p>
+<p>https://docs.gradle.org/current/userguide/java_library_plugin.html</p>
+<pre><code>plugins {
+    id 'java-library'
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+java {
+    withSourceJar()
+}
+
+========== 打包 shadowjar
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version &quot;7.0.0&quot;
+}
+
+mainClassName = 'example.App'
+</code></pre>
+<p>插件 cpp-library</p>
+<pre><code>org.gradle.nativeplatform.internal.DefaultTargetMachineFactory$TargetMachineImpl
+
+在aarch64机器build失败，应该是只支持x86平台
+Linux, Windows, MacOS
+
+支持编译器ToolChain
+visualCpp (Visual Studio)
+gcc (GNU GCC)
+clang (CLang)
+</code></pre>
+<h2 id="console-app">Console APP</h2>
+<pre><code>--- 没有依赖
+java -cp starter.jar example.App
+
+--- 有依赖
+java -cp &quot;starter-1.0-SNAPSHOT.jar;C:\Users\gecha\.m2\repository\com\vdurmont\emoji-java\5.1.1\emoji-java-5.1.1.jar;C:\Users\gecha\.m2\repository\org\json\json\20170516\json-20170516.jar&quot; example.App
+</code></pre>
+<p>https://picocli.info/</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;info.picocli&lt;/groupId&gt;
+    &lt;artifactId&gt;picocli&lt;/artifactId&gt;
+    &lt;version&gt;4.6.3&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="desktop-app">Desktop APP</h2>
+<p>Swing 框架</p>
+<pre><code>https://github.com/johnyNemo/swingMVP
+https://github.com/mszalbach/SwingMVP
+
+入门
+https://www.javatpoint.com/java-swing
+https://www.guru99.com/java-swing-gui.html
+
+布局
+https://www.miglayout.com
+http://www.java2s.com/Code/Java/Swing-Components/BuildsthemainframeintheSimpleLooksDemo.htm
+http://www.jgoodies.com/downloads/demos/
+</code></pre>
+<p>SWT 框架</p>
+<pre><code>package org.example;
+
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class Main {
+
+    /**
+     * Launch the application.
+     * @param args
+     */
+    public static void main(String[] args) {
+        Display display = Display.getDefault();
+        Shell shell = new Shell();
+        shell.setSize(450, 300);
+        shell.setText(&quot;SWT Application&quot;);
+
+        shell.open();
+        shell.layout();
+        while (!shell.isDisposed()) {
+            if (!display.readAndDispatch()) {
+                display.sleep();
+            }
+        }
+    }
+
+}
+</code></pre>
+<p>JFX 框架</p>
+<pre><code>https://github.com/databasefx/dbfx
+https://github.com/imyeyu/better-fx
+
+快速入门（只看布局和组件）
+https://www.bilibili.com/video/BV1fW41167RP
+
+完整教程（英文）
+https://www.demo2s.com/java/javafx-printing.html
+https://github.com/Pi4J/pi4j-template-javafx
+
+组件
+http://tutorials.jenkov.com/javafx/tableview.html
+https://www.yiibai.com/javafx/javafx_textfield.html
+
+图标
+https://icons8.com/icons/set/file
+
+异步任务
+https://www.jianshu.com/p/97e02eccc87c
+https://stackoverflow.com/questions/11703568/how-to-use-the-return-value-of-call-method-of-task-class-in-javafx
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

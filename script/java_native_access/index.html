@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+        <link rel="shortcut icon" href="../../img/linux.ico">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+            <div class="container">
+                <a class="navbar-brand" href="../..">SLACKMAN.CN</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../linux/" class="nav-link">Linux</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Distro</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../distro/archlinux/" class="dropdown-item">ArchLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/centos/" class="dropdown-item">CentOS</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/ubuntu/" class="dropdown-item">Ubuntu</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~nanolinux/" class="dropdown-item">NanoLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~tinylinux/" class="dropdown-item">TinyLinux</a>
+</li>
+                                    
+<li>
+    <a href="../../distro/~toolchain/" class="dropdown-item">Toolchain</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Howto</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../howto/artifact/" class="dropdown-item">制品库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/docs/" class="dropdown-item">文档库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/git/" class="dropdown-item">代码库</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-ninja/" class="dropdown-item">构建工具 ninja</a>
+</li>
+                                    
+<li>
+    <a href="../../howto/make-scons/" class="dropdown-item">构建工具 scons</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ustb</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../howto/ustb/" class="dropdown-item">USTB</a>
+</li>
+            
+<li>
+    <a href="../../howto/ustb/vt/" class="dropdown-item">VT</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Script</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../cxx/" class="dropdown-item">C,C++</a>
+</li>
+                                    
+<li>
+    <a href="../groovy/" class="dropdown-item">Groovy Script</a>
+</li>
+                                    
+<li>
+    <a href="../java/" class="dropdown-item">JAVA</a>
+</li>
+                                    
+<li>
+    <a href="../java_lib/" class="dropdown-item">JAVA Lib</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">JAVA Native Access</a>
+</li>
+                                    
+<li>
+    <a href="../lua/" class="dropdown-item">Lua</a>
+</li>
+                                    
+<li>
+    <a href="../python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="../python_lib/" class="dropdown-item">Python Lib</a>
+</li>
+                                    
+<li>
+    <a href="../ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                    
+<li>
+    <a href="../ruby_lib/" class="dropdown-item">Ruby Lib</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Setup</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../setup/01-base/" class="dropdown-item">系统设置</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/02-base-devel/" class="dropdown-item">系统开发环境</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/03-dockerfile/" class="dropdown-item">Dockerfile</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/04-buildah/" class="dropdown-item">Buildah</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/05-bootcd/" class="dropdown-item">BootCD</a>
+</li>
+                                    
+<li>
+    <a href="../../setup/06-diskimage/" class="dropdown-item">DiskImage</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="../java_lib/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../lua/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/slackman-cn/www.git" class="nav-link">
+                                  <i class="fa-brands fa-github"></i> 
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#invoke" class="nav-link">Invoke</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#dynamic-library" class="nav-link">Dynamic Library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#dynamic-library-rust" class="nav-link">Dynamic Library (Rust)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#example" class="nav-link">Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#example-kotlin" class="nav-link">Example (Kotlin)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#hfs" class="nav-link">HFS实例</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="invoke">Invoke</h2>
+<pre><code>jna.library.path
+jna.boot.library.path
+jna.platform.library.path
+
+System.out.println(&quot;动态库so路径: &quot; + soPath);
+System.setProperty(&quot;jna.noclasspath&quot;, &quot;true&quot;);
+System.setProperty(&quot;jna.nounpack&quot;, &quot;true&quot;);
+System.setProperty(&quot;jna.library.path&quot;, soPath);
+System.setProperty(&quot;jna.boot.library.path&quot;, soPath);
+System.setProperty(&quot;jna.platform.library.path&quot;, soPath);
+
+...
+System.out.println(&quot;tmpdir java: &quot; + System.getProperty(&quot;java.io.tmpdir&quot;));
+System.out.println(&quot;tmpdir jna : &quot; + System.getProperty(&quot;jna.tmpdir&quot;));
+System.out.println(&quot;JNA Loaded: &quot; + System.getProperty(&quot;jna.loaded&quot;));
+</code></pre>
+<p>https://docs.gradle.org/current/userguide/cpp_library_plugin.html</p>
+<pre><code>gradle init
+
+不支持交叉编译
+https://github.com/gradle/gradle-native/issues/989
+
+webx
+可以尝试将 cpp-library, java-library 都发布到 maven
+</code></pre>
+<h2 id="dynamic-library">Dynamic Library</h2>
+<p>https://www.baeldung.com/java-jna-dynamic-libraries</p>
+<p>https://github.com/ly3too/java-jna-jni</p>
+<pre><code>cmake_minimum_required(VERSION 3.19)
+project(h1)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_library(h1 SHARED library.cpp library.h)
+
+
+------------ 构建 ------------
+mkdir build &amp;&amp; cd build
+cmake ..
+make
+</code></pre>
+<p>header</p>
+<pre><code>#ifndef H1_LIBRARY_H
+#define H1_LIBRARY_H
+
+#ifdef _WIN32
+#define JNA_EXPORT __declspec(dllexport)
+#else
+#define JNA_EXPORT
+#endif
+
+#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif
+JNA_EXPORT int add(int a, int b);
+
+#ifdef __cplusplus
+}
+#endif
+#endif //H1_LIBRARY_H
+
+</code></pre>
+<pre><code>被 extern &quot;C&quot; 修饰的变量和函数是按照 C 语言方式编译和链接的
+__declspec(dllexport)用于Windows中的动态库中，声明导出函数、类、对象等供外面调用，省略给出.def文件。即将函数、类等声明为导出函数，供其它程序调用，作为动态库的对外接口函数、类等。
+
+extern &quot;C&quot;
+{
+    __declspec(dllexport) int add(int a, int b);
+}
+</code></pre>
+<h2 id="dynamic-library-rust">Dynamic Library (Rust)</h2>
+<p>https://gist.github.com/CoolOppo/67b452c125bb0db3212a9fbc44c84245</p>
+<pre><code>1. 创建lib项目，修改Cargo.toml
+[lib]
+crate-type = [&quot;cdylib&quot;]
+
+2. 修改lib.rs
+#[no_mangle]
+pub extern fn add(a:i32, b:i32) -&gt; i32 {
+    a + b
+}
+
+3.构建
+cargo build [--release]
+cargo clean
+</code></pre>
+<h2 id="example">Example</h2>
+<p>https://www.baeldung.com/java-jna-dynamic-libraries</p>
+<p>https://github.com/ly3too/java-jna-jni</p>
+<p>https://www.eshayne.com/jnaex/index.html</p>
+<pre><code> &lt;dependency&gt;
+    &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;
+    &lt;artifactId&gt;jna-platform&lt;/artifactId&gt;
+    &lt;version&gt;5.8.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.junit-pioneer&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-pioneer&lt;/artifactId&gt;
+    &lt;version&gt;1.4.2&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>在接口中定义 methods 和 types，由 jna 创建实例，进行映射</p>
+<pre><code>-------------- LibC.java --------------
+public interface LibC extends Library {
+    LibC INSTANCE = (LibC)
+            Native.load((Platform.isWindows() ? &quot;msvcrt&quot; : &quot;c&quot;),
+                    LibC.class);
+
+    void printf(String format, Object... args);
+}
+
+-------------- LibH.java --------------
+public interface LibH extends Library {
+    LibH INSTANCE = (LibH) Native.load(&quot;h1&quot;, LibH.class);
+
+    int add(int a, int b);
+}
+</code></pre>
+<p>测试调用</p>
+<pre><code>System.setProperty(&quot;jna.library.path&quot;, &quot;C:\\jna&quot;);
+System.setProperty(&quot;jna.debug_load&quot;, &quot;true&quot;);
+LibH.INSTANCE.add(1, 2)
+</code></pre>
+<p>junit测试</p>
+<pre><code>@SetSystemProperty(key = &quot;jna.debug_load&quot;, value = &quot;true&quot;)
+//@SetSystemProperty(key = &quot;jna.library.path&quot;, value = &quot;C:\\jna&quot;)
+public class AppTest {
+
+    @Test
+    @DisplayName(&quot;10+20=30&quot;)
+    public void test() {
+        Assertions.assertEquals(30, 10 + 20);
+    }
+
+    @Test
+    @DisplayName(&quot;call cosh(0)=1.0&quot;)
+    public void testLibC() {
+        LibC lib = Native.load(Platform.isWindows() ? &quot;msvcrt&quot; : &quot;c&quot;, LibC.class);
+        Assertions.assertEquals(1.0, lib.cosh(0));
+    }
+}
+</code></pre>
+<h3 id="java-native">Java native方法</h3>
+<blockquote>
+<p>https://github.com/astonbitecode/j4rs-java-call-rust</p>
+</blockquote>
+<p>-Djna.nosys=true</p>
+<p>https://github.com/java-native-access/jna/issues/384</p>
+<h3 id="_1">加载顺序</h3>
+<pre><code> System.setProperty(&quot;jna.library.path&quot;, &quot;C:\\jna&quot;);
+ System.setProperty(&quot;jna.debug_load&quot;, &quot;true&quot;);
+
+
+ --- 首先加载jnidispatch
+ com/sun/jna/win32-x86-64/jnidispatch.dll
+
+ --- LibH测试：加载h1.dll
+ 寻找jna.library.path：h1.dll
+ 寻找system path：h1.dll
+ 寻找lib- prefix：libh1.dll
+ 寻找classpath：kbase-lib/target/classes/win32-x86-64/h1.dll
+
+ --- LibC测试：加载msvcrt.dll
+ 寻找jna.library.path
+ 寻找system path: C:\Windows\System32\msvcrt.dll
+</code></pre>
+<h3 id="_2">总结</h3>
+<ul>
+<li>jni 是 java 和 cpp 混合开发，需要编译，代码复杂</li>
+<li>jna 进行了解耦，代码简单</li>
+<li>jni 比 jna 效率高</li>
+</ul>
+<p>JNA-so路径</p>
+<pre><code>jna.library.path
+jna.boot.library.path
+jna.platform.library.path
+</code></pre>
+<p>GUI框架：javafx</p>
+<p>依赖管理工具：gradle</p>
+<p>openjdk11 + kotlin + junit5</p>
+<h2 id="example-kotlin">Example (Kotlin)</h2>
+<p>https://www.hicode.club/articles/2020/01/19/1579404425222.html</p>
+<p>https://discuss.kotlinlang.org/t/what-is-the-kotlin-equivalent-of-this-jna-code/13697/2</p>
+<p>依赖</p>
+<pre><code>// https://mvnrepository.com/artifact/net.java.dev.jna/jna
+implementation(&quot;net.java.dev.jna:jna:5.9.0&quot;)
+// https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer
+testImplementation(&quot;org.junit-pioneer:junit-pioneer:1.4.2&quot;)
+</code></pre>
+<pre><code class="language-kotlin">interface LibC : Library {
+    fun cosh(value: Double): Double
+}
+
+object DyLib {
+    val C by lazy {
+        Native.load(&quot;c&quot;, LibC::class.java) as LibC
+    }
+}
+
+interface LibC: Library {
+    companion object {
+        val INSTANCE by lazy { Native.load(&quot;c&quot;, LibC::class.java) }
+    }
+    // ...
+}
+
+// Native.load(if(Platform.isWindows()) &quot;msvcrt&quot; else &quot;c&quot;, LibC::class.java) as LibC
+</code></pre>
+<p>声明 Struct</p>
+<pre><code class="language-kotlin">@Structure.FieldOrder(&quot;field1&quot;, &quot;field2&quot;, &quot;field3&quot;)
+class FooType : Structure() {
+    @JvmField var field1: Int = 0
+    @JvmField var field2: Int = 0
+    @JvmField var field3: String = &quot;&quot;
+}
+
+@Structure.FieldOrder(&quot;field1&quot;, &quot;field2&quot;, &quot;field3&quot;)
+data class FooType(
+    @JvmField var field1: Int=0,
+    @JvmField var field2: Int=0,
+    @JvmField var field3: String=&quot;&quot;
+) : Structure()
+</code></pre>
+<p>https://kotlinlang.org/docs/native-c-interop.html</p>
+<h2 id="hfs">HFS实例</h2>
+<pre><code>// https://mvnrepository.com/artifact/net.java.dev.jna/jna
+implementation(&quot;net.java.dev.jna:jna:5.9.0&quot;)
+// https://mvnrepository.com/artifact/org.junit-pioneer/junit-pioneer
+testImplementation(&quot;org.junit-pioneer:junit-pioneer:1.4.2&quot;)
+// https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect
+implementation(&quot;org.jetbrains.kotlin:kotlin-reflect:1.5.30&quot;)
+</code></pre>
+<p>结构体</p>
+<pre><code>class HFS_FILE_INFO: Structure() {
+    @JvmField var tsDirName = ByteArray(MAX_FILE_ID)
+    @JvmField var tsTableName = ByteArray(MAX_TABLE_LENGTH)
+    @JvmField var tsFileName = ByteArray(MAX_FILE_ID)
+    @JvmField var tsFileType = ByteArray(MAX_FILE_EXT)
+    @JvmField var uiFileSize = 0L
+    @JvmField var tsCreateDate = ByteArray(20)
+    @JvmField var tsModifyDate = ByteArray(20)
+    @JvmField var MD5 = ByteArray(33)
+    @JvmField var btFlag = Byte.MAX_VALUE
+    @JvmField var bIsDir = Byte.MAX_VALUE
+    @JvmField var NodeID = 0
+    @JvmField var ulPos = 0L
+    @JvmField var ulSize = 0L
+    @JvmField var tsVirtualName = ByteArray(MAX_FILE_ID + MAX_FILE_EXT)
+    @JvmField var uiFileCount = 0L
+    @JvmField var uiDirCount = 0L
+    @JvmField var pData = ByteArray(NET_DATA_SIZE_T)
+
+    companion object {
+        const val MAX_FILE_PATH = 260
+        const val MAX_FILE_ID = 255
+        const val MAX_FILE_EXT = 32
+        const val MAX_TABLE_LENGTH = 256
+        const val NET_DATA_SIZE_T = 8
+    }
+}
+
+---- 字段顺序1
+@FieldOrder(
+    &quot;tsDirName&quot;, &quot;tsTableName&quot;, &quot;tsFileName&quot;, &quot;tsFileType&quot;,
+    &quot;uiFileSize&quot;, &quot;tsCreateDate&quot;, &quot;tsModifyDate&quot;, &quot;MD5&quot;,
+    &quot;btFlag&quot;, &quot;bIsDir&quot;, &quot;NodeID&quot;, &quot;ulPos&quot;, &quot;ulSize&quot;,
+    &quot;tsVirtualName&quot;, &quot;uiFileCount&quot;, &quot;uiDirCount&quot;, &quot;pData&quot;,
+)
+
+---- 字段顺序2
+override fun getFieldOrder(): MutableList&lt;String&gt; {
+    val props = HFS_FILE_INFO::class.declaredMemberProperties.map { it.name }.toSet()
+    return HFS_FILE_INFO::class.java.declaredFields.map { it.name }.filter { props.contains(it) }.toMutableList()
+}
+</code></pre>
+<p>结构体2</p>
+<pre><code>----struct/Constants.kt
+const val MAX_FILE_PATH = 260
+const val MAX_FILE_ID = 255
+const val MAX_FILE_EXT = 32
+const val MAX_TABLE_LENGTH = 256
+const val NET_DATA_SIZE_T = 8
+
+----struct/HFS_FILE_INFO.kt
+class HFS_FILE_INFO: Structure() {
+    @JvmField var tsDirName = ByteArray(MAX_FILE_ID)
+    @JvmField var tsTableName = ByteArray(MAX_TABLE_LENGTH)
+    @JvmField var tsFileName = ByteArray(MAX_FILE_ID)
+    @JvmField var tsFileType = ByteArray(MAX_FILE_EXT)
+    @JvmField var uiFileSize = 0L
+    @JvmField var tsCreateDate = ByteArray(20)
+    @JvmField var tsModifyDate = ByteArray(20)
+    @JvmField var MD5 = ByteArray(33)
+    @JvmField var btFlag = Byte.MAX_VALUE
+    @JvmField var bIsDir = Byte.MAX_VALUE
+    @JvmField var NodeID = 0
+    @JvmField var ulPos = 0L
+    @JvmField var ulSize = 0L
+    @JvmField var tsVirtualName = ByteArray(MAX_FILE_ID + MAX_FILE_EXT)
+    @JvmField var uiFileCount = 0L
+    @JvmField var uiDirCount = 0L
+    @JvmField var pData = ByteArray(NET_DATA_SIZE_T)
+
+    override fun getFieldOrder(): MutableList&lt;String&gt; =
+        HFS_FILE_INFO::class.java.declaredFields.map { it.name }.toMutableList()
+
+}
+</code></pre>
+<p>接口</p>
+<pre><code>interface LibHFS : Library {
+
+    companion object {
+        val INSTANCE by lazy {
+            Native.load(&quot;hfsclient&quot;, LibHFS::class.java) as LibHFS
+        }
+    }
+
+    fun CheckNetWork(ip: String, port: Int = 8810): Boolean
+
+    fun InitApplication(
+        ip: String,
+        port: Int = 8810,
+        appId: Int = 1024,
+        appName: String = &quot;HFMS&quot;,
+        appKey: String = &quot;f4b871d85cd746021b451487849e3cdf&quot;
+    ): Boolean
+
+    fun OpenStream(filename: String, mode: String): Pointer
+
+    fun CloseStream(fp: Pointer): Long
+
+    fun ReadStream(fp: Pointer, buf: ByteArray, size: NativeLong): Long
+
+    fun EofStream(fp: Pointer): NativeLong
+
+    fun GetStreamInfo(fp: Pointer, info: HFS_FILE_INFO): Boolean
+}
+</code></pre>
+<p>测试下载</p>
+<pre><code>LibHFS.INSTANCE.InitApplication(ip)
+
+val fp = LibHFS.INSTANCE.OpenStream(filename, &quot;rb&quot;)
+val bos = FileOutputStream(&quot;demo.caj&quot;).buffered()
+
+val buf = ByteArray(1024 * 8)
+while (LibHFS.INSTANCE.EofStream(fp).toInt() != -1) {
+    val size = LibHFS.INSTANCE.ReadStream(fp, buf, NativeLong(1024 * 8))
+    bos.write(buf, 0, size.toInt())
+}
+
+bos.close()
+LibHFS.INSTANCE.CloseStream(fp)
+</code></pre>
+<p>测试获取文件信息</p>
+<pre><code>LibHFS.INSTANCE.InitApplication(ip)
+
+val fp = LibHFS.INSTANCE.OpenStream(filename, &quot;rb&quot;)
+val info = HFS_FILE_INFO()
+LibHFS.INSTANCE.GetStreamInfo(fp, info)
+println(info)
+
+LibHFS.INSTANCE.CloseStream(fp)
+</code></pre>
+<p>ByteArray 转 String 问题</p>
+<pre><code>ByteArray(32)大小固定，导致这种结果[99, 97, 106, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+直接使用 String(bytes) 结果length=32，结尾有乱码
+应该用 String(bytes, 0, bytes.indexOf(0)) 结果length=3
+
+fun ByteArray.trimString() = String(this, 0, this.indexOf(0))
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/base.js"></script>
+
+    </body>
+</html>

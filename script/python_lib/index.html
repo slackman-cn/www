@@ -113,31 +113,35 @@
 </li>
                                     
 <li>
-    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
-</li>
-                                    
-<li>
     <a href="../java/" class="dropdown-item">JAVA</a>
 </li>
                                     
 <li>
-    <a href="../lua/" class="dropdown-item">Lua Script</a>
+    <a href="../java_lib/" class="dropdown-item">JAVA Lib</a>
 </li>
                                     
 <li>
-    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+    <a href="../java_native_access/" class="dropdown-item">JAVA Native Access</a>
 </li>
                                     
 <li>
-    <a href="../python/" class="dropdown-item">Python Script</a>
+    <a href="../lua/" class="dropdown-item">Lua</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Ruby Lib</a>
+    <a href="../python/" class="dropdown-item">Python</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Python Lib</a>
 </li>
                                     
 <li>
     <a href="../ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                    
+<li>
+    <a href="../ruby_lib/" class="dropdown-item">Ruby Lib</a>
 </li>
                                 </ul>
                             </li>
@@ -206,7 +210,32 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="2"><a href="#library" class="nav-link">Library</a>
+            <li class="nav-item" data-bs-level="2"><a href="#install" class="nav-link">Install</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#install-source" class="nav-link">Install (Source)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#wheel-poetry" class="nav-link">wheel (poetry)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#wheel-setup" class="nav-link">wheel (setup)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#console-app" class="nav-link">Console APP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#desktop-app" class="nav-link">Desktop APP</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -215,7 +244,176 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="library">Library</h2></div>
+<h2 id="install">Install</h2>
+<p>https://www.python.org/ftp/python/</p>
+<p>https://mirrors.aliyun.com/python-release/</p>
+<pre><code>C:\Users\Administrator&gt;python -V
+Python 3.9.13
+
+C:\Users\Administrator&gt;pip list
+Package    Version
+---------- -------
+pip        22.0.4
+setuptools 58.1.0
+
+
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+Writing to C:\Users\Administrator\AppData\Roaming\pip\pip.ini
+</code></pre>
+<p>PyCharm Community</p>
+<pre><code>(venv) D:\Backup\Documents\GitHub\pycode&gt;pip list
+Package    Version
+---------- -------
+pip        21.3.1 
+setuptools 60.2.0 
+wheel      0.37.1 
+</code></pre>
+<h2 id="install-source">Install (Source)</h2>
+<pre><code>pacman -S python-pip
+yum install python3-pip
+sudo apt install python3.11-venv
+
+$ python3 --version
+$ python3 -m venv vbuild
+
+pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+</code></pre>
+<p>https://docs.posit.co/resources/install-python-source.html</p>
+<pre><code>yum builddep python3 // 报错
+yum install @development
+yum install wget yum-utils openssl-devel bzip2-devel libffi-devel zlib-devel
+
+$ ./configure --prefix=/opt/python3 
+$ make -j8
+$ make install
+</code></pre>
+<p>https://www.build-python-from-source.com/</p>
+<pre><code>cd /tmp/
+wget https://www.python.org/ftp/python/3.13.2/Python-3.13.2.tgz
+tar xzf Python-3.13.2.tgz
+cd Python-3.13.2
+
+sudo ./configure --prefix=/opt/python/3.13.2/ --enable-optimizations --with-lto --with-computed-gotos --with-system-ffi
+sudo make -j &quot;$(nproc)&quot;
+sudo make altinstall
+sudo rm /tmp/Python-3.13.2.tgz
+</code></pre>
+<h2 id="wheel-poetry">wheel (poetry)</h2>
+<p>pip install poetry 很多依赖</p>
+<p>https://python-poetry.org/docs/basic-usage/</p>
+<p>https://pyloong.github.io/pythonic-project-guidelines/guidelines/project_management/distribution/#221</p>
+<pre><code>$ poetry new lfs
+$ poetry build
+
+$ vi lfs/__init__.py
+def hello():
+    print(&quot;This is a test code.&quot;)
+
+测试安装
+python -m venv vtest
+pip install dist/some-package.whl
+&gt;&gt; import lfs
+&gt;&gt; dir(lfs)
+&gt;&gt; lfs.__path__
+&gt;&gt; lfs.hello()
+['/root/vtest/lib/python3.13/site-packages/lfs']
+
+&gt;&gt; from lfs import hello
+&gt;&gt; hello()
+</code></pre>
+<h2 id="wheel-setup">wheel (setup)</h2>
+<p>pip install wheel setuptools 两个单包</p>
+<pre><code>$ mkdir -p project/lfs &amp;&amp; cd project 
+
+$ python setup.py bdist_wheel
+$ python setup.py sdist
+python setup.py bdist_wheel --universal  生成 py2.py3-none-any.whl
+打包结果在project/dist/lfs-1.0-py3-none-any.whl
+解压 unzip some-package.whl
+解压 wheel unpack some-package.whl
+{dist}-{version}(-{build})?-{python}-{abi}-{platform}.whl
+
+参考
+https://docs.pingcode.com/baike/782958
+https://realpython.com/python-wheels/
+</code></pre>
+<p>project/setup.py</p>
+<pre><code>from setuptools import setup,find_packages
+
+setup(
+    name=&quot;lfs&quot;,
+    author=&quot;slackman&quot;,
+    version=&quot;1.0&quot;,
+    author_email=&quot;r@e.com&quot;,
+    description=&quot;slackman@disroot.org&quot;,
+    long_description=&quot;long desc&quot;,
+    license='Apache2.0',
+    packages=['lfs']  # 重要:这是python项目文件夹的名字
+)
+</code></pre>
+<p>详细配置 https://www.cnblogs.com/wztshine/p/16421459.html</p>
+<pre><code>import setuptools
+
+setup(
+    name=&quot;lfs&quot;,  
+    version=&quot;1.0&quot;,  
+    author=&quot;slackman&quot;,  
+    author_email=&quot;slackman@disroot.org&quot;,  
+    description=&quot;A pipmodule package&quot;,  # 简短的描述
+    long_description=&quot;long desc&quot;,  # 详细描述
+    packages=find_packages(),  # 自动查找所有__init__.py
+    url=&quot;https://www.slackman.cn&quot;,  
+
+    classifiers=[
+        &quot;Development Status :: 3 - Alpha&quot;,  # 项目开发阶段
+        &quot;Programming Language :: Python :: 3&quot;,  # 编程语言
+        &quot;License :: OSI Approved :: MIT License&quot;,  # license
+        &quot;Operating System :: OS Independent&quot;,  # 操作系统
+    ],
+
+    install_requires=[
+        &quot;progress&quot;,
+        # &quot;pytest&gt;=3.3.1&quot;,  # 也可以出依赖的具体版本
+    ],
+    python_requires=&quot;&gt;=3&quot; 
+)
+</code></pre>
+<h2 id="console-app">Console APP</h2>
+<p>第三方模块 click,typer</p>
+<pre><code>import click
+import typer  基于click
+</code></pre>
+<p>内置模块 sys, argparse</p>
+<pre><code>import sys
+
+def main():
+    if len(sys.argv) &lt; 2:
+        print(&quot;Usage: python console.py &lt;name&gt;&quot;)
+        sys.exit(1)
+    name = sys.argv[1]
+    print(f'Hello, {name}')
+
+if __name__ == '__main__':
+    cli()
+</code></pre>
+<blockquote>
+<p>python xxx.py Tom  |  python xxx.py Tom --times 3</p>
+</blockquote>
+<pre><code>import argparse
+
+def cli():
+    parser = argparse.ArgumentParser(description=&quot;Greet someone by name.&quot;)
+    parser.add_argument(&quot;name&quot;, help='The name of person to greet.')
+    parser.add_argument(&quot;--times&quot;, type=int, default=1, help=&quot;Number of times to greet&quot;)
+
+    args = parser.parse_args()
+    for _ in range(args.times):
+        print(f'Hello, {args.name}!')
+</code></pre>
+<h2 id="desktop-app">Desktop APP</h2>
+<p>Tkinter 模块(Tk 接口)是 Python 的标准 Tk GUI 工具包的接口 .Tk 和 Tkinter 可以在大多数的 Unix 平台下使用,同样可以应用在 Windows 和 Macintosh 系统里。Tk8.0 的后续版本可以实现本地窗口风格,并良好地运行在绝大多数平台中。</p>
+<p>wxPython 是一款开源软件，是 Python 语言的一套优秀的 GUI 图形库，允许 Python 程序员很方便的创建完整的、功能健全的 GUI 用户界面。</p>
+<p>Jython 程序可以和 Java 无缝集成。除了一些标准模块，Jython 使用 Java 的模块。Jython 几乎拥有标准的Python 中不依赖于 C 语言的全部模块。比如，Jython 的用户界面将使用 Swing，AWT或者 SWT。Jython 可以被动态或静态地编译成 Java 字节码。</p></div>
             </div>
         </div>
 

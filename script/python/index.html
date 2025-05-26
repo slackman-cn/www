@@ -113,31 +113,35 @@
 </li>
                                     
 <li>
-    <a href="../java%2Blib/" class="dropdown-item">JAVA Lib</a>
-</li>
-                                    
-<li>
     <a href="../java/" class="dropdown-item">JAVA</a>
 </li>
                                     
 <li>
-    <a href="../lua/" class="dropdown-item">Lua Script</a>
+    <a href="../java_lib/" class="dropdown-item">JAVA Lib</a>
 </li>
                                     
 <li>
-    <a href="../python%2Blib/" class="dropdown-item">Python Lib</a>
+    <a href="../java_native_access/" class="dropdown-item">JAVA Native Access</a>
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Python Script</a>
+    <a href="../lua/" class="dropdown-item">Lua</a>
 </li>
                                     
 <li>
-    <a href="../ruby%2Blib/" class="dropdown-item">Ruby Lib</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Python</a>
+</li>
+                                    
+<li>
+    <a href="../python_lib/" class="dropdown-item">Python Lib</a>
 </li>
                                     
 <li>
     <a href="../ruby/" class="dropdown-item">Ruby</a>
+</li>
+                                    
+<li>
+    <a href="../ruby_lib/" class="dropdown-item">Ruby Lib</a>
 </li>
                                 </ul>
                             </li>
@@ -174,12 +178,12 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
-                                <a rel="prev" href="../python%2Blib/" class="nav-link">
+                                <a rel="prev" href="../lua/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../ruby%2Blib/" class="nav-link">
+                                <a rel="next" href="../python_lib/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -236,7 +240,17 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="1"><a href="#100" class="nav-link">100示例</a>
+            <li class="nav-item" data-bs-level="2"><a href="#100" class="nav-link">100示例</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#logging" class="nav-link">日志 logging 内置模块</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#logging_1" class="nav-link">日志 logging 封装</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -381,7 +395,7 @@ class MyTestCase(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 </code></pre>
-<h1 id="100">100示例</h1>
+<h2 id="100">100示例</h2>
 <p>加法</p>
 <pre><code>n1 = 10
 n2 = input(&quot;number 2: &quot;)
@@ -437,6 +451,139 @@ for n in range(3,41):
 dp = [0,1,1]
 for i in range(10):
     dp.append(dp[-1] + dp[-2])
+</code></pre>
+<h2 id="logging">日志 logging 内置模块</h2>
+<p>https://docs.python.org/3/library/logging.html</p>
+<pre><code>import logging
+
+logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.info('hello %s', 123)
+
+/// 方式2
+logger = logging.getLogger()
+logger = logging.getLogger(__name__)
+logger.basicConfig(filename='myapp.log', level=logging.INFO)
+
+logger.debug('This is a debug message')
+logger.info('This is an info message')
+logger.warning('This is a warning message')
+logger.error('This is an error message')
+</code></pre>
+<p>项目可以用配置文件</p>
+<pre><code>import logging
+import logging.config
+
+logging.config.fileConfig(&quot;logging.conf&quot;)
+
+logger.info('hello %s', 123)
+</code></pre>
+<p>配置文件 logging.conf</p>
+<pre><code>[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler,fileHandler
+
+[formatters]
+keys=simpleFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler,fileHandler
+
+[handler_consoleHandler]
+level=INFO
+class=logging.StreamHandler
+args=(sys.stdout,)
+formatter=simpleFormatter
+
+[handler_fileHandler]
+level=INFO
+class=logging.FileHandler
+args=('logs/app.log', 'w', 'utf-8')
+formatter=simpleFormatter
+
+[formatter_simpleFormatter]
+class=logging.Formatter
+format=%(asctime)s %(levelname)-7s [%(filename)s:%(lineno)d] %(message)s
+datefmt=%Y-%m-%dT%H:%M:%S
+</code></pre>
+<h2 id="logging_1">日志 logging 封装</h2>
+<p>应该包含 {time, level, msg, source?}  过于复杂的配置不如直接写代码，自己封装</p>
+<p>一个<em>解元组，两个</em>解字典</p>
+<pre><code>import log
+
+log.info(&quot;1/20 binutils&quot;, &quot;hello&quot;)
+log.info(&quot;1/20 binutils&quot;, &quot;hello {} {}&quot;, 'sss', 123)
+</code></pre>
+<p>定义 log.py</p>
+<pre><code>import logging
+import logging.config
+
+# 配置参考 https://bbs.huaweicloud.com/blogs/416879
+# %(asctime)s %(levelname)-7s [%(filename)s:%(lineno)d] %(message)s
+init_config = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG'
+        }
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console'],
+    }
+}
+
+# 默认配置
+default_config = {
+    'version': 1,
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(levelname)s [%(tag)s] %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'simple',
+            'filename': 'app.log',
+            'mode': 'a',
+            'encoding': 'utf-8',
+        }
+    },
+    'root': {
+        'level': 'INFO',
+        'handlers': ['console', 'file']
+    }
+}
+# 应用日志配置; 保证全局加载一次
+logging.config.dictConfig(default_config)
+
+# If no name is specified, return the root logger
+logger = logging.getLogger()
+
+
+def info(tag, msg, *args):
+    logger.info(str.format(msg, *args), extra={&quot;tag&quot;: tag})
+
+
+def warn(msg, *args, **kwargs):
+    logger.warning(msg, *args, **kwargs)
+
+
+def error(msg, *args, **kwargs):
+    logger.error(msg, *args, **kwargs)
 </code></pre></div>
             </div>
         </div>
