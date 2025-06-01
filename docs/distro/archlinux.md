@@ -101,6 +101,28 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --re
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 ```
 
+Step3: systemd-boot 轻量，代替grub
+```
+$> rm -rf /boot/EFI /boot/grub
+
+检查引导
+$> bootctl
+
+创建 /boot/EFI  /boot/loader
+$> bootctl install
+
+修改 /boot/loader/loader.conf
+default arch.conf
+timeout 3
+console-mode keep
+
+新建 /boot/loader/entries/arch.conf
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=UUID=12db8920-0759-424d-b5a7-3298b31ab614 rw
+```
+
 ## Reboot
 
 ```
@@ -120,6 +142,101 @@ ln -s /usr/bin/helix  /usr/bin/vi
 > nano复制比较方便
 ```
 
+## xorg-xinit
+
+https://bashcommandnotfound.cn/article/linux-xinit-command
+
+xorg 不包含xorg-xinit; 可选 xterm
+```
+$> pacman -S xorg xorg-xinit 
+$> pacman -Q | grep xorg
+
+可能是浏览器
+pacman -S w3m
+w3m suckless.org
+
+wget http://dl.suckless.org/dwm/dwm-6.2.tar.gz
+wget http://dl.suckless.org/tools/dmenu-5.0.tar.gz
+wget http://dl.suckless.org/st/st-0.8.4.tar.gz
+
+$> pacman -S base-devel
+cd dwm
+make
+make install  # /usr/local/bin/dwm
+
+
+cd dmenu
+make
+make install  # /usr/local/bin/dmenu
+
+
+cd st
+make 
+make install  # /usr/local/bin/st
+```
+
+重启reboot ;; 执行 startx;; Alt + Shift + Enter
+```
+创建  ~/.xinitrc
+exec dwm
+```
+
+配置 fluxbox
+```
+$> pacman -S fluxbox  xterm
+/usr/bin/startfluxbox
+
+创建  ~/.xinitrc
+#!/bin/sh
+xterm &
+exec startfluxbox
+
+
+重启reboot ;; 执行 startx;; 右键xterm
+或者执行 xinit
+
+https://man.archlinux.org/man/startx.1.en
+优先级
+$(HOME)/.xinitrc
+$(HOME)/.xserverrc
+/etc/X11/xinit/xinitrc
+```
+
+登录启动启动 startx
+```
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+   exec startx
+ fi
+ 
+========= 
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
+
+========
+vim ~/.zprofile
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
+```
+
+自动登录 root
+
+https://unix.stackexchange.com/questions/42359/how-can-i-autologin-to-desktop-with-systemd
+```
+mkdir -p /etc/systemd/system/getty@tty1.service.d/
+touch /etc/systemd/system/getty@tty1.service.d/override.conf
+
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin root --noclear %I $TERM
+```
 
 ## Desktop
 
