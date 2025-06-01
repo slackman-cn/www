@@ -236,6 +236,10 @@ touch /etc/systemd/system/getty@tty1.service.d/override.conf
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin root --noclear %I $TERM
+
+==== 参考
+systemctl edit getty@tty1
+systemctl -q is-active graphical.target && echo foobar
 ```
 
 ## Desktop
