@@ -1,5 +1,5 @@
 ---
-title: ArchLinux
+title: ArchLinux from Scratch
 since: 202412
 ---
 
@@ -242,7 +242,7 @@ systemctl edit getty@tty1
 systemctl -q is-active graphical.target && echo foobar
 ```
 
-## Desktop
+## Desktop environment or Tile window manager ? 
 
 ```
 pacman -S xorg  # Install 330M  包含了 xorg-server, 等于--needed安装包数量
@@ -279,3 +279,71 @@ MinimumUid=0
 pacman -S deepin-community-wallpapers
 /usr/share/wallpapers/deepin
 ```
+
+## Arch build system 
+
+https://wiki.archlinux.org/title/Arch_build_system
+
+https://superuser.com/questions/1350308/get-source-for-arch-linux-package
+
+https://lists.archlinux.org/pipermail/arch-general/2018-August/045460.html
+
+The Arch build system (ABS) is a system for building and packaging software from source code
+```
+$> sudo pacman -Syu base-devel git
+
+asp export nano
+makepkg -s --skippgpcheck
+
+$> pacman -Q | grep nano
+$> sudo pacman -R nano
+$> sudo pacman -S
+$> sudo pacman -U nano-7.2-1-x86_64.pkg.tar.zst
+
+没有这个软件
+$> sudo pacman -S asp
+Download the PKGBUILD 
+$> asp export <package_name>
+Download the source files
+$> cd xxx
+$> makepkg -do
+
+-s选项会自动安装所有依赖包，
+-i选项会在编译完成后自动安装生成的包
+$> makepkg -si
+
+========  Usage: get-source xxx
+function get-source()
+{
+    asp export $1 && \
+    pushd $1 && \
+    makepkg -do --skippgpcheck && \
+    pushd src
+}
+
+========= asp可能是AUR仓库
+https://www.maketecheasier.com/use-aur-in-arch-linux
+$> useradd cnki -G wheel -m
+$> passwd cnki
+$> nano /etc/sudoers.d/cnki
+cnki ALL=(ALL:ALL) ALL
+
+su cnki
+cd /tmp
+
+https://aur.archlinux.org/packages/asp
+只有一个PKGBUILD
+git clone https://aur.archlinux.org/asp.git  --depth=1
+makepkg -si
+makepkg -si --skippgpcheck
+
+git clone https://aur.archlinux.org/yay.git --depth=1
+makepkg -si
+
+yay -Ss package
+
+```
+
+## About Links
+
+[pacman包管理] https://knightwood.github.io/posts/dd409eba/
