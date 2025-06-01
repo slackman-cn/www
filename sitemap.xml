@@ -2,126 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://slackman.cn/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/linux/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/archlinux/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/centos/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/ubuntu/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/~nanolinux/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/~tinylinux/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/distro/~toolchain/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/artifact/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/docs/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/git/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/make-ninja/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/make-scons/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/ustb/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/howto/ustb/vt/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/cxx/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/groovy/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/java/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/java_lib/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/java_native_access/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/lua/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/python/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/python_lib/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/ruby/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/script/ruby_lib/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/01-base/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/02-base-devel/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/03-dockerfile/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/04-buildah/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/05-bootcd/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
     <url>
          <loc>https://slackman.cn/setup/06-diskimage/</loc>
-         <lastmod>2025-05-26</lastmod>
+         <lastmod>2025-06-01</lastmod>
     </url>
 </urlset>

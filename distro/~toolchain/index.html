@@ -37,7 +37,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../archlinux/" class="dropdown-item">ArchLinux</a>
+    <a href="../archlinux/" class="dropdown-item">ArchLinux from Scratch</a>
 </li>
                                     
 <li>
@@ -231,6 +231,11 @@
             </li>
             
             <li class="nav-item" data-bs-level="2"><a href="#openwrt-external-toolchain" class="nav-link">OpenWrt external toolchain 报错</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#tfs-toolchain-from-scratch" class="nav-link">TFS Toolchain from Scratch</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -520,6 +525,13 @@ make[2]: Leaving directory '/root/wrt'
 make[1]: *** [tools/Makefile:227: /root/wrt/staging_dir/host/stamp/.tools_compile_nyyynyynnnyyynynyyyyyyynynynynyynnynnyyyyyynnnyyyyyyyyynynnyyyyynyyy] Error 2
 make[1]: Leaving directory '/root/wrt'
 make: *** [/root/wrt/include/toplevel.mk:233: world] Error 2
+</code></pre>
+<h2 id="tfs-toolchain-from-scratch">TFS Toolchain from Scratch</h2>
+<p>https://chschneider.eu/linux/tfs/tfs_12.0.1.tar.bz2</p>
+<pre><code class="language-commandline">yum install bzip2 wget
+
+tar -xf tfs_12.0.1.tar.bz2
+wget -i tfs-12.0-wget.list 
 </code></pre>
 <h2 id="about-links">About Links</h2>
 <p><a href="https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem">https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem</a></p>

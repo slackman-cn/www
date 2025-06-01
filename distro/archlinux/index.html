@@ -37,7 +37,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">ArchLinux</a>
+    <a href="./" class="dropdown-item active" aria-current="page">ArchLinux from Scratch</a>
 </li>
                                     
 <li>
@@ -235,7 +235,22 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#desktop" class="nav-link">Desktop</a>
+            <li class="nav-item" data-bs-level="2"><a href="#xorg-xinit" class="nav-link">xorg-xinit</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#desktop-environment-or-tile-window-manager" class="nav-link">Desktop environment or Tile window manager ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#arch-build-system" class="nav-link">Arch build system</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#about-links" class="nav-link">About Links</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -327,6 +342,26 @@ pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 </code></pre>
+<p>Step3: systemd-boot 轻量，代替grub</p>
+<pre><code>$&gt; rm -rf /boot/EFI /boot/grub
+
+检查引导
+$&gt; bootctl
+
+创建 /boot/EFI  /boot/loader
+$&gt; bootctl install
+
+修改 /boot/loader/loader.conf
+default arch.conf
+timeout 3
+console-mode keep
+
+新建 /boot/loader/entries/arch.conf
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=UUID=12db8920-0759-424d-b5a7-3298b31ab614 rw
+</code></pre>
 <h2 id="reboot">Reboot</h2>
 <pre><code>$ systemctl enable NetworkManager 
 也可以手动激活网络
@@ -343,7 +378,94 @@ ln -s /usr/bin/helix  /usr/bin/vi
 &gt; helix相当于一个已经配置完整的vim, space查看功能
 &gt; nano复制比较方便
 </code></pre>
-<h2 id="desktop">Desktop</h2>
+<h2 id="xorg-xinit">xorg-xinit</h2>
+<p>https://bashcommandnotfound.cn/article/linux-xinit-command</p>
+<p>xorg 不包含xorg-xinit; 可选 xterm</p>
+<pre><code>$&gt; pacman -S xorg xorg-xinit 
+$&gt; pacman -Q | grep xorg
+
+可能是浏览器
+pacman -S w3m
+w3m suckless.org
+
+wget http://dl.suckless.org/dwm/dwm-6.2.tar.gz
+wget http://dl.suckless.org/tools/dmenu-5.0.tar.gz
+wget http://dl.suckless.org/st/st-0.8.4.tar.gz
+
+$&gt; pacman -S base-devel
+cd dwm
+make
+make install  # /usr/local/bin/dwm
+
+
+cd dmenu
+make
+make install  # /usr/local/bin/dmenu
+
+
+cd st
+make 
+make install  # /usr/local/bin/st
+</code></pre>
+<p>重启reboot ;; 执行 startx;; Alt + Shift + Enter</p>
+<pre><code>创建  ~/.xinitrc
+exec dwm
+</code></pre>
+<p>配置 fluxbox</p>
+<pre><code>$&gt; pacman -S fluxbox  xterm
+/usr/bin/startfluxbox
+
+创建  ~/.xinitrc
+#!/bin/sh
+xterm &amp;
+exec startfluxbox
+
+
+重启reboot ;; 执行 startx;; 右键xterm
+或者执行 xinit
+
+https://man.archlinux.org/man/startx.1.en
+优先级
+$(HOME)/.xinitrc
+$(HOME)/.xserverrc
+/etc/X11/xinit/xinitrc
+</code></pre>
+<p>登录启动启动 startx</p>
+<pre><code>#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] &amp;&amp; . ~/.bashrc
+if [ -z &quot;${DISPLAY}&quot; ] &amp;&amp; [ &quot;${XDG_VTNR}&quot; -eq 1 ]; then
+   exec startx
+ fi
+
+========= 
+if [[ -z $DISPLAY ]] &amp;&amp; [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
+
+========
+vim ~/.zprofile
+
+if systemctl -q is-active graphical.target &amp;&amp; [[ ! $DISPLAY &amp;&amp; $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
+</code></pre>
+<p>自动登录 root</p>
+<p>https://unix.stackexchange.com/questions/42359/how-can-i-autologin-to-desktop-with-systemd</p>
+<pre><code>mkdir -p /etc/systemd/system/getty@tty1.service.d/
+touch /etc/systemd/system/getty@tty1.service.d/override.conf
+
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin root --noclear %I $TERM
+
+==== 参考
+systemctl edit getty@tty1
+systemctl -q is-active graphical.target &amp;&amp; echo foobar
+</code></pre>
+<h2 id="desktop-environment-or-tile-window-manager">Desktop environment or Tile window manager ?</h2>
 <pre><code>pacman -S xorg  # Install 330M  包含了 xorg-server, 等于--needed安装包数量
 pacman -S --needed qemu-desktop
 pacman -S firefox vlc 
@@ -373,7 +495,67 @@ MinimumUid=0
 
 pacman -S deepin-community-wallpapers
 /usr/share/wallpapers/deepin
-</code></pre></div>
+</code></pre>
+<h2 id="arch-build-system">Arch build system</h2>
+<p>https://wiki.archlinux.org/title/Arch_build_system</p>
+<p>https://superuser.com/questions/1350308/get-source-for-arch-linux-package</p>
+<p>https://lists.archlinux.org/pipermail/arch-general/2018-August/045460.html</p>
+<p>The Arch build system (ABS) is a system for building and packaging software from source code</p>
+<pre><code>$&gt; sudo pacman -Syu base-devel git
+
+asp export nano
+makepkg -s --skippgpcheck
+
+$&gt; pacman -Q | grep nano
+$&gt; sudo pacman -R nano
+$&gt; sudo pacman -S
+$&gt; sudo pacman -U nano-7.2-1-x86_64.pkg.tar.zst
+
+没有这个软件
+$&gt; sudo pacman -S asp
+Download the PKGBUILD 
+$&gt; asp export &lt;package_name&gt;
+Download the source files
+$&gt; cd xxx
+$&gt; makepkg -do
+
+-s选项会自动安装所有依赖包，
+-i选项会在编译完成后自动安装生成的包
+$&gt; makepkg -si
+
+========  Usage: get-source xxx
+function get-source()
+{
+    asp export $1 &amp;&amp; \
+    pushd $1 &amp;&amp; \
+    makepkg -do --skippgpcheck &amp;&amp; \
+    pushd src
+}
+
+========= asp可能是AUR仓库
+https://www.maketecheasier.com/use-aur-in-arch-linux
+$&gt; useradd cnki -G wheel -m
+$&gt; passwd cnki
+$&gt; nano /etc/sudoers.d/cnki
+cnki ALL=(ALL:ALL) ALL
+
+su cnki
+cd /tmp
+
+https://aur.archlinux.org/packages/asp
+只有一个PKGBUILD
+git clone https://aur.archlinux.org/asp.git  --depth=1
+makepkg -si
+makepkg -si --skippgpcheck
+
+git clone https://aur.archlinux.org/yay.git --depth=1
+makepkg -si
+
+yay -Ss package
+
+</code></pre>
+<h2 id="about-links">About Links</h2>
+<p>[pacman包管理] https://knightwood.github.io/posts/dd409eba/</p></div>
             </div>
         </div>
 
