@@ -1,0 +1,5 @@
+project(hello)
+package(Hello Linux)
+
+build_requires(/usr/bin/msgfmt DISTRO ubuntu 'gettext' DISTRO fedora '')
+build_requires(/usr/include/msgfmt DISTRO ubuntu 'gettext' DISTRO fedora '')

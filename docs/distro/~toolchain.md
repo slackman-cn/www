@@ -314,6 +314,16 @@ make[1]: Leaving directory '/root/wrt'
 make: *** [/root/wrt/include/toplevel.mk:233: world] Error 2
 ```
 
+## TFS Toolchain from Scratch
+
+https://chschneider.eu/linux/tfs/tfs_12.0.1.tar.bz2
+```commandline
+yum install bzip2 wget
+
+tar -xf tfs_12.0.1.tar.bz2
+wget -i tfs-12.0-wget.list 
+```
+
 
 ## About Links
 

@@ -1,0 +1,24 @@
+      - name: Install Go
+        run: |
+          curl -sL "https://go.dev/dl/${GOLANG_TAG}.linux-${OS_ARCH}.tar.gz" | tar -C /usr/local/ -zx
+          go version
+
+      - name: Install Rust
+        run: |
+          curl -sL https://sh.rustup.rs -o install-rust.sh
+          bash install-rust.sh -y
+
+
+/**
+ *
+ */
+
+ #!/bin/bash
+ # 不太合适，太乱了
+ # @package kernel
+ # @project Linux Kernel
+ # @author xxx
+ # @copyright
+ # @license
+ # @contact
+ # @website
