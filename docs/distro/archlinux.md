@@ -101,7 +101,9 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --re
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 ```
 
-Step3: systemd-boot 轻量，代替grub
+## systemd-boot 引导 EFI
+
+轻量，代替grub
 ```
 $> rm -rf /boot/EFI /boot/grub
 
@@ -122,6 +124,119 @@ linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
 options root=UUID=12db8920-0759-424d-b5a7-3298b31ab614 rw
 ```
+
+## extlinux/syslinux 引导 BIOS (MBR)
+
+https://wiki.archlinuxcn.org/wiki/Syslinux
+
+isolinux 用于cdrom启动  
+pxelinux 用于网络启动  
+syslinux/extlinux 用于u盘或者cf卡启动
+```
+apt-get install extlinux syslinux-common
+pacman -Q | grep syslinux
+ls /usr/lib/syslinux/bios/
+which extlinux
+
+$> pacstrap /mnt syslinux
+mkdir /boot/syslinux
+cp /usr/lib/syslinux/bios/*.c32 /boot/syslinux/ 
+extlinux --install /boot/syslinux/
+dd bs=440 count=1 conv=notrunc if=/usr/lib/syslinux/bios/mbr.bin of=/dev/sda
+
+/boot/syslinux/syslinux.cfg
+/syslinux/syslinux.cfg
+/syslinux.cfg
+
+* BIOS: /boot/syslinux/syslinux.cfg
+* UEFI: esp/EFI/syslinux/syslinux.cfg
+* 会显示 boot: 提示符并在 5 秒后自动启动
+PROMPT 1
+TIMEOUT 50
+DEFAULT arch
+
+LABEL arch
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux.img
+
+LABEL archfallback
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux-fallback.img
+	
+* 启动目录
+* 依赖 {menu,libutil}.c32
+UI menu.c32
+PROMPT 0
+
+MENU TITLE Boot Menu
+TIMEOUT 50
+DEFAULT arch
+
+LABEL arch
+	MENU LABEL Arch Linux
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux.img
+
+LABEL archfallback
+	MENU LABEL Arch Linux Fallback
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux-fallback.img
+	
+* 图形化启动目录
+* 依赖 vesamenu.c32
+UI vesamenu.c32
+DEFAULT arch
+PROMPT 0
+MENU TITLE Boot Menu
+MENU BACKGROUND splash.png
+TIMEOUT 50
+
+MENU WIDTH 78
+MENU MARGIN 4
+MENU ROWS 5
+MENU VSHIFT 10
+MENU TIMEOUTROW 13
+MENU TABMSGROW 11
+MENU CMDLINEROW 11
+MENU HELPMSGROW 16
+MENU HELPMSGENDROW 29
+
+# Refer to https://wiki.syslinux.org/wiki/index.php/Comboot/menu.c32
+
+MENU COLOR border       30;44   #40ffffff #a0000000 std
+MENU COLOR title        1;36;44 #9033ccff #a0000000 std
+MENU COLOR sel          7;37;40 #e0ffffff #20ffffff all
+MENU COLOR unsel        37;44   #50ffffff #a0000000 std
+MENU COLOR help         37;40   #c0ffffff #a0000000 std
+MENU COLOR timeout_msg  37;40   #80ffffff #00000000 std
+MENU COLOR timeout      1;37;40 #c0ffffff #00000000 std
+MENU COLOR msg07        37;40   #90ffffff #a0000000 std
+MENU COLOR tabmsg       31;40   #30ffffff #00000000 std
+
+LABEL arch
+	MENU LABEL Arch Linux
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux.img
+
+LABEL archfallback
+	MENU LABEL Arch Linux Fallback
+	LINUX ../vmlinuz-linux
+	APPEND root=/dev/sda2 rw
+	INITRD ../initramfs-linux-fallback.img
+
+=======
+mkisofs -o <iso-image-to-create> \
+  -b <current-directory>/isolinux.bin \
+  -c <current-directory>/boot.cat \
+  -no-emul-boot -boot-load-size 4 -boot-info-table \
+  <directory-of-files-and-directory-to-be-put-in-the-image> 
+```
+
 
 ## Reboot
 
