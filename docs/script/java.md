@@ -247,6 +247,45 @@ Thread vt = Thread.startVirtualThread(() -> {
 ```
 
 
+## 单例模式
+
+```
+private static final AtomicReference<SingleInstance> _instance = new AtomicReference<>();
+
+private SingleInstance() {
+}
+
+public static SingleInstance INSTANCE() {
+    while(_instance.get() == null) {
+        _instance.compareAndSet(null, new SingleInstance());
+    }
+    return _instance.get();
+}
+```
+
+test
+```
+Thread[] threads = new Thread[1000];
+CountDownLatch latch = new CountDownLatch(1);
+for (int i = 0; i < 1000; i++) {
+    threads[i] = new Thread(() -> {
+        try {
+            latch.await();
+            System.out.println(SingleInstance.INSTANCE());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    });
+}
+
+for (int i = 0; i < 1000; i++) {
+    threads[i].start();
+}
+
+latch.countDown();
+```
+
+
 ## 单元测试 
 
 Junit4

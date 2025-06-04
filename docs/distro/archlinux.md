@@ -122,7 +122,7 @@ console-mode keep
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
-options root=UUID=12db8920-0759-424d-b5a7-3298b31ab614 rw
+options root=UUID=8817c0e4-a5d3-4286-ae19-fccdf47866a9 rw
 ```
 
 ## extlinux/syslinux 引导 BIOS (MBR)
