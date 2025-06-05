@@ -225,6 +225,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#ide" class="nav-link">在线 IDE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#java-ide" class="nav-link">Java IDE</a>
               <ul class="nav flex-column">
               </ul>
@@ -290,6 +295,18 @@ root = true
 indent_style = space
 indent_size = 4
 EOF
+</code></pre>
+<h2 id="ide">在线 IDE</h2>
+<p>MIT协议
+https://github.com/gitpod-io/openvscode-server</p>
+<pre><code>容器有问题，挂载的目录都是root权限，容器内是普通用户
+podman run  -d  --name code --init -p 3001:3000 \
+   -v &quot;$(pwd):/home/workspace:cached&quot; gitpod/openvscode-server
+
+直接启动可以，工作目录是 $home
+openvscode-server-v1.96.0-linux-x64.tar.gz
+./bin/openvscode-server --port 3001
+./bin/openvscode-server --host 192.168.1.210
 </code></pre>
 <h2 id="java-ide">Java IDE</h2>
 <p>https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml</p>

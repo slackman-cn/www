@@ -230,7 +230,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">单元测试</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">单例模式</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">单元测试</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -457,7 +462,40 @@ Thread vt = Thread.startVirtualThread(() -&gt; {
     System.out.println(&quot;End virtual thread.&quot;);
 });
 </code></pre>
-<h2 id="_3">单元测试</h2>
+<h2 id="_3">单例模式</h2>
+<pre><code>private static final AtomicReference&lt;SingleInstance&gt; _instance = new AtomicReference&lt;&gt;();
+
+private SingleInstance() {
+}
+
+public static SingleInstance INSTANCE() {
+    while(_instance.get() == null) {
+        _instance.compareAndSet(null, new SingleInstance());
+    }
+    return _instance.get();
+}
+</code></pre>
+<p>test</p>
+<pre><code>Thread[] threads = new Thread[1000];
+CountDownLatch latch = new CountDownLatch(1);
+for (int i = 0; i &lt; 1000; i++) {
+    threads[i] = new Thread(() -&gt; {
+        try {
+            latch.await();
+            System.out.println(SingleInstance.INSTANCE());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    });
+}
+
+for (int i = 0; i &lt; 1000; i++) {
+    threads[i].start();
+}
+
+latch.countDown();
+</code></pre>
+<h2 id="_4">单元测试</h2>
 <p>Junit4</p>
 <pre><code>&lt;!-- https://mvnrepository.com/artifact/junit/junit --&gt;
 &lt;dependency&gt;
