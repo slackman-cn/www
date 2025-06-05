@@ -1,0 +1,8 @@
+wget -i filelist.wget
+wget -i filelist.wget -P dl
+
+md5sum * > filelist.md5
+md5sum -c filelist.md5
+
+sha256sum * > filelist.sha256
+sha256sum -c filelist.sha256

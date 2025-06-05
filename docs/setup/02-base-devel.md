@@ -73,6 +73,21 @@ indent_size = 4
 EOF
 ```
 
+## 在线 IDE
+
+MIT协议
+https://github.com/gitpod-io/openvscode-server
+```
+容器有问题，挂载的目录都是root权限，容器内是普通用户
+podman run  -d  --name code --init -p 3001:3000 \
+   -v "$(pwd):/home/workspace:cached" gitpod/openvscode-server
+
+直接启动可以，工作目录是 $home
+openvscode-server-v1.96.0-linux-x64.tar.gz
+./bin/openvscode-server --port 3001
+./bin/openvscode-server --host 192.168.1.210
+```
+
 ## Java IDE
 
 https://github.com/google/styleguide/blob/gh-pages/intellij-java-google-style.xml
