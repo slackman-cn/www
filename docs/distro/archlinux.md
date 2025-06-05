@@ -101,9 +101,9 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --re
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 ```
 
-## systemd-boot 引导 EFI
+## 引导 EFI (systemd-boot)
 
-轻量，代替grub
+GPT分区: 轻量，代替grub
 ```
 $> rm -rf /boot/EFI /boot/grub
 
@@ -125,8 +125,9 @@ initrd  /initramfs-linux.img
 options root=UUID=8817c0e4-a5d3-4286-ae19-fccdf47866a9 rw
 ```
 
-## extlinux/syslinux 引导 BIOS (MBR)
+## 引导 BIOS (extlinux/syslinux)
 
+MBR分区: 
 https://wiki.archlinuxcn.org/wiki/Syslinux
 
 isolinux 用于cdrom启动  
