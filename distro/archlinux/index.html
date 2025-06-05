@@ -230,12 +230,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#systemd-boot-efi" class="nav-link">systemd-boot 引导 EFI</a>
+            <li class="nav-item" data-bs-level="2"><a href="#efi-systemd-boot" class="nav-link">引导 EFI (systemd-boot)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#extlinuxsyslinux-bios-mbr" class="nav-link">extlinux/syslinux 引导 BIOS (MBR)</a>
+            <li class="nav-item" data-bs-level="2"><a href="#bios-extlinuxsyslinux" class="nav-link">引导 BIOS (extlinux/syslinux)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -352,8 +352,8 @@ pacman -S efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
 </code></pre>
-<h2 id="systemd-boot-efi">systemd-boot 引导 EFI</h2>
-<p>轻量，代替grub</p>
+<h2 id="efi-systemd-boot">引导 EFI (systemd-boot)</h2>
+<p>GPT分区: 轻量，代替grub</p>
 <pre><code>$&gt; rm -rf /boot/EFI /boot/grub
 
 检查引导
@@ -373,8 +373,9 @@ linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
 options root=UUID=8817c0e4-a5d3-4286-ae19-fccdf47866a9 rw
 </code></pre>
-<h2 id="extlinuxsyslinux-bios-mbr">extlinux/syslinux 引导 BIOS (MBR)</h2>
-<p>https://wiki.archlinuxcn.org/wiki/Syslinux</p>
+<h2 id="bios-extlinuxsyslinux">引导 BIOS (extlinux/syslinux)</h2>
+<p>MBR分区: 
+https://wiki.archlinuxcn.org/wiki/Syslinux</p>
 <p>isolinux 用于cdrom启动<br />
 pxelinux 用于网络启动<br />
 syslinux/extlinux 用于u盘或者cf卡启动</p>
