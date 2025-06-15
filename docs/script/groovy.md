@@ -3,7 +3,9 @@ title: Groovy Script
 since: 202503
 ---
 
-## apache-groovy-binary-3.0.22.zip
+## Install 
+
+> apache-groovy-binary-3.0.22.zip
 
 GROOVY_HOME, PATH
 ```
@@ -28,7 +30,7 @@ groovyc MyClass.groovy  // MyClass.class
 ```
 
 
-## apache-groovy-src-4.0.27.zip (Gradle 8.12)
+> apache-groovy-src-4.0.27.zip (Gradle 8.12)
 
 https://github.com/apache/groovy
 
@@ -114,5 +116,175 @@ application {
 
 tasks.named('test') {
     useJUnitPlatform() 
+}
+```
+
+## SwingBuilder
+
+example1
+```
+import groovy.swing.SwingBuilder
+
+import javax.swing.*
+import javax.swing.JFrame
+import javax.swing.WindowConstants
+import java.awt.BorderLayout
+
+static void main(String[] args) {
+    def swing = new SwingBuilder()
+
+    def buttonPanel = {
+        swing.panel(constraints : BorderLayout.SOUTH) {
+
+            button(text : 'Option A', actionPerformed : {
+                println 'Option A chosen'
+            })
+
+            button(text : 'Option B', actionPerformed : {
+                println 'Option B chosen'
+            })
+        }
+    }
+
+    def mainPanel = {
+        swing.panel(layout : new BorderLayout()) {
+            label(text : 'Which Option do you want',
+                    horizontalAlignment : JLabel.CENTER,
+                    constraints : BorderLayout.CENTER)
+            buttonPanel()
+        }
+    }
+
+    def myframe = swing.frame(
+            title : 'Tutorials Point',
+            location : [100, 100],
+            size : [400, 300],
+            defaultCloseOperation : WindowConstants.EXIT_ON_CLOSE){
+        mainPanel()
+    }
+
+    myframe.setVisible(true)
+}
+```
+
+example2
+```
+import groovy.swing.SwingBuilder
+
+import javax.swing.WindowConstants
+import java.awt.BorderLayout;
+
+static void main(String[] args) {
+    def swing = new SwingBuilder()
+
+    swing.frame(title : 'Tutorials Point',
+            location : [100, 100],
+            size : [400, 300],
+            layout: new BorderLayout(),
+            show:true,
+            defaultCloseOperation : WindowConstants.EXIT_ON_CLOSE,
+    ){
+        scrollPane(constraints: BorderLayout.CENTER) {
+            textArea()
+        }
+
+        panel(constraints: BorderLayout.SOUTH) {
+            button(text: 'Click', actionPerformed: {
+                println 'hhhh'
+            })
+        }
+
+    }
+}
+```
+
+
+
+
+## SwingBuilder 链接
+
+https://www.tutorialspoint.com/groovy/groovy_builders.htm
+
+https://wizardforcel.gitbooks.io/ibm-j-pg/content/1.html
+
+http://de.uwenku.com/question/p-yoayckhz-db.html
+
+https://code.fandom.com/wiki/Groovy.swing.SwingBuilder
+
+https://uberconf.com/blog/andres_almiray/2009/11/building_rich_swing_applications_with_groovy__part_i
+
+https://freecontent.manning.com/wp-content/uploads/groovy-swingbuilder-and-threading.pdf
+
+```
+    def customMenuBar = {
+        swing.menuBar{
+            menu(text: "File", mnemonic: 'F') {
+                menuItem(text: "Exit", mnemonic: 'X', actionPerformed: { dispose() })
+            }
+        }
+    }
+
+    def searchPanel = {
+        swing.panel(constraints: BorderLayout.NORTH){
+            searchField = textField(columns:15)
+            button(text:"Search", actionPerformed:{ /* TODO */ } )
+        }
+    }
+    
+panel(id:'main') { 
+    panel { 
+     button(name:'x', action: action(name:'add', closure:{p.add(label('new')); p.revalidate()})) 
+     button(action: action(name:'remove', closure:{p.removeAll();p.revalidate();scroll.repaint()})) 
+    } 
+
+    panel() { 
+     scrollPane(id:'scroll',preferredSize: [200,200], constraints: context.CENTER) { 
+       panel(id:'p') { 
+        checkBoxList(listData: (1..20).collect([]){"Option $it"} as Object[]) 
+       } 
+     } 
+   } 
+} 
+```
+
+## Java Swing 绘制组件
+
+https://zetcode.com/javaswing/painting/
+```
+import javax.swing.*;
+import java.awt.*;
+
+public class CustomPanel extends JPanel {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); // Ensures the panel is rendered correctly
+        g.setColor(Color.BLUE);
+        g.fillRect(20, 20, 100, 100); // Custom drawing code
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+        frame.add(new CustomPanel());
+        frame.setVisible(true);
+    }
+}
+```
+
+## 算法4 类库
+
+https://gitee.com/ZC_86/algorithms---4th-edition.git
+
+直接复制 StdDraw.java 
+```
+int N = 100;
+StdDraw.setXscale(0, N);
+StdDraw.setYscale(0, N * N);
+StdDraw.setPenRadius(.01);
+for (int i=1; i<=N; i++) {
+    StdDraw.point(i, i);
+    StdDraw.point(i, i*i);
+    StdDraw.point(i, i*Math.log(i));
 }
 ```
