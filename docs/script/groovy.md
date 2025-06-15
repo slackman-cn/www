@@ -272,7 +272,7 @@ public class CustomPanel extends JPanel {
 }
 ```
 
-## 算法4 类库
+## 算法4 Library
 
 https://gitee.com/ZC_86/algorithms---4th-edition.git
 
