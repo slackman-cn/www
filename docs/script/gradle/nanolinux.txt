@@ -1,0 +1,48 @@
+    distsDirectory = layout.buildDirectory.dir('custom-dist')
+layout.buildDirectory.file("myOutput.txt")
+
+这个似乎废弃了 'buildDir' is deprecated
+  delete rootProject.buildDir
+
+
+buildSrc/
+build/
+build/local/{bin,lib,include}
+src/
+src/dl
+src/main/java
+
+nanolinux {
+   deps = ['wget']
+   filelist = 'buildSrc/src/file-list.txt'
+   checksum = 'buildSrc/src/file-checksum.md5'
+   download = '$HOME/Downloads/nanolinux'
+   logfile = 'logs/nanolinux.log'
+   logmerge = true
+}
+
+顺序很复杂，不能这样简单指定
+toolchain {
+   ...
+   tasks = ['linux-kernel', 'libc', 'gcc']
+}
+
+===== 顺序
+gradle build
+gradle clean
+
+
+gradle`提供了两个可用的排序规则, 并不是依赖关系
+
+taskY {
+    mustRunAfter(taskX)
+}
+
+taskY {
+    shouldRunAfter(taskX)
+}
+
+禁用task
+taskY {
+    enabled = false
+}

@@ -34,15 +34,82 @@ gradle.properties 配置文件
 org.gradle.logging.level=info
 ```
 
+## Gradle Task & Plugin & Dependency
+
+```
+task hello {
+     doLast {
+       println "Hello"
+     }
+}
+
+tasks.register("hello") {
+    group = "task basic sample"
+    description = "this is the first lovely task."
+    doLast {
+        println('Hello!')
+    }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
+
+tasks.register('removeInput', Delete) {
+    delete 'inputs/3.txt'
+}
+```
+
 脚本插件: 普通的脚本文件
 
 二进制插件: 单独的插件模块，其他模块通过 Plugin ID 应用
 ```
 apply from: rootProject.file('buildSrc/shared.gradle')
+
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '8.3.4'
+}
+
+插件镜像地址 settings.gradle
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/gradle-plugin'
+        }
+        gradlePluginPortal()
+        mavenCentral()
+        jcenter()
+    }
+}
+```
+
+引入依赖
+```
+repositories {
+	maven {
+		url 'https://maven.aliyun.com/repository/public/'
+	}
+	maven {
+		url 'https://maven.aliyun.com/repository/spring/'
+	}
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+    testImplementation "junit:junit:4.13"
+    
+    implementation project(':shared')
+    implementation project(':api')
+    
+    implementation files('libs/xxx.jar')
+    implementation(fileTree("libs"));
+}
 ```
 
 
-## Gradle init {basic,application,library,plugin}
+## Gradle init {basic,application,library}
 
 gradle-7.4-bin.zip
 
@@ -92,7 +159,7 @@ task preCheck {
 
 task hello {
 	doLast {
-	    println 'hello onenewcode的粉丝们'
+	    println 'hello onen'
 	}
 }
 
@@ -115,7 +182,7 @@ task build {
 }
 ```
 
-## 创建 Task
+## Task 依赖关系
 https://docs.gradle.org/current/userguide/part2_gradle_tasks.html
 https://bbs.huaweicloud.com/blogs/418868
 
