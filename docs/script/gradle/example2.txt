@@ -1,0 +1,104 @@
+
+
+// requires: wget
+// recommend(Ubuntu): sudo apt install wget
+// recommend(Fedora): sudo dnf install wget
+
+
+ext.SourceSpec = [
+    Command : ['wget1', 'wget2'],
+    Library : ['xxx', 'eee'],
+    CommandUbuntu : ['wget', 'wget-2'],
+    CommandFedora : ['wget', 'libwget'],
+    LibraryUbuntu : ['libxxx-dev'],
+    LibraryFedora : ['xxx-devel'],
+]
+
+ext.SourceSpec2 = [
+    Deps: ['wge1', 'wget2']
+    Binary: ['wget', 'wget2'],
+    Library: ['liba', 'libc']
+    UbuntuDeps: ['wget1', 'wget2']
+]
+
+ext.ToolchainSpec = [
+    Deps: ['']
+    UbuntuDeps: [''],
+    FedoraDeps: [''],
+]
+
+def runTest() {
+  String result = "ls -lt ".execute().text
+  println result
+}
+
+def checkCommand(cmd) {
+  def proc = "which ${cmd}".execute()
+  proc.waitFor()
+  if (proc.exitValue() == 0) {
+    println "Found ${proc.text}"
+  } else {
+    println proc.err.text
+    println "Not Found"
+  }
+}
+
+def checkLibrary(lib) {
+
+}
+
+tasks.register('download') {
+    description 'Download source code to current dl directory'
+    onlyIf {
+        def notfound = []
+        def recommend_ubuntu = []
+        def recommend_fedora = []
+        println "Command Require: ${SourceSpec.Command}"
+        println '----------------'
+        SourceSpec.Command.eachWithIndex { cmd,i ->
+            def proc = "which ${cmd}".execute()
+            proc.waitFor()
+            if (proc.exitValue() == 0) {
+                println "Found: ${proc.text}"
+            } else {
+                println "Not Found: ${cmd}"
+                notfound << cmd
+                recommend_ubuntu << SourceSpec.CommandUbuntu[i]
+                recommend_fedora << SourceSpec.CommandFedora[i]
+            }
+        }
+        println '----------------'
+        if (notfound.size() != 0)  {
+            println "Comman Not Found: ${notfound}"
+            println "Recommend(ubuntu): sudo apt install ${recommend_ubuntu.join(',')}"
+            println "Recommend(fedora): sudo dnf install ${recommend_fedora.join(',')}"
+        }
+        notfound.size() == 0
+    }
+
+    doFirst {
+        //checkCommand('wget')
+        //checkCommand('wget2')
+    }
+
+    doLast {
+        println 'download source file xxx'
+    }
+}
+
+
+def wget(file) {
+    println "wget ${file}"
+}
+
+tasks.register('download2') {
+    def wget2 = {
+        println 'wget2 fileurl'
+    }
+
+    doLast {
+        wget('aaa')
+        wget2()
+        println 'download source file'
+    }
+}

@@ -1,0 +1,73 @@
+
+import org.gradle.internal.os.OperatingSystem;
+
+plugins {
+    id "de.undercouch.download" version "5.0.0"
+}
+
+apply from: rootProject.file('buildSrc/shared.gradle')
+
+
+task preCheck {
+   description 'Run all conditional os tasks'
+   doLast {
+        println(OperatingSystem.current().isMacOsX())
+        println(OperatingSystem.current().isLinux())
+   }
+}
+
+
+task build {
+   description 'Make a tiny Linux from scratch on Linux'
+
+   onlyIf { OperatingSystem.current().isLinux() }
+
+   doFirst {
+      println 'make toolchain; preCheck os host tools'
+   }
+
+   doLast {
+      println 'make rootfs;  download file  wget source'
+   }
+
+}
+
+
+
+// src/main/resources/banner.txt
+task tgzTask(type: Tar) {
+    into('app/') {
+        from 'build/libs'
+        include '*.jar'
+    }
+    into('app/') {
+        from 'build/resources/main/banner.txt'
+    }
+    into('app/config') {
+        from 'build/resources/main/config'
+        from 'build/resources/main/banner.txt'
+    }
+    into('app/config/sql') {
+        from 'build/resources/main/sql'
+    }
+
+    destinationDirectory = file('build/distributions')
+    extension 'tgz'
+    compression = Compression.GZIP
+}
+
+
+task downloadFile(type: Download) {
+    src 'http://192.168.1.1/pub/gcc-7.3.0.tar.gz'
+    dest buildDir
+}
+
+
+task build1(type: Exec) {
+  workingDir "$projectDir/gradle"
+   commandLine 'pwd'
+}
+
+task build2(type: Exec) {
+   commandLine 'sh', '-c', 'date', '-R'
+}
