@@ -1,0 +1,51 @@
+https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:manipulating_existing_tasks
+
+```
+tasks.register('hello') {
+    doLast {
+        println 'Hello Earth'
+    }
+}
+tasks.named('hello') {
+    doFirst {
+        println 'Hello Venus'
+    }
+}
+tasks.named('hello') {
+    doLast {
+        println 'Hello Mars'
+    }
+}
+tasks.named('hello') {
+    doLast {
+        println 'Hello Jupiter'
+    }
+}
+```
+
+依赖
+```
+tasks.register('taskX') {
+    dependsOn 'taskY'
+    doLast {
+        println 'taskX'
+    }
+}
+tasks.register('taskY') {
+    doLast {
+        println 'taskY'
+    }
+}
+```
+
+多个依赖
+```
+4.times { counter ->
+    tasks.register("task$counter") {
+        doLast {
+            println "I'm task number $counter"
+        }
+    }
+}
+tasks.named('task0') { dependsOn('task2', 'task3') }
+```

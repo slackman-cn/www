@@ -1,0 +1,67 @@
+创建Plugin方式2
+https://www.jrebel.com/blog/using-buildsrc-custom-logic-gradle-builds
+
+//mkdir buildSrc
+mkdir -p buildSrc/src/main/java
+
+
+============== build.gradle直接调用 java
+package myapp.gradle;
+
+public class Fun {
+  public static void sayHello() {
+    System.out.println("Hello from buildSrc!");
+  }
+}
+
+//// build.gradle
+import myapp.gradle.Fun
+
+task hello {
+  doLast {
+    Fun.sayHello()
+  }
+}
+
+
+============== 创建 Task
+package myapp.gradle;
+
+import org.gradle.api.DefaultTask;
+import org.gradle.api.tasks.TaskAction;
+
+public class HelloTask extends DefaultTask {
+    @TaskAction
+    public void run() {
+        System.out.println("Hello from task " + getPath() + "!");
+    }
+}
+
+
+//// build.gradle
+import myapp.gradle.HelloTask
+
+task hello(type: HelloTask)
+
+
+============== 创建 Plugin (参考 gradle init)
+package myapp.gradle;
+
+import org.gradle.api.Plugin;
+import org.gradle.api.Project;
+
+/**
+ * A simple 'hello world' plugin.
+ */
+public class MyPlugin implements Plugin<Project> {
+    public void apply(Project project) {
+        // Register a task
+        project.getTasks().register("greeting", task -> {
+            task.doLast(s -> System.out.println("Hello from plugin 'myapp2.greeting'"));
+        });
+    }
+}
+
+
+//// build.gradle
+apply plugin: myapp.gradle.MyPlugin

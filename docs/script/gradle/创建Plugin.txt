@@ -1,0 +1,44 @@
+创建Plugin方式1, 单独的插件项目
+https://peerdh.com/blogs/programming-insights/creating-custom-gradle-plugins-with-groovy-scripts-1
+
+==============
+plugins {
+    id 'groovy'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+==============
+src/
+└── main
+    └── groovy
+        └── com
+            └── example
+                └── GreetingPlugin.groovy
+
+
+package com.example
+
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+class GreetingPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task('greet') {
+            doLast {
+                println 'Hello, welcome to your custom Gradle plugin!'
+            }
+        }
+    }
+}

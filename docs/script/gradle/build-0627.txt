@@ -1,0 +1,14 @@
+tasks.register('list') {
+    def pkgfile = file("package.txt")
+    doLast {
+		println layout.projectDirectory.dir("generated")
+		println layout.projectDirectory.file("test.txt")
+		println '-------'
+		println layout.buildDirectory.dir("generated")
+		println layout.buildDirectory.file("test.txt")
+		println '-------'
+		if (pkgfile.exists()) {
+			println pkgfile.readLines()
+		}
+    }
+}

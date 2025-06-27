@@ -1,3 +1,15 @@
+变量定义
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "26.0.0"
+    minSdkVersion = 14
+    targetSdkVersion = 22
+    appcompatV7 = "com.android.support:appcompat-v7:$androidSupportVersion"
+}
+变量调用
+rootProject.ext.compileSdkVersion
+rootProject.ext.buildToolsVersion
+
 
 
 // requires: wget
