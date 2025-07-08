@@ -1,0 +1,65 @@
+https://github.com/runningcode/replace-plugin-task/blob/master/plugin/build.gradle.kts
+https://www.baeldung.com/gradle-custom-task
+
+========== Step1: xxx/plugin
+gradle 8.4
+jdk 17
+
+gradle init {plugin}
+> remove test part
+```
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+gradlePlugin {
+    // Define the plugin
+    plugins {
+        greeting {
+            id = 'org.example.greeting'
+            implementationClass = 'org.example.App2Plugin'
+        }
+    }
+}
+```
+
+========== Step2:  xxx/myapp
+mkdir myapp
+vim myapp/build.gradle
+```
+plugins {
+    id('org.example.greeting')
+}
+```
+
+========== Step3  xxx
+settings.gradle
+```
+rootProject.name = 'app2'
+includeBuild('plugin')
+include('myapp')
+```
+
+
+gradle greeting  (xxx 或 xxx/myapp)
+
+
+默认示例
+class App2Plugin implements Plugin<Project> {
+    void apply(Project project) {
+        // Register a task
+        project.tasks.register("greeting") {
+            doLast {
+                println("Hello from plugin 'org.example.greeting'")
+            }
+        }
+    }
+}
