@@ -78,6 +78,27 @@ systemctl set-default multi-user.target
 
 ## LiveCD
 
+CentOS 7
+```
+#centos-7-en.cfg
+#centos-7-jp.cfg
+livecd-creator --verbose \
+--config=centos-7-en.cfg \
+--fslabel="CentOS-7-x86_64-LIVE-2009-en" \
+--title="CentOS 7 LIVE 2009" \
+--product="CentOS 7 LIVE 2009 (en)"
+
+####
+可以用最近的7.9.2009
+https://github.com/lunatilia/centos-7-livemedia-japanese/tree/master
+
+修改设置
+repo --name=base \
+ --baseurl=http://mirrors.cloud.tencent.com/centos/7.9.2009/os/x86_64/
+selinux --disabled
+firewall --disabled
+```
+
 Fedora 41
 
 > qemu-kvm -m 2048 -vga qxl -cdrom fedora-i3-live-x86_64.iso
