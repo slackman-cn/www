@@ -80,6 +80,12 @@ systemctl set-default multi-user.target
 
 CentOS 7
 ```
+#https://github.com/livecd-tools
+#https://wiki.mageia.org/en/Using_the_LiveCD_Tools
+yum install livecd-tools
+yum install glibc-langpack-zh -y
+yum install glibc-langpack-en -y
+
 #centos-7-en.cfg
 #centos-7-jp.cfg
 livecd-creator --verbose \
