@@ -3,6 +3,16 @@ title: ArchLinux from Scratch
 since: 202412
 ---
 
+
+## HISTORY
+```
+pacstrap /mnt base base-devel linux linux-firmware
+pacstrap /mnt networkmanager vim nano sudo zsh bash bash-completion
+
+pacman -S openssh
+pacman -S less wget  zip unzip
+```
+
 ## BIOS or EFI
 
 /sys/firmware/efi exists means system uses UEFI
