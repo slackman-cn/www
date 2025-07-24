@@ -453,6 +453,7 @@ $> useradd cnki -G wheel -m
 $> passwd cnki
 $> nano /etc/sudoers.d/cnki
 cnki ALL=(ALL:ALL) ALL
+cnki ALL=(ALL:ALL) NOPASSWD:ALL
 
 su cnki
 cd /tmp
