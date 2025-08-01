@@ -1,0 +1,84 @@
+OS 也是 application, 从源码安装，从二进制安装
+
+## buildin toolchain 和 musl-cross-make 失败
+## 放弃kernel，直接构建rootfs
+
+通常的 Glibc + Coreutils
+嵌入式 Musl + Busybox
+
+busybox 作为 initramfs骨架
+
+https://github.com/gresskar/linux-from-scratch
+https://ericdraken.com/embedded-linux/
+https://re-ws.pl/2020/11/busybox-based-linux-distro-from-scratch/
+https://github.com/snacsnoc/snacklinux
+
+下载toolchain
+https://toolchains.bootlin.com/
+binutils	2.41
+gcc	13.3.0
+gdb	14.2
+linux-headers	4.19.315
+musl	1.2.5
+
+
+整体而言，从零制作一个工具链，对嵌入式的知识掌握还是需要深入的掌握，
+另外，工具链对整个系统代码的稳定性有着极大的影响，所以直接用自动制作的工具链，一定要经过严格的压力测试，否则容易出现各种隐患。
+
+因而，采用第三方制作好的，有专门公司维护的工具链，应该是一个更为有效的开发方式。
+
+>> 下载toolchain
+https://tinylab.org/prebuilt-cross-toolchains/
+>> 自己编译toolchain
+https://github.com/richfelker/musl-cross-make
+TARGET=x86_64-linux-musl make
+TARGET=x86_64-linux-musl make install
+https://wiki.musl-libc.org/getting-started.html
+make TARGET=x86_64-linux-musl install
+
+apt-get install build-essential git libgmp-dev libmpc-dev flex bison bc
+export PATH=$PATH:/path/musl-cross-make/output/bin
+export PATH=$PATH:/mnt/musl-cross-make-0.9.11/output/bin
+
+x86_64-linux-musl-gcc --version
+
+>> Build musl, Bash and BusyBox
+
+CC=x86_64-linux-musl-gcc ./configure --prefix=/
+CC=x86_64-linux-musl-gcc ./configure --prefix=/home/musl
+
+export TARGET=x86_64
+export CROSS_COMPILE=x86_64-linux-musl-
+export CC=x86_64-linux-musl-gcc
+
+# lua
+make linux
+make install INSTALL_TOP=/home/lua
+
+=================== Step1: Download Source
+wget https://nginx.org/download/nginx-1.22.0.tar.gz
+
+
+=================== Step2: Build Deps
+(chroot) or (new user)  a clean environment
+
+安装make
+yum install autoconf automake make
+
+安装g++
+yum install -y gcc gcc-c++
+
+安装nginx依赖库
+yum install wget pcre pcre-devel zlib zlib-devel openssl openssl-devel
+
+
+=================== Step3: Build
+toolchain
+rootfs
+
+./configure --prefix=/opt/nginx
+make && make install
+
+
+1. Build Kernel
+2. Build musl, Bash and BusyBox

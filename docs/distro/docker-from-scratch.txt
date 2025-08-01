@@ -1,0 +1,146 @@
+## 失败
+cat << EOF > hello.sh
+#!/bin/sh
+echo "Hello, World!"
+EOF
+chmod +x hello.sh
+
+## 成功
+cat << EOF > hello.c
+#include <stdio.h>
+int main() {
+printf("Hello World\n");
+return 0;
+}
+EOF
+
+gcc -o hello hello.c -static
+
+---- Dockerfile
+FROM scratch
+COPY ./hello /
+
+ENTRYPOINT ["/hello"]
+
+---- Docker
+docker build -t hello-scratch .
+docker run --rm hello-scratch
+
+REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+hello-scratch            latest    ae414a59c3c6   12 seconds ago   31B
+
+
+========================= 原理
+https://danishpraka.sh/posts/build-a-container-image-from-scratch/
+
+{layers,config} ==> manifest ==> index.json
+
+## Step1: RootFS Layers
+$ gcc -o hello hello.c -static
+$ tar --remove-files -czvf layer.tar.gz hello
+
+$ sha256sum layer.tar.gz
+$ mv layer.tar.gz cd6d97d306f091d6ee3f4e20b028e9870f6630334d9aa652f306c2ceed542873
+
+docker inspect hello-scratch
+"RootFS": {
+    "Type": "layers",
+    "Layers": [
+        "sha256:8c2a126367dee851ea30d216dc1ba1779377ee994f7f07c237d1b78a4d78ca0c"
+    ]
+},
+
+
+## Step2: Config
+
+====== sha256 config.json
+$ mv config.json 383e19444022c218a8b27ded396a7ad7b781fa4c06f68515dd2c0a14d4cb49d1
+{
+    "architecture": "amd64",
+    "os": "linux",
+    "config": {
+        "Entrypoint": [
+            "/hello"
+        ]
+    }
+}
+
+$ vim sample_config.json
+{
+    "architecture": "amd64",
+    "os": "linux",
+    "config": {
+        "Entrypoint": [
+            "./bin/bash"
+        ],
+        "User": "danish",
+        "ExposedPorts": {
+            "8080/tcp": {}
+        },
+        "Env": [
+            "FOO=bar",
+        ],
+        "Volumes": {
+            "/var/logs": {}
+        }
+    }
+}
+
+
+====== sha256 manifest.json
+$ mv manifest.json b61948e74064eacc5512d6d7c74f1cd9239d609062226e5186e53d05b0a8426c
+{
+    "schemaVersion": 2,
+    "mediaType": "application/vnd.oci.image.manifest.v1+json",
+    "config": {
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "digest": "sha256:383e19444022c218a8b27ded396a7ad7b781fa4c06f68515dd2c0a14d4cb49d1",
+        "size": 129
+    },
+    "layers": [
+        {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:cd6d97d306f091d6ee3f4e20b028e9870f6630334d9aa652f306c2ceed542873",
+            "size": 368449
+        }
+    ]
+}
+
+====== index.json
+{
+    "schemaVersion": 2,
+    "manifests": [
+        {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:b61948e74064eacc5512d6d7c74f1cd9239d609062226e5186e53d05b0a8426c",
+            "size": 748,
+            "annotations": {
+                "org.opencontainers.image.ref.name": "hello:scratch"
+            }
+        }
+    ]
+}
+
+
+
+## Step3:  Packing
+
+$ tree
+├── blobs/<alg>
+│       ├── <content addressable config>
+│       ├── <content addressable manifest>
+│       └── <content addressable layer>
+└── index.json
+
+$ tree
+├── blobs/sha256
+│       ├── c37c06cdec9d6a0f2a2d55deb5aa002b26b37b17c02c2eca908fc062af5f53eb
+│       ├── 99c9d2dcbdbc6e28277d379c2b9a59443b91937720361773963d28d5376252a9
+│       └── 2e17c995558ebfa8faacfe64ff78c359ab9f28b3401076bb238fd28c5b3a648b
+└── index.json
+
+$ tar -cf hello.tar *
+$ podman load < hello.tar
+docker load 报错
+
+podman run --rm hello:scratch
